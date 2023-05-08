@@ -1,0 +1,1 @@
+2023-05-08T23:16:52AEST handle 'AEST' like timezones (without resorting to maintaining a dict of s/AEST/+1000/ substitutions)

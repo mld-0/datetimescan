@@ -3,6 +3,7 @@
 //  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
 //  {{{2
 use datetimescan::search_datetimes::search_datetimes;
+//use datetimescan::parse_datetime::parse_datetime;
 
 use clap::{App, Arg};
 use std::fs::File;
