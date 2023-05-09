@@ -11,14 +11,12 @@ use std::collections::HashMap;
 /// timezone offset, and with or without 'T' separator between date and time.
 /// If no timezone offset is provided, the local timezone offset will be used.
 ///
-/// Only currently supported string timezones are: AEST, AEDT
+/// (Only currently supported timezones-as-string are: AEST, AEDT)
 ///
 /// # Arguments
-///
 /// * `datetime_str` - A string representing a datetime
 ///
 /// # Examples
-///
 /// ```
 /// use datetimescan::parse_datetime::parse_datetime;
 /// use chrono::{DateTime, FixedOffset};
@@ -28,7 +26,6 @@ use std::collections::HashMap;
 /// ```
 ///
 /// # Returns
-///
 /// * `Some(DateTime<FixedOffset>)` if the input string can be parsed successfully
 /// * `None` if the input string cannot be parsed
 pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>> 
