@@ -56,3 +56,8 @@ fn test_parse_datetime_invalid_input() {
     assert!(parse_datetime("invalid").is_none());
 }
 
+#[test]
+fn test_parse_datetime_empty_input() {
+    assert!(parse_datetime("").is_none());
+}
+
