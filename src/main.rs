@@ -25,6 +25,19 @@ fn main()
         .help("Select input file (default=stdin)")
         .takes_value(true);
 
+    let per_arg = Arg::with_name("per")
+        .long("per")
+        .value_name("INTERVAL")
+        .help("Count datetimes per interval (d/m/y) (default=d)")
+        .takes_value(true)
+        .default_value("d");
+
+    let allow_negative = Arg::with_name("allow_negative")
+        .long("allow_negative")
+        .value_name("ALLOW_NEGATIVE")
+        .help("Set negative deltas to 0")
+        .takes_value(false);
+
     let matches = App::new("datetimescan")
         .version("0.0.1")
         .about("Finds datetime strings in the input")
@@ -36,6 +49,7 @@ fn main()
         .subcommand(
             SubCommand::with_name("count")
                 .about("")
+                .arg(per_arg.clone())
             )
         .subcommand(
             SubCommand::with_name("deltas")
@@ -48,6 +62,7 @@ fn main()
         .subcommand(
             SubCommand::with_name("sum")
                 .about("")
+                .arg(per_arg.clone())
             )
         .subcommand(
                 SubCommand::with_name("wpm")
@@ -56,50 +71,60 @@ fn main()
         .get_matches();
 
     if let Some(scan_matches) = matches.subcommand_matches("scan") {
-        run_scan(&matches);
+        run_scan(&scan_matches);
     } else if let Some(count_matches) = matches.subcommand_matches("count") {
-        run_count(&matches);
+        run_count(&count_matches);
     } else if let Some(deltas_matches) = matches.subcommand_matches("deltas") {
-        run_deltas(&matches);
+        run_deltas(&deltas_matches);
     } else if let Some(splits_matches) = matches.subcommand_matches("splits") {
-        run_splits(&matches);
+        run_splits(&splits_matches);
     } else if let Some(sum_matches) = matches.subcommand_matches("sum") {
-        run_sum(&matches);
-    } else if let Some(sum_wpm) = matches.subcommand_matches("wpm") {
-        run_wpm(&matches);
+        run_sum(&sum_matches);
+    } else if let Some(wpm_matches) = matches.subcommand_matches("wpm") {
+        run_wpm(&wpm_matches);
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
     }
 }
 
-fn run_scan(matches: &ArgMatches)
+fn run_scan(scan_matches: &ArgMatches)
 {
-    let datetimes_and_locations = run_search_datetimes(&matches);
+    let datetimes_and_locations = run_search_datetimes(&scan_matches);
     print_search_datetimes_results(&datetimes_and_locations);
 }
 
-fn run_count(matches: &ArgMatches)
+fn run_count(count_matches: &ArgMatches)
 {
+    let datetimes_and_locations = run_search_datetimes(&count_matches);
+    let interval = count_matches.value_of("per").unwrap();
     unimplemented!();
 }
 
-fn run_deltas(matches: &ArgMatches)
+fn run_deltas(deltas_matches: &ArgMatches)
 {
+    let datetimes_and_locations = run_search_datetimes(&deltas_matches);
+    let allow_negative = deltas_matches.is_present("allow_negative");
     unimplemented!();
 }
 
-fn run_splits(matches: &ArgMatches) 
+fn run_splits(splits_matches: &ArgMatches) 
 {
+    let datetimes_and_locations = run_search_datetimes(&splits_matches);
+    let allow_negative = false;
     unimplemented!();
 }
 
-fn run_sum(matches: &ArgMatches) 
+fn run_sum(sum_matches: &ArgMatches) 
 {
+    let datetimes_and_locations = run_search_datetimes(&sum_matches);
+    let interval = sum_matches.value_of("per").unwrap();
+    let allow_negative = false;
     unimplemented!();
 }
 
-fn run_wpm(matches: &ArgMatches) 
+fn run_wpm(wpm_matches: &ArgMatches) 
 {
+    let datetimes_and_locations = run_search_datetimes(&wpm_matches);
     unimplemented!();
 }
 
