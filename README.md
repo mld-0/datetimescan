@@ -5,7 +5,7 @@ Report datetime matches and their locations
         --nolocations       Do not report locations
 
 
-count_per
+count
 Count datetimes per interval
         --per               [y/m/d]
 
@@ -17,7 +17,7 @@ splits
 Report length of continuous intervals where no delta is > timeout
         --timeout           [default=300] Max delta to consider continuous
 
-splits_per
+sum
 Sum splits per interval
         --timeout           [default=300] Max delta to consider continuous
         --per               [y/m/d]
