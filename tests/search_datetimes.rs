@@ -20,12 +20,15 @@ fn test_search_datetimes_single_match() {
 
 #[test]
 fn test_search_datetimes_multiple_matches() {
-    let input = "This input has three datetimes: 2023-05-08T19:29:50AEST, 2023-05-08T19:29:50+1000, and 2023-05-08 19:29:50";
+    let input = "Supported formats: '2023-05-08T19:29:50AEST', '2023-05-08T19:29:50UTC', '2023-05-08T19:29:50+1000', '2023-05-08T19:29:50+10:00', '2023-05-08 19:29:50', '2023-05-08T19:29:50'";
     let reader = Cursor::new(input);
     let results = search_datetimes(reader);
-    assert_eq!(results.len(), 3);
-    assert_eq!(results[0], ("2023-05-08T19:29:50AEST".to_string(), 1, 32));
-    assert_eq!(results[1], ("2023-05-08T19:29:50+1000".to_string(), 1, 57));
-    assert_eq!(results[2], ("2023-05-08 19:29:50".to_string(), 1, 87));
+    assert_eq!(results.len(), 6);
+    assert_eq!(results[0], ("2023-05-08T19:29:50AEST".to_string(), 1, 20));
+    assert_eq!(results[1], ("2023-05-08T19:29:50UTC".to_string(), 1, 47));
+    assert_eq!(results[2], ("2023-05-08T19:29:50+1000".to_string(), 1, 73));
+    assert_eq!(results[3], ("2023-05-08T19:29:50+10:00".to_string(), 1, 101));
+    assert_eq!(results[4], ("2023-05-08 19:29:50".to_string(), 1, 130));
+    assert_eq!(results[5], ("2023-05-08T19:29:50".to_string(), 1, 153));
 }
 
