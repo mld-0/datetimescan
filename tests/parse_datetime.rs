@@ -34,11 +34,20 @@ fn test_parse_datetime_without_timezone_offset() {
 }
 
 #[test]
-fn test_parse_datetime_with_tzcode() {
+fn test_parse_datetime_with_tzcode_aedt() {
     let datetime = parse_datetime("2023-05-08T18:30:00AEDT").unwrap();
     assert_eq!(
         datetime,
         DateTime::parse_from_str("2023-05-08T18:30:00+1100", "%Y-%m-%dT%H:%M:%S%z").unwrap()
+    );
+}
+
+#[test]
+fn test_parse_datetime_with_tzcode_utc() {
+    let datetime = parse_datetime("2023-05-08T18:30:00UTC").unwrap();
+    assert_eq!(
+        datetime,
+        DateTime::parse_from_str("2023-05-08T18:30:00+0000", "%Y-%m-%dT%H:%M:%S%z").unwrap()
     );
 }
 

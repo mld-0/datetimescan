@@ -11,7 +11,7 @@ use std::collections::HashMap;
 /// timezone offset, and with or without 'T' separator between date and time.
 /// If no timezone offset is provided, the local timezone offset will be used.
 ///
-/// (Only currently supported timezones-as-string are: AEST, AEDT)
+/// (Only currently supported timezones-as-string are: UTC, AEST, AEDT)
 ///
 /// # Arguments
 /// * `datetime_str` - A string representing a datetime
@@ -33,6 +33,7 @@ pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>>
     fn map_tzcode_to_tzoffset(datetime_str: &str) -> String
     {
         let mut timezone_map: HashMap<String, &str> = HashMap::new();
+        timezone_map.insert("UTC".to_string(), "+0000"); 
         timezone_map.insert("AEST".to_string(), "+1000"); 
         timezone_map.insert("AEDT".to_string(), "+1100"); 
 
