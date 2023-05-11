@@ -79,13 +79,14 @@ pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>>
         timezone_map.insert("UTC".to_string(), "+0000"); 
         timezone_map.insert("AEST".to_string(), "+1000"); 
         timezone_map.insert("AEDT".to_string(), "+1100"); 
-        let datetime_str_with_offset: String = timezone_map
+        log::trace!("map_tzcode_to_tzoffset(), timezone_map=({:?})", timezone_map);
+        let result: String = timezone_map
             .iter()
             .fold(datetime_str.to_string(), |acc, (abbr, offset)| {
                 acc.replace(abbr, offset)
             });
-        log::trace!("map_tzcode_to_tzoffset(), datetime_str_with_offset=({})", datetime_str_with_offset);
-        datetime_str_with_offset
+        log::trace!("map_tzcode_to_tzoffset(), result=({})", result);
+        result 
     }
 
     log::trace!("parse_datetime(), datetime_str=({})", datetime_str);
