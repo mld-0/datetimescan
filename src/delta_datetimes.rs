@@ -7,8 +7,7 @@ use chrono::{DateTime, FixedOffset};
 /// Calculates the difference in seconds between consecutive `DateTime` objects.
 ///
 /// # Arguments
-/// * `datetimes` - A vector of `DateTime` objects in `FixedOffset` timezone. 
-///     The `DateTime` objects should be in ascending order for meaningful results.
+/// * `datetimes` - A reference to `Vec<DateTime<FixedOffset>>`
 /// * `allow_negatives` - A boolean value indicating whether negative differences 
 ///     should be preserved. If `false`, any negative difference is replaced with `0`.
 ///
@@ -21,10 +20,10 @@ use chrono::{DateTime, FixedOffset};
 /// use chrono::{DateTime, FixedOffset};
 /// let dt1 = DateTime::parse_from_rfc3339("2023-05-11T00:00:00+00:00").unwrap();
 /// let dt2 = DateTime::parse_from_rfc3339("2023-05-11T00:01:00+00:00").unwrap();
-/// let diff = datetimescan::delta_datetimes::delta_datetimes(vec![dt1, dt2], false);
+/// let diff = datetimescan::delta_datetimes::delta_datetimes(&vec![dt1, dt2], false);
 /// assert_eq!(diff, vec![60]);
 /// ```
-pub fn delta_datetimes(datetimes: Vec<DateTime<FixedOffset>>, allow_negatives: bool) -> Vec<i64>
+pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: bool) -> Vec<i64>
 {
     log::trace!("delta_datetimes, datetimes=({:?}), allow_negatives=({})", datetimes, allow_negatives);
     if datetimes.len() == 0 {
