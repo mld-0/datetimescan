@@ -9,7 +9,7 @@ mod test_delta_datetimes {
         let allow_negatives = true;
         let expected_output = vec![];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
     
@@ -19,7 +19,7 @@ mod test_delta_datetimes {
         let allow_negatives = true;
         let expected_output = vec![];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
     
@@ -33,7 +33,7 @@ mod test_delta_datetimes {
         let allow_negatives = true;
         let expected_output = vec![60, 90];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
     
@@ -47,7 +47,7 @@ mod test_delta_datetimes {
         let allow_negatives = true;
         let expected_output = vec![-90, -60];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
     
@@ -61,7 +61,7 @@ mod test_delta_datetimes {
         let allow_negatives = false;
         let expected_output = vec![0, 0];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
     
@@ -75,7 +75,7 @@ mod test_delta_datetimes {
         let allow_negatives = true;
         let expected_output = vec![60, -30];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
     
@@ -89,7 +89,7 @@ mod test_delta_datetimes {
         let allow_negatives = false;
         let expected_output = vec![60, 0];
     
-        let result = delta_datetimes(input, allow_negatives);
+        let result = delta_datetimes(&input, allow_negatives);
         assert_eq!(result, expected_output);
     }
 }
