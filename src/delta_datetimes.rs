@@ -26,6 +26,7 @@ use chrono::{DateTime, FixedOffset};
 /// ```
 pub fn delta_datetimes(datetimes: Vec<DateTime<FixedOffset>>, allow_negatives: bool) -> Vec<i64>
 {
+    log::trace!("delta_datetimes, datetimes=({:?}), allow_negatives=({})", datetimes, allow_negatives);
     if datetimes.len() == 0 {
         return vec![];
     }
@@ -40,6 +41,7 @@ pub fn delta_datetimes(datetimes: Vec<DateTime<FixedOffset>>, allow_negatives: b
         }
         i += 1;
     }
+    log::trace!("delta_datetimes, result=({:?})", result);
     result
 }
 
@@ -68,7 +70,9 @@ pub fn delta_datetimes(datetimes: Vec<DateTime<FixedOffset>>, allow_negatives: b
 /// An `i64` value representing the signed difference between the two DateTime<FixedOffset> values in seconds.
 pub fn datetime_difference_seconds(dt1: DateTime<FixedOffset>, dt2: DateTime<FixedOffset>) -> i64 
 {
-    eprintln!("datetime_difference_seconds, dt1=({}), dt2=({})", dt1, dt2);
-    dt2.signed_duration_since(dt1).num_seconds()
+    log::trace!("datetime_difference_seconds, dt1=({}), dt2=({})", dt1, dt2);
+    let result = dt2.signed_duration_since(dt1).num_seconds();
+    log::trace!("datetime_difference_seconds, result=({})", result);
+    result
 }
 

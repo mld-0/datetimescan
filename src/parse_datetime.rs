@@ -32,29 +32,30 @@ pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>>
 {
     fn map_tzcode_to_tzoffset(datetime_str: &str) -> String
     {
+        log::trace!("map_tzcode_to_tzoffset(), datetime_str=({})", datetime_str);
         let mut timezone_map: HashMap<String, &str> = HashMap::new();
         timezone_map.insert("UTC".to_string(), "+0000"); 
         timezone_map.insert("AEST".to_string(), "+1000"); 
         timezone_map.insert("AEDT".to_string(), "+1100"); 
-
         let datetime_str_with_offset: String = timezone_map
             .iter()
             .fold(datetime_str.to_string(), |acc, (abbr, offset)| {
                 acc.replace(abbr, offset)
             });
+        log::trace!("map_tzcode_to_tzoffset(), datetime_str_with_offset=({})", datetime_str_with_offset);
         datetime_str_with_offset
     }
 
-    let datetime_str_with_offset = map_tzcode_to_tzoffset(datetime_str);
-
-    DateTime::parse_from_rfc3339(&datetime_str_with_offset)
+    log::trace!("parse_datetime(), datetime_str=({})", datetime_str);
+    let datetime_str = map_tzcode_to_tzoffset(datetime_str);
+    let result = DateTime::parse_from_rfc3339(&datetime_str)
         .ok()
         .or_else(|| {
-            DateTime::parse_from_str(&datetime_str_with_offset, "%Y-%m-%dT%H:%M:%S%z")
+            DateTime::parse_from_str(&datetime_str, "%Y-%m-%dT%H:%M:%S%z")
                 .ok()
         })
         .or_else(|| {
-            NaiveDateTime::parse_from_str(&datetime_str_with_offset, "%Y-%m-%dT%H:%M:%S")
+            NaiveDateTime::parse_from_str(&datetime_str, "%Y-%m-%dT%H:%M:%S")
                 .ok()
                 .and_then(|naive_datetime| {
                     let local_offset = *Local::now().offset();
@@ -62,12 +63,14 @@ pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>>
                 })
         })
         .or_else(|| {
-            NaiveDateTime::parse_from_str(&datetime_str_with_offset, "%Y-%m-%d %H:%M:%S")
+            NaiveDateTime::parse_from_str(&datetime_str, "%Y-%m-%d %H:%M:%S")
                 .ok()
                 .and_then(|naive_datetime| {
                     let local_offset = *Local::now().offset();
                     Some(local_offset.from_local_datetime(&naive_datetime).unwrap())
                 })
-        })
+        });
+        log::trace!("parse_datetime(), result=({:?})", result);
+        result
 }
 

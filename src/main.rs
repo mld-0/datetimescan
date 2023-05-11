@@ -5,12 +5,13 @@
 #![allow(unused)]
 use datetimescan::search_datetimes::search_datetimes;
 use datetimescan::parse_datetime::parse_datetime;
-use datetimescan::delta_datetimes::datetime_difference_seconds;
+use datetimescan::delta_datetimes::{delta_datetimes, datetime_difference_seconds};
 
 use clap::{App, Arg, ArgMatches, SubCommand};
 use std::fs::File;
 use std::io::{self,BufReader};
 use std::path::Path;
+use log::{error, warn, info, debug, trace};
 
 //  Notes:
 //  {{{
@@ -18,6 +19,8 @@ use std::path::Path;
 
 fn main() 
 {
+    env_logger::init();
+
     let input_arg = Arg::with_name("input")
         .short("i")
         .long("input")
@@ -70,6 +73,7 @@ fn main()
             )
         .get_matches();
 
+    log::trace!("main(), matches=({:?})", matches);
     if let Some(scan_matches) = matches.subcommand_matches("scan") {
         run_scan(&scan_matches);
     } else if let Some(count_matches) = matches.subcommand_matches("count") {

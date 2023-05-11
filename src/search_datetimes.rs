@@ -1,5 +1,6 @@
 use regex::Regex;
 use std::io::BufRead;
+use std::fmt::Debug;
 
 /// Searches for datetime strings in the format iso-format in the provided reader.
 ///
@@ -11,15 +12,15 @@ use std::io::BufRead;
 ///
 /// # Returns
 /// A vector of tuples containing the found datetime strings, their line numbers, and positions.
-pub fn search_datetimes<R: BufRead>(reader: R) -> Vec<(String, usize, usize)> 
+pub fn search_datetimes<R: BufRead + Debug>(reader: R) -> Vec<(String, usize, usize)> 
 {
+    log::trace!("search_datetimes(), reader=({:?})", reader);
     let datetime_regex = Regex::new(
         r"(?P<datetime>\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(?:[A-Z]{3,4}|[+-]\d{2}:?\d{2})?)",
     )
     .unwrap();
-
+    log::trace!("search_datetimes(), reader=({:?})", reader);
     let mut results: Vec<(String, usize, usize)> = Vec::new();
-
     let mut line_number = 1;
     for line in reader.lines() {
         if let Ok(line) = line {
@@ -31,6 +32,7 @@ pub fn search_datetimes<R: BufRead>(reader: R) -> Vec<(String, usize, usize)>
             line_number += 1;
         }
     }
+    log::trace!("search_datetimes(), results=({:?})", results);
     results
 }
 
