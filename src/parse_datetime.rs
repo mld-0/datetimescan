@@ -37,7 +37,6 @@ pub fn parse_datetimes(datetimes_strs: &Vec<String>) -> Option<Vec<DateTime<Fixe
     for datetime_str in datetimes_strs {
         let loop_result = parse_datetime(datetime_str);
         if loop_result.is_none() {
-            log::warn!("parse_datetimes(), failed to parse datetime_str=({}), return None", datetime_str);
             return None
         }
         result.push(loop_result.unwrap());
@@ -113,6 +112,9 @@ pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>>
                     Some(local_offset.from_local_datetime(&naive_datetime).unwrap())
                 })
         });
+        if result.is_none() {
+            log::error!("parse_datetime(), failed to parse datetime_str=({})", datetime_str);
+        }
         log::trace!("parse_datetime(), result=({:?})", result);
         result
 }
