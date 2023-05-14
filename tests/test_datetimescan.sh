@@ -8,23 +8,32 @@ set -o nounset   # abort on unbound variable
 set -o pipefail  # don't hide errors within pipes
 
 SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
+#	validate: SCRIPTPATH
+#	{{{
+if [[ ! -d "$SCRIPTPATH" ]]; then
+	echo "Failed to find dir SCRIPTPATH=($SCRIPTPATH)" > /dev/stderr
+	exit 2
+fi
+#	}}}
+
+PROJECT_PATH=`dirname $SCRIPTPATH`
 path_testfile_isodatetimes="$HOME/_data/textWithIsoDatetimes.txt"
 
-#	validate: path_testfile_isodatetimes, SCRIPTPATH
+#	validate: path_testfile_isodatetimes, PROJECT_PATH
 #	{{{
 if [[ ! -f "$path_testfile_isodatetimes" ]]; then
 	echo "Failed to find path_testfile_isodatetimes=($path_testfile_isodatetimes)" > /dev/stderr
 	exit 2
 fi
-if [[ ! -d "$SCRIPTPATH" ]]; then
-	echo "Failed to find SCRIPTPATH=($SCRIPTPATH)" > /dev/stderr
+if [[ ! -d "$PROJECT_PATH" ]]; then
+	echo "Failed to find PROJECT_PATH=($PROJECT_PATH)" > /dev/stderr
 	exit 2
 fi
 #	}}}
 
 cmd_cargo="$HOME/.cargo/bin/cargo"
 cmd_build=( $cmd_cargo build --release )
-cmd_datetimescan="$SCRIPTPATH/target/debug/datetimescan"
+cmd_datetimescan="$PROJECT_PATH/target/debug/datetimescan"
 
 main() {
 	#	funcname: {{{
@@ -52,7 +61,7 @@ build_release() {
 		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
-	cd "$SCRIPTPATH"
+	cd "$PROJECT_PATH"
 	${cmd_build[@]}
 }
 
