@@ -15,6 +15,7 @@ use log::{error, warn, info, debug, trace};
 
 //  Notes:
 //  {{{
+//  2023-05-14T23:12:44AEST subcommand 'sum' should be 'sums'?
 //  }}}
 
 fn main() 

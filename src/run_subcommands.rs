@@ -7,6 +7,7 @@
 use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetime, parse_datetimes};
 use crate::delta_datetimes::{delta_datetimes, datetime_difference_seconds};
+use crate::group_datetimes::group_datetimes;
 
 use chrono::{DateTime, FixedOffset};
 use clap::ArgMatches;
@@ -14,6 +15,7 @@ use std::fs::File;
 use std::io::{self,BufReader};
 use std::path::Path;
 use log::{error, warn, info, debug, trace};
+use std::collections::HashMap;
 
 pub fn scan(scan_matches: &ArgMatches)
 {
@@ -25,7 +27,9 @@ pub fn count(count_matches: &ArgMatches)
 {
     let interval = count_matches.value_of("per").unwrap();
     let datetimes_and_locations = run_search_datetimes(&count_matches);
-    unimplemented!("UNIMPLEMENTED");
+    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
+    let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
+    print_datetimes_grouped_counts(datetimes_grouped);
 }
 
 pub fn deltas(deltas_matches: &ArgMatches)
@@ -95,6 +99,13 @@ fn print_deltas(deltas: &Vec<i64>)
 {
     for delta in deltas {
         println!("{}", delta);
+    }
+}
+
+fn print_datetimes_grouped_counts(datetimes_grouped: HashMap<String, Vec<DateTime<FixedOffset>>>)
+{
+    for (interval, datetimes) in datetimes_grouped {
+        println!("{}: {}", interval, datetimes.len());
     }
 }
 

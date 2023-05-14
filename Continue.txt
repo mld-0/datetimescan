@@ -1,4 +1,6 @@
 2023-05-08T23:16:52AEST handle 'AEST' like timezones (without resorting to maintaining a dict of s/AEST/+1000/ substitutions)
 2023-05-11T21:02:59AEST implement 'group_datetimes'
-2023-05-14T20:57:51AEST test_datetimescan.sh, add tests for all subcommands
+2023-05-14T20:57:51AEST test_datetimescan.sh; add tests for all subcommands
+2023-05-14T23:22:06AEST test_datetimescan.sh; more datetime containing testfiles
+2023-05-14T23:30:52AEST cargo test; make it call 'test_datetimescan.sh'?
 

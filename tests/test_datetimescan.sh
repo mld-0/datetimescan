@@ -17,7 +17,7 @@ fi
 #	}}}
 
 PROJECT_PATH=`dirname $SCRIPTPATH`
-path_testfile_isodatetimes="$HOME/_data/textWithIsoDatetimes.txt"
+path_testfile_isodatetimes="$PROJECT_PATH/tests/data/textWithIsoDatetimes-1.txt"
 
 #	validate: path_testfile_isodatetimes, PROJECT_PATH
 #	{{{
@@ -35,6 +35,8 @@ cmd_cargo="$HOME/.cargo/bin/cargo"
 cmd_build=( $cmd_cargo build --release )
 cmd_datetimescan="$PROJECT_PATH/target/debug/datetimescan"
 
+flag_print_results=1
+
 main() {
 	#	funcname: {{{
 	local func_name=""
@@ -48,6 +50,8 @@ main() {
 	#	}}}
 	build_release
 	test_scan
+	test_count
+	echo "$func_name, DONE"
 }
 
 build_release() {
@@ -61,8 +65,11 @@ build_release() {
 		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
+	echo cd "$PROJECT_PATH" > /dev/stderr
+	echo ${cmd_build[@]} > /dev/stderr
 	cd "$PROJECT_PATH"
 	${cmd_build[@]}
+	echo "$func_name, DONE" > /dev/stderr
 }
 
 test_scan() {
@@ -78,8 +85,8 @@ test_scan() {
 	#	}}}
 	local result_str=""
 	local expected_str=""
+	local test_num=1
 
-	test_num=1
 	test_cmd=( $cmd_datetimescan scan --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -90,15 +97,129 @@ test_scan() {
 2023-05-05T19:36:35+1000	5	0"
 	assert_result
 
-	echo "test_scan, DONE"
+	echo "$func_name, DONE"
+}
+
+test_count() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+
+	test_cmd=( $cmd_datetimescan count --per "y" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 5"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan count --per "m" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05: 5"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan count --per "d" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05: 5"
+	assert_result
+
+	echo "$func_name, DONE"
+}
+
+test_deltas() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+
+	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
+	exit 2
+}
+
+test_splits() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+
+	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
+	exit 2
+}
+
+test_sum() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+
+	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
+	exit 2
+}
+
+test_wpm() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+
+	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
+	exit 2
 }
 
 assert_result() {
-	print_result
+	if [[ $flag_print_results -ne 0 ]]; then
+		print_result
+	fi
 	if [[ ! "$result_str" == "$expected_str" ]]; then
 		echo "$func_name, fail: $test_num\n"
-		echo "$func_name, result_str=($result_str)"
-		echo "$func_name, expected_str=($expected_str)"
+		#echo "$func_name, result_str=($result_str)"
+		#echo "$func_name, expected_str=($expected_str)"
 		diff <( echo $result_str ) <( echo $expected_str )
 		exit 2
 	fi
@@ -106,7 +227,7 @@ assert_result() {
 
 print_result() {
 	num=60
-	prefix_str="$func_name: $test_num, result_str: "
+	prefix_str="=== $func_name: $test_num, result: "
 	num_equals=$(($num - ${#prefix_str}))
 	if ((num_equals < 1)); then num_equals=1; fi  
 	output_str="${prefix_str}$(printf '=%.0s' $(seq 1 $num_equals))"
