@@ -3,9 +3,8 @@
 //  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
 //  {{{2
 #![allow(unused)]
-use datetimescan::search_datetimes::search_datetimes;
-use datetimescan::parse_datetime::{parse_datetime, parse_datetimes};
-use datetimescan::delta_datetimes::{delta_datetimes, datetime_difference_seconds};
+
+use datetimescan::run_subcommands::{scan, count, deltas, splits, sum, wpm};
 
 use chrono::{DateTime, FixedOffset};
 use clap::{App, Arg, ArgMatches, SubCommand};
@@ -32,8 +31,9 @@ fn main()
     let per_arg = Arg::with_name("per")
         .long("per")
         .value_name("INTERVAL")
-        .help("Count datetimes per interval (d/m/y) (default=d)")
+        .help("Count/Sum datetimes per interval (d/m/y/all) (default=d)")
         .takes_value(true)
+        .possible_values(&["d", "m", "y", "all"])
         .default_value("d");
 
     let allow_negative = Arg::with_name("allow_negative")
@@ -90,89 +90,6 @@ fn main()
         wpm(&wpm_matches);
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
-    }
-}
-
-fn scan(scan_matches: &ArgMatches)
-{
-    let datetimes_and_locations = run_search_datetimes(&scan_matches);
-    print_search_datetimes_results(&datetimes_and_locations);
-}
-
-fn count(count_matches: &ArgMatches)
-{
-    let interval = count_matches.value_of("per").unwrap();
-    let datetimes_and_locations = run_search_datetimes(&count_matches);
-    unimplemented!("UNIMPLEMENTED");
-}
-
-fn deltas(deltas_matches: &ArgMatches)
-{
-    let allow_negative = deltas_matches.is_present("allow_negative");
-    let datetimes_and_locations = run_search_datetimes(&deltas_matches);
-    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
-    let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
-    print_deltas(&deltas);
-}
-
-fn splits(splits_matches: &ArgMatches) 
-{
-    let allow_negative = false;
-    let datetimes_and_locations = run_search_datetimes(&splits_matches);
-    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
-    let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
-    unimplemented!("UNIMPLEMENTED");
-}
-
-fn sum(sum_matches: &ArgMatches) 
-{
-    let interval = sum_matches.value_of("per").unwrap();
-    let allow_negative = false;
-    let datetimes_and_locations = run_search_datetimes(&sum_matches);
-    unimplemented!("UNIMPLEMENTED");
-}
-
-fn wpm(wpm_matches: &ArgMatches) 
-{
-    let allow_negative = false;
-    let datetimes_and_locations = run_search_datetimes(&wpm_matches);
-    unimplemented!("UNIMPLEMENTED");
-}
-
-fn run_search_datetimes(matches: &ArgMatches) -> Vec<(String, usize, usize)>
-{
-    if let Some(file_path) = matches.value_of("input") {
-        let file = File::open(&Path::new(file_path)).expect("Failed to open the file");
-        search_datetimes(BufReader::new(file))
-    } else {
-        let stdin = io::stdin();
-        search_datetimes(stdin.lock())
-    }
-}
-
-fn run_parse_datetimes(datetimes_and_locations: &Vec<(String, usize, usize)>) -> Vec<DateTime<FixedOffset>>
-{
-
-    let datetimes_strs = datetimes_and_locations.iter().map(|(s, _, _)| s.to_string()).collect();
-    let datetimes_parsed = parse_datetimes(&datetimes_strs);
-    if datetimes_parsed.is_none() {
-        panic!("failed to parse datetimes_strs=({:?})", datetimes_strs);
-    }
-    datetimes_parsed.unwrap()
-}
-
-fn print_search_datetimes_results(datetimes_and_locations: &Vec<(String, usize, usize)>)
-{
-    let ofs = "\t".to_string();
-    for (datetime, line_number, position) in datetimes_and_locations {
-        println!("{}{}{}{}{}", datetime, ofs, line_number, ofs, position);
-    }
-}
-
-fn print_deltas(deltas: &Vec<i64>) 
-{
-    for delta in deltas {
-        println!("{}", delta);
     }
 }
 
