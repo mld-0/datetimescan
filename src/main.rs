@@ -91,5 +91,6 @@ fn main()
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
     }
+    log::trace!("main(), DONE");
 }
 
