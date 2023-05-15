@@ -1,32 +1,45 @@
-Commands:
+#datetimescan
+Command-line datetimes-in-file analysis utility
 
-scan
+##Common arguments:
+
+        --input             [file] input (default=stdin)
+        --filter_start      [date] Exclude dates before
+        --filter_end        [date] Exclude dates after
+        --custom_format     [format] Custom datetime format
+
+##Commands:
+
+###scan
 Report datetime matches and their locations
+
         --nolocations       Do not report locations
 
 
-count
+###count
 Count datetimes per interval
-        --per               [y/m/d]
 
-deltas
+        --per       [interval] [y/m/d]
+
+###deltas
 Report seconds elapsed between each datetime match
+
         --onlypositive      Do not include negative deltas
 
-splits
-Report length of continuous intervals where no delta is > timeout
-        --timeout           [default=300] Max delta to consider continuous
+###splits
+Report length of continuous deltas where no delta > timeout
 
-sum
+        --timeout       [delta] Max delta to consider continuous (default=300)
+
+###sum
 Sum splits per interval
-        --timeout           [default=300] Max delta to consider continuous
-        --per               [y/m/d]
 
-wpms
+        --timeout       [delta] Max delta to consider continuous (default=300)
+        --per           [interval] (y/m/d)
 
-Common Options:
-        --input             [default=stdin] input file
-        --filter_start
-        --filter_end
-        --custom_format
+###wpms
+...
+
+
+
 
