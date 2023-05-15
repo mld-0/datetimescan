@@ -104,8 +104,10 @@ fn print_deltas(deltas: &Vec<i64>)
 
 fn print_datetimes_grouped_counts(datetimes_grouped: HashMap<String, Vec<DateTime<FixedOffset>>>)
 {
-    for (interval, datetimes) in datetimes_grouped {
-        println!("{}: {}", interval, datetimes.len());
+    let mut intervals: Vec<String> = datetimes_grouped.keys().cloned().collect();
+    intervals.sort();
+    for interval in &intervals {
+        println!("{}: {}", interval, datetimes_grouped.get(interval).unwrap().len());
     }
 }
 
