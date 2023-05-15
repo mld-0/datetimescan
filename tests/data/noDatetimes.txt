@@ -1,0 +1,1 @@
+To calculate the differences, we'll need to convert all of the datetimes to the same timezone, as the difference in seconds depends on the specific moment in time, not just the "clock time". Here, all the datetimes are in the same timezone (+1000), which makes the calculation straightforward.
