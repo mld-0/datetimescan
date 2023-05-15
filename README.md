@@ -1,15 +1,19 @@
 # datetimescan
 
-Command-line datetimes-in-file analysis utility
+## About:
 
-## Common arguments:
+Command-line datetimes-in-file analysis utility 
+
+## Usage:
+
+Common arguments
 
         --input             [file] input (default=stdin)
         --filter_start      [date] Exclude dates before
         --filter_end        [date] Exclude dates after
         --custom_format     [format] Custom datetime format
 
-## Commands:
+Commands
 
 ### scan
 
@@ -50,8 +54,20 @@ Sum splits per interval
 
 ...
 
-
 ## Supported datetime formats:
 
-...
+    2023-05-08T19:29:50AEST 
+    2023-05-08T19:29:50UTC 
+    2023-05-08T19:29:50+1000
+    2023-05-08T19:29:50+10:00
+    2023-05-08 19:29:50
+    2023-05-08T19:29:50
+
+Only valid letter-code timezones are: UTC, AEST, AEDT
+
+## Notes:
+
+Replaces dtscan (see <>)
+
+So far largely a case-study in asking gpt4 to write functions and their docs (but not in how the whole thing might be laid out - see Continues on how datetimescan::*_datetimes::* always should be been combined).
 
