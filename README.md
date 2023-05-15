@@ -16,6 +16,7 @@ Command-line datetimes-in-file analysis utility
 Report datetime matches and their locations
 
         --nolocations       Do not report locations
+        --parse             Output iso-datetimes
 
 
 ### count
@@ -35,6 +36,7 @@ Report seconds elapsed between each datetime match
 Report length of continuous deltas where no delta > timeout
 
         --timeout       [delta] Max delta to consider continuous (default=300)
+        --breakempty    End continuious deltas if there is an empty line between them
 
 ### sum
 
@@ -42,11 +44,14 @@ Sum splits per interval
 
         --timeout       [delta] Max delta to consider continuous (default=300)
         --per           [interval] (y/m/d)
+        --breakempty    End continuious deltas if there is an empty line between them
 
 ### wpms
 
 ...
 
 
+## Supported datetime formats:
 
+...
 
