@@ -22,7 +22,7 @@ Report datetime matches and their locations
 
 Count datetimes per interval
 
-        --per       [interval] [y/m/d]
+        --per       [interval] (y/m/d)
 
 ### deltas
 
