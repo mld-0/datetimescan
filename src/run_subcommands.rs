@@ -6,7 +6,7 @@
 
 use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetime, parse_datetimes};
-use crate::delta_datetimes::{delta_datetimes, datetime_difference_seconds};
+use crate::delta_datetimes::{delta_datetimes, datetime_difference_seconds, split_deltas};
 use crate::group_datetimes::group_datetimes;
 
 use chrono::{DateTime, FixedOffset};
@@ -44,10 +44,12 @@ pub fn deltas(deltas_matches: &ArgMatches)
 pub fn splits(splits_matches: &ArgMatches) 
 {
     let allow_negative = false;
+    let timeout = 300;
     let datetimes_and_locations = run_search_datetimes(&splits_matches);
     let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
     let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
-    unimplemented!("UNIMPLEMENTED");
+    let splits = split_deltas(&deltas, timeout);
+    print_splits(&splits);
 }
 
 pub fn sum(sum_matches: &ArgMatches) 
@@ -108,6 +110,13 @@ fn print_datetimes_grouped_counts(datetimes_grouped: HashMap<String, Vec<DateTim
     intervals.sort();
     for interval in &intervals {
         println!("{}: {}", interval, datetimes_grouped.get(interval).unwrap().len());
+    }
+}
+
+fn print_splits(splits: &Vec<u64>) 
+{
+    for split in splits {
+        println!("{}", split);
     }
 }
 

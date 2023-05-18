@@ -4,6 +4,12 @@
 //  {{{2
 use chrono::{DateTime, FixedOffset};
 
+//  Notes:
+//  {{{
+//  2023-05-18T21:30:25AEST (do we need to) determine datetimes corresponding to start/end of each split?
+//  2023-05-18T21:31:41AEST splits -> whether to use i64/u64(?)
+//  }}}
+
 /// Calculates the difference in seconds between consecutive `DateTime` objects.
 ///
 /// # Arguments
@@ -25,7 +31,7 @@ use chrono::{DateTime, FixedOffset};
 /// ```
 pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: bool) -> Vec<i64>
 {
-    log::trace!("delta_datetimes, datetimes=({:?}), allow_negatives=({})", datetimes, allow_negatives);
+    log::trace!("delta_datetimes(), datetimes=({:?}), allow_negatives=({})", datetimes, allow_negatives);
     if datetimes.len() == 0 {
         return vec![];
     }
@@ -40,7 +46,7 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
         }
         i += 1;
     }
-    log::trace!("delta_datetimes, result=({:?})", result);
+    log::trace!("delta_datetimes(), result=({:?})", result);
     result
 }
 
@@ -69,9 +75,54 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
 /// An `i64` value representing the signed difference between the two DateTime<FixedOffset> values in seconds.
 pub fn datetime_difference_seconds(dt1: DateTime<FixedOffset>, dt2: DateTime<FixedOffset>) -> i64 
 {
-    log::trace!("datetime_difference_seconds, dt1=({}), dt2=({})", dt1, dt2);
+    log::trace!("datetime_difference_seconds(), dt1=({}), dt2=({})", dt1, dt2);
     let result = dt2.signed_duration_since(dt1).num_seconds();
-    log::trace!("datetime_difference_seconds, result=({})", result);
+    log::trace!("datetime_difference_seconds(), result=({})", result);
+    result
+}
+
+
+/// Splits the provided list of deltas into periods of continuous activity.
+///
+/// A new period is started whenever a delta is encountered that is either negative or exceeds the specified timeout. The function then returns a list of the total accumulated time for each period of continuous activity.
+///
+/// # Arguments
+/// * `deltas` - A reference to a vector of i64s, where each i64 represents the difference between subsequent datetimes in a log, in seconds.
+/// * `timeout` - A u64 representing the maximum allowed difference between subsequent datetimes for them to be considered part of the same period of continuous activity.
+///
+/// # Returns
+/// A vector of u64s where each u64 represents the total length of a period of continuous activity, in seconds.
+///
+/// # Example
+/// ```
+/// use datetimescan::delta_datetimes::split_deltas;
+/// let deltas = vec![100, 150, 500, 100];
+/// let timeout = 300;
+/// assert_eq!(split_deltas(&deltas, timeout), vec![250, 100]);
+/// ```
+pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
+{
+    log::trace!("split_deltas(), timeout=({}), deltas=({:?})", timeout, deltas);
+    let mut result = vec![];
+    let mut splits: Vec<Vec<u64>> = vec![];
+    let mut current_split: Vec<u64> = vec![];
+    for delta in deltas {
+        if *delta < 0 || (*delta as u64) > timeout {
+            if current_split.len() > 0 {
+                splits.push(current_split);
+            }
+            current_split = vec![];
+        } else {
+            current_split.push(*delta as u64);
+        }
+    }
+    if current_split.len() > 0 {
+        splits.push(current_split);
+    }
+    for split in &splits {
+        result.push(split.iter().sum());
+    }
+    log::trace!("result=({:?})", result);
     result
 }
 

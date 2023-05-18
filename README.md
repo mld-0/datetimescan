@@ -63,7 +63,7 @@ Sum splits per interval
     2023-05-08 19:29:50
     2023-05-08T19:29:50
 
-Only valid letter-code timezones are: UTC, AEST, AEDT
+Only (currently) valid letter-code timezones are: UTC, AEST, AEDT
 
 ## Notes:
 
