@@ -65,7 +65,7 @@ main() {
 	test_scan
 	test_count
 	test_deltas
-	#test_splits
+	test_splits
 	#test_sum
 	#test_wpm
 	echo "$func_name, DONE"
@@ -251,7 +251,25 @@ test_splits() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
-	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_empty" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+""
+	assert_result
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "206 1638 87 318 7" | tr ' ' '\n'`
+	assert_result
+
 	exit 2
 }
 
@@ -298,12 +316,12 @@ assert_result() {
 	if [[ ! "$result_str" == "$expected_str" ]]; then
 		echo "$func_name, fail: $test_num\n"
 		#	use 'if' to prevent errexit triggering (diff returns rc=1)
+		if diff --color -u <( echo $result_str ) <( echo $expected_str ); then echo "" > /dev/null; fi
 		#	{{{
 		#if diff --color <( echo $result_str ) <( echo $expected_str ); then echo "" > /dev/null; fi
 		#if diff <( echo $result_str ) <( echo $expected_str ); then echo "" > /dev/null; fi
 		#diff --color --suppress-common-lines -y <( echo $result_str ) <( echo $expected_str )
 		#	}}}
-		if diff --color -u <( echo $result_str ) <( echo $expected_str ); then echo "" > /dev/null; fi
 		if [[ $flag_exit_on_fail -ne 0 ]]; then
 			exit 2
 		fi
