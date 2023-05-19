@@ -270,7 +270,6 @@ test_splits() {
 `echo "206 1638 87 318 7" | tr ' ' '\n'`
 	assert_result
 
-	exit 2
 }
 
 test_sum() {
