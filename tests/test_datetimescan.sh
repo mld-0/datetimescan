@@ -49,6 +49,7 @@ cmd_datetimescan="$PROJECT_PATH/target/release/datetimescan"
 
 flag_print_results=0
 flag_exit_on_fail=0
+rust_log_level=''		#	'trace' for full output
 
 main() {
 	#	funcname: {{{
@@ -61,6 +62,9 @@ main() {
 		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
+	if [[ ! -z "$rust_log_level" ]]; then
+		export RUST_LOG="$rust_log_level"
+	fi
 	build_release
 	test_scan
 	test_count
