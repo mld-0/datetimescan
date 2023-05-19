@@ -49,7 +49,7 @@ pub fn deltas(deltas_matches: &ArgMatches)
 pub fn splits(splits_matches: &ArgMatches) 
 {
     let allow_negative = false;
-    let timeout = 300;
+    let timeout: u64 = splits_matches.value_of("timeout").unwrap().parse().unwrap();
     let datetimes_and_locations = run_search_datetimes(&splits_matches);
     let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
     let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
@@ -59,8 +59,9 @@ pub fn splits(splits_matches: &ArgMatches)
 
 pub fn sum(sum_matches: &ArgMatches) 
 {
-    let interval = sum_matches.value_of("per").unwrap();
     let allow_negative = false;
+    let interval = sum_matches.value_of("per").unwrap();
+    let timeout: u64 = sum_matches.value_of("timeout").unwrap().parse().unwrap();
     let datetimes_and_locations = run_search_datetimes(&sum_matches);
     unimplemented!("UNIMPLEMENTED");
 }

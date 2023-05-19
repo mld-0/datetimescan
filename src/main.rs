@@ -44,6 +44,21 @@ fn main()
         .help("Set negative deltas to 0")
         .takes_value(false);
 
+    let unsigned_validator = |value: String| -> Result<(), String> {
+        match value.parse::<u64>() {
+            Ok(num) => { Ok( () ) },
+            Err(_) => Err("Invalid integer value".to_string()),
+        }
+    };
+
+    let timeout = Arg::with_name("timeout")
+        .long("split calculation timeout")
+        .value_name("TIMEOUT")
+        .help("Max positive delta not considered a split")
+        .takes_value(true)
+        .validator(unsigned_validator)
+        .default_value("300");
+
     let parser = App::new("datetimescan")
         .version("0.0.1")
         .about("Finds datetime strings in the input")
@@ -69,11 +84,13 @@ fn main()
         .subcommand(
             SubCommand::with_name("splits")
                 .about("")
+                .arg(timeout.clone())
             )
         .subcommand(
             SubCommand::with_name("sum")
                 .about("")
                 .arg(per_arg.clone())
+                .arg(timeout.clone())
             )
         .subcommand(
                 SubCommand::with_name("wpm")
