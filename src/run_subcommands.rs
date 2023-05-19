@@ -23,6 +23,11 @@ pub fn scan(scan_matches: &ArgMatches)
     print_search_datetimes_results(&datetimes_and_locations);
 }
 
+pub fn parse(parse_matches: &ArgMatches)
+{
+    unimplemented!("UNIMPLEMENTED");
+}
+
 pub fn count(count_matches: &ArgMatches)
 {
     let interval = count_matches.value_of("per").unwrap();
@@ -66,6 +71,7 @@ pub fn wpm(wpm_matches: &ArgMatches)
     let datetimes_and_locations = run_search_datetimes(&wpm_matches);
     unimplemented!("UNIMPLEMENTED");
 }
+
 
 fn run_search_datetimes(matches: &ArgMatches) -> Vec<(String, usize, usize)>
 {

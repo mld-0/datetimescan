@@ -1,10 +1,11 @@
-//  {{{3
+//  vim-modelines:  {{{3
 //  vim: set tabstop=4 modeline modelines=10:
 //  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
 //  {{{2
+
 #![allow(unused)]
 
-use datetimescan::run_subcommands::{scan, count, deltas, splits, sum, wpm};
+use datetimescan::run_subcommands::{scan, parse, count, deltas, splits, sum, wpm};
 
 use chrono::{DateTime, FixedOffset};
 use clap::{App, Arg, ArgMatches, SubCommand};
@@ -43,12 +44,16 @@ fn main()
         .help("Set negative deltas to 0")
         .takes_value(false);
 
-    let matches = App::new("datetimescan")
+    let parser = App::new("datetimescan")
         .version("0.0.1")
         .about("Finds datetime strings in the input")
         .arg(input_arg.clone().global(true)) 
         .subcommand(
             SubCommand::with_name("scan")
+                .about("")
+            )
+        .subcommand(
+            SubCommand::with_name("parse")
                 .about("")
             )
         .subcommand(
@@ -73,25 +78,29 @@ fn main()
         .subcommand(
                 SubCommand::with_name("wpm")
                 .about("")
-            )
-        .get_matches();
+            );
 
+    let matches = parser.get_matches();
     log::trace!("main(), matches=({:?})", matches);
+
     if let Some(scan_matches) = matches.subcommand_matches("scan") {
-        scan(&scan_matches);
+        scan(&scan_matches)
+    } else if let Some(parse_matches) = matches.subcommand_matches("parse") {
+        parse(&parse_matches)
     } else if let Some(count_matches) = matches.subcommand_matches("count") {
-        count(&count_matches);
+        count(&count_matches)
     } else if let Some(deltas_matches) = matches.subcommand_matches("deltas") {
-        deltas(&deltas_matches);
+        deltas(&deltas_matches)
     } else if let Some(splits_matches) = matches.subcommand_matches("splits") {
-        splits(&splits_matches);
+        splits(&splits_matches)
     } else if let Some(sum_matches) = matches.subcommand_matches("sum") {
-        sum(&sum_matches);
+        sum(&sum_matches)
     } else if let Some(wpm_matches) = matches.subcommand_matches("wpm") {
-        wpm(&wpm_matches);
+        wpm(&wpm_matches)
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
     }
+
     log::trace!("main(), DONE");
 }
 
