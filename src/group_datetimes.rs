@@ -63,39 +63,3 @@ fn group_datetimes_by_format(datetimes: &Vec<DateTime<FixedOffset>>, format: &st
     result
 }
 
-//fn group_datetimes_by_day(datetimes: &Vec<DateTime<FixedOffset>>) -> HashMap<String, Vec<DateTime<FixedOffset>>> 
-//{
-//    let mut result = HashMap::new();
-//    for datetime in datetimes {
-//        let date_string = datetime.format("%Y-%m-%d").to_string();
-//        result.entry(date_string)
-//            .or_insert_with(Vec::new)
-//            .push(datetime.clone());
-//    }
-//    result
-//}
-//
-//fn group_datetimes_by_month(datetimes: &Vec<DateTime<FixedOffset>>) -> HashMap<String, Vec<DateTime<FixedOffset>>> 
-//{
-//    let mut result = HashMap::new();
-//    for datetime in datetimes {
-//        let date_string = datetime.format("%Y-%m").to_string();
-//        result.entry(date_string)
-//            .or_insert_with(Vec::new)
-//            .push(datetime.clone());
-//    }
-//    result
-//}
-//
-//fn group_datetimes_by_year(datetimes: &Vec<DateTime<FixedOffset>>) -> HashMap<String, Vec<DateTime<FixedOffset>>> 
-//{
-//    let mut result = HashMap::new();
-//    for datetime in datetimes {
-//        let date_string = datetime.format("%Y").to_string();
-//        result.entry(date_string)
-//            .or_insert_with(Vec::new)
-//            .push(datetime.clone());
-//    }
-//    result
-//}
-
