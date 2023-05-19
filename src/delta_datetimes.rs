@@ -8,6 +8,7 @@ use chrono::{DateTime, FixedOffset};
 //  {{{
 //  2023-05-18T21:30:25AEST (do we need to) determine datetimes corresponding to start/end of each split?
 //  2023-05-18T21:31:41AEST splits -> whether to use i64/u64(?)
+//  2023-05-19T22:35:20AEST remove 'current_sum' from `split_deltas()` (how to sum vector and  compare result against 0_u64 as a condition of the if-statement?)
 //  }}}
 
 /// Calculates the difference in seconds between consecutive `DateTime` objects.
@@ -109,7 +110,10 @@ pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
     for delta in deltas {
         if *delta < 0 || (*delta as u64) > timeout {
             if current_split.len() > 0 {
-                splits.push(current_split);
+                let current_sum: u64 = current_split.iter().sum();
+                if current_sum > 0 {
+                    splits.push(current_split);
+                }
             }
             current_split = vec![];
         } else {
@@ -117,7 +121,10 @@ pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
         }
     }
     if current_split.len() > 0 {
-        splits.push(current_split);
+        let current_sum: u64 = current_split.iter().sum();
+        if current_sum > 0 {
+            splits.push(current_split);
+        }
     }
     for split in &splits {
         result.push(split.iter().sum());
