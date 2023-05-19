@@ -268,12 +268,49 @@ test_splits() {
 "113"
 	assert_result
 
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes" --timeout 1 )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes" --timeout 30 )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "21 17" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes" --timeout 1200 )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "113" | tr ' ' '\n'`
+	assert_result
+
 	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 `echo "206 1638 87 318 7" | tr ' ' '\n'`
 	assert_result
 
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes_2" --timeout 1 )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes_2" --timeout 600 )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "206 1638 753 7" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $cmd_datetimescan splits --input "$path_testfile_isodatetimes_2" --timeout 1200 )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "206 1638 1416" | tr ' ' '\n'`
+	assert_result
+
+	echo "$func_name, DONE" > /dev/stderr
 }
 
 test_sum() {
