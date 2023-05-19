@@ -52,7 +52,7 @@ fn main()
     };
 
     let timeout = Arg::with_name("timeout")
-        .long("split calculation timeout")
+        .long("timeout")
         .value_name("TIMEOUT")
         .help("Max positive delta not considered a split")
         .takes_value(true)
