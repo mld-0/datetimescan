@@ -12,15 +12,21 @@ Common arguments
         --filter_start      [date] Exclude dates before
         --filter_end        [date] Exclude dates after
         --custom_format     [format] Custom datetime format
+        --assumetz          [tz] Timezone to assume where not given (default=system)
 
 Commands
 
 ### scan
 
-Report datetime matches and their locations
+List datetime matches and their locations
 
         --nolocations       Do not report locations
-        --parse             Output iso-datetimes
+
+## parse
+
+List datetime matches in specified output format
+
+        --outputfmt     [format] Custom output datetime format
 
 
 ### count
@@ -67,7 +73,7 @@ Only (currently) valid letter-code timezones are: UTC, AEST, AEDT
 
 ## Notes:
 
-Replaces dtscan (see <>)
+Replaces (disaster-made-of-python) 'dtscan' (see <>)
 
 So far largely a case-study in asking gpt4 to write functions and their docs (but not in how the whole thing might be laid out - see Continues on how datetimescan::*_datetimes::* always should be been combined).
 

@@ -7,3 +7,6 @@
 2023-05-15T23:14:37AEST cargo doc; fill in the blanks
 2023-05-15T23:15:55AEST src; shouldn't *everything* date related be in datetimescan::datetimes::*?
 2023-05-15T23:48:49AEST src; which (of our) functions should have just been calls to 'chrono' functions
+2023-05-19T20:48:38AEST src; add missing arguments (from REAME)
+2023-05-19T20:48:53AEST src; implement all arguments
+
