@@ -1,4 +1,5 @@
 
+#[cfg(test)]
 mod test_delta_datetimes {
     use chrono::DateTime;
     use datetimescan::delta_datetimes::delta_datetimes; 
@@ -139,6 +140,7 @@ mod test_difference_seconds {
     }
 }
 
+#[cfg(test)]
 mod test_split_deltas {
     use datetimescan::delta_datetimes::split_deltas;
 

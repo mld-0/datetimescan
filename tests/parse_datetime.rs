@@ -1,4 +1,5 @@
 
+#[cfg(test)]
 mod test_parse_datetimes {
     use datetimescan::parse_datetime::parse_datetimes;
     use chrono::{DateTime, FixedOffset};
@@ -37,6 +38,7 @@ mod test_parse_datetimes {
 }
 
 
+#[cfg(test)]
 mod test_parse_datetime {
     use datetimescan::parse_datetime::parse_datetime;
     use chrono::{DateTime, Local, NaiveDateTime, TimeZone};
