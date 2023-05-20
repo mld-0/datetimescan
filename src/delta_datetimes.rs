@@ -47,7 +47,7 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
         }
         i += 1;
     }
-    log::trace!("delta_datetimes(), result=({:?})", result);
+    log::debug!("delta_datetimes(), result=({:?})", result);
     result
 }
 
@@ -76,9 +76,9 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
 /// An `i64` value representing the signed difference between the two DateTime<FixedOffset> values in seconds.
 pub fn datetime_difference_seconds(dt1: DateTime<FixedOffset>, dt2: DateTime<FixedOffset>) -> i64 
 {
-    log::trace!("datetime_difference_seconds(), dt1=({}), dt2=({})", dt1, dt2);
+    //log::trace!("datetime_difference_seconds(), dt1=({}), dt2=({})", dt1, dt2);
     let result = dt2.signed_duration_since(dt1).num_seconds();
-    log::trace!("datetime_difference_seconds(), result=({})", result);
+    //log::trace!("datetime_difference_seconds(), result=({})", result);
     result
 }
 
@@ -103,7 +103,7 @@ pub fn datetime_difference_seconds(dt1: DateTime<FixedOffset>, dt2: DateTime<Fix
 /// ```
 pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
 {
-    log::trace!("split_deltas(), timeout=({}), deltas=({:?})", timeout, deltas);
+    log::debug!("split_deltas(), timeout=({}), deltas=({:?})", timeout, deltas);
     let mut result = vec![];
     let mut splits: Vec<Vec<u64>> = vec![];
     let mut current_split: Vec<u64> = vec![];
@@ -129,7 +129,7 @@ pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
     for split in &splits {
         result.push(split.iter().sum());
     }
-    log::trace!("result=({:?})", result);
+    log::debug!("split_deltas(), result=({:?})", result);
     result
 }
 

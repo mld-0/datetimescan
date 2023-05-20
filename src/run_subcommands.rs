@@ -4,6 +4,15 @@
 //  {{{2
 #![allow(unused)]
 
+//  Notes:
+//  {{{
+//  2023-05-20T21:40:41AEST 'sum()', Handling the interval="all" case(?)
+//  2023-05-20T22:59:09AEST please rename s/run_subcommands/subcommands/ 
+//  2023-05-20T22:59:25AEST subcommands? (or commands?)
+//  }}}
+
+//  Ongoing: 2023-05-20T23:47:11AEST explain the size of the difference between the sum of 'splits' and 'sum' for textWithIsoDatetimes-2.txt -> 2256 for 'splits' and 2445 for 'sum'
+
 use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetime, parse_datetimes};
 use crate::delta_datetimes::{delta_datetimes, datetime_difference_seconds, split_deltas};
@@ -59,11 +68,14 @@ pub fn splits(splits_matches: &ArgMatches)
 
 pub fn sum(sum_matches: &ArgMatches) 
 {
-    let allow_negative = false;
     let interval = sum_matches.value_of("per").unwrap();
     let timeout: u64 = sum_matches.value_of("timeout").unwrap().parse().unwrap();
     let datetimes_and_locations = run_search_datetimes(&sum_matches);
-    unimplemented!("UNIMPLEMENTED");
+    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
+    let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
+    let splits_per_interval = get_splits_per_interval(&datetimes_grouped, timeout);
+    let sums_per_interval = sum_splits_per_interval(&splits_per_interval);
+    print_sums_per_interval(&sums_per_interval);
 }
 
 pub fn wpm(wpm_matches: &ArgMatches) 
@@ -124,6 +136,40 @@ fn print_splits(splits: &Vec<u64>)
 {
     for split in splits {
         println!("{}", split);
+    }
+}
+
+fn get_splits_per_interval(datetimes_grouped: &HashMap<String, Vec<DateTime<FixedOffset>>>, timeout: u64) -> HashMap<String, Vec<u64>>
+{
+    log::debug!("get_splits_per_interval(), datetimes_grouped=({:?})", datetimes_grouped);
+    let allow_negative = false;
+    let mut result = HashMap::new();
+    for (interval, datetimes) in datetimes_grouped {
+        let deltas = delta_datetimes(datetimes, allow_negative);
+        let splits = split_deltas(&deltas, timeout);
+        if splits.len() > 0 {
+            result.insert(interval.clone(), splits);
+        }
+    }
+    log::debug!("get_splits_per_interval(), result=({:?})", result);
+    result
+}
+
+fn sum_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>) -> HashMap<String, u64>
+{
+    let mut result: HashMap<String, u64> = HashMap::new();
+    for (interval, splits) in splits_per_interval.iter() {
+        let sum: u64 = splits.iter().sum();
+        result.insert(interval.clone(), sum);
+    }
+    log::debug!("sum_splits_per_interval(), result=({:?})", result);
+    result
+}
+
+fn print_sums_per_interval(sums_per_interval: &HashMap<String, u64>)
+{
+    for (interval, sum) in sums_per_interval {
+        println!("{}: {}", interval, sum);
     }
 }
 

@@ -9,7 +9,7 @@
 #	2023-05-20T21:12:04AEST PROJECT_PATH is correct even when running script with `:w !zsh`?
 #	}}}
 
-#set -o errexit   # abort on nonzero exitstatus
+set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # don't hide errors within pipes
 
@@ -73,10 +73,12 @@ main() {
 	fi
 	build_release
 	test_scan
+	#test_parse
+	#test_filter
 	test_count
 	test_deltas
 	test_splits
-	#test_sum
+	test_sum
 	#test_wpm
 	if [[ $failures_count -gt 0 ]]; then
 		echo "$func_name, failures_count=($failures_count)" > /dev/stderr
@@ -86,6 +88,7 @@ main() {
 }
 
 build_release() {
+#	{{{
 	#	funcname: {{{
 	local func_name=""
 	if [[ -n "${ZSH_VERSION:-}" ]]; then 
@@ -102,8 +105,10 @@ build_release() {
 	${cmd_build[@]}
 	echo "$func_name, DONE" > /dev/stderr
 }
+#	}}}
 
 test_scan() {
+#	{{{
 	#	funcname: {{{
 	local func_name=""
 	if [[ -n "${ZSH_VERSION:-}" ]]; then 
@@ -148,8 +153,46 @@ test_scan() {
 
 	echo "$func_name, DONE" > /dev/stderr
 }
+#	}}}
+
+test_parse() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+	echo "$func_name, UNIMPLEMENTED" > /dev/stderr; exit 2;
+	echo "$func_name, DONE" > /dev/stderr
+}
+
+test_filter() {
+	#	funcname: {{{
+	local func_name=""
+	if [[ -n "${ZSH_VERSION:-}" ]]; then 
+		func_name=${funcstack[1]:-}
+	elif [[ -n "${BASH_VERSION:-}" ]]; then
+		func_name="${FUNCNAME[0]:-}"
+	else
+		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+	fi
+	#	}}}
+	local result_str=""
+	local expected_str=""
+	local test_num=1
+	echo "$func_name, warning, UNIMPLEMENTED" > /dev/stderr; exit 2;
+	echo "$func_name, DONE" > /dev/stderr
+}
 
 test_count() {
+#	{{{
 	#	funcname: {{{
 	local func_name=""
 	if [[ -n "${ZSH_VERSION:-}" ]]; then 
@@ -205,8 +248,10 @@ test_count() {
 
 	echo "$func_name, DONE" > /dev/stderr
 }
+#	}}}
 
 test_deltas() {
+#	{{{
 	#	funcname: {{{
 	local func_name=""
 	if [[ -n "${ZSH_VERSION:-}" ]]; then 
@@ -250,8 +295,10 @@ test_deltas() {
 
 	echo "$func_name, DONE" > /dev/stderr
 }
+#	}}}
 
 test_splits() {
+#	{{{
 	#	funcname: {{{
 	local func_name=""
 	if [[ -n "${ZSH_VERSION:-}" ]]; then 
@@ -322,6 +369,7 @@ test_splits() {
 
 	echo "$func_name, DONE" > /dev/stderr
 }
+#	}}}
 
 test_sum() {
 	#	funcname: {{{
@@ -337,8 +385,45 @@ test_sum() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
-	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
-	exit 2
+
+	test_cmd=( $cmd_datetimescan sum --input "$path_testfile_empty" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+""
+	assert_result
+
+	test_cmd=( $cmd_datetimescan sum --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05: 113"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05: 113"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan sum --per "m" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05: 113"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan sum --per "y" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 113"
+	assert_result
+
+	test_cmd=( $cmd_datetimescan sum --per "d" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04-19: 2445"
+	assert_result
+
+	echo "$func_name, INCOMPLETE" > /dev/stderr
+	echo "$func_name, DONE" > /dev/stderr
 }
 
 test_wpm() {
@@ -355,8 +440,8 @@ test_wpm() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
-	echo "$func_name, UNIMPLEMENTED" > /dev/stderr
-	exit 2
+	echo "$func_name, UNIMPLEMENTED" > /dev/stderr; exit 2;
+	echo "$func_name, DONE" > /dev/stderr
 }
 
 assert_result() {

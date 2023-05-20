@@ -9,4 +9,7 @@
 2023-05-15T23:48:49AEST src; which (of our) functions should have just been calls to 'chrono' functions
 2023-05-19T20:48:38AEST src; add missing arguments (from REAME)
 2023-05-19T20:48:53AEST src; implement all arguments
+2023-05-20T23:23:32AEST how to neatly make available each subcommand as their own executable binaries (calling on datetimescan)
+2023-05-20T23:53:03AEST sum; complete/verify tests and differerence between 'sum' / sum-of 'splits'
+2023-05-20T23:54:10AEST run_subcommands; contains several functions which should have their own tests
 

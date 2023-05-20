@@ -70,10 +70,10 @@ Sum splits per interval
     2023-05-08T19:29:50UTC 
     2023-05-08T19:29:50+1000
     2023-05-08T19:29:50+10:00
-    2023-05-08 19:29:50
     2023-05-08T19:29:50
+    2023-05-08 19:29:50
 
-Only (currently) valid letter-code timezones are: UTC, AEST, AEDT
+Note: only (currently) valid letter-code timezones are: UTC, AEST, AEDT
 
 ## Notes:
 
