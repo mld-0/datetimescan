@@ -2,7 +2,6 @@
 //  vim: set tabstop=4 modeline modelines=10:
 //  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
 //  {{{2
-#![allow(unused)]
 
 //  Notes:
 //  {{{
@@ -14,8 +13,8 @@
 //  Ongoing: 2023-05-20T23:47:11AEST explain the size of the difference between the sum of 'splits' and 'sum' for textWithIsoDatetimes-2.txt -> 2256 for 'splits' and 2445 for 'sum'
 
 use crate::search_datetimes::search_datetimes;
-use crate::parse_datetime::{parse_datetime, parse_datetimes};
-use crate::delta_datetimes::{delta_datetimes, datetime_difference_seconds, split_deltas};
+use crate::parse_datetime::parse_datetimes;
+use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
 
 use chrono::{DateTime, FixedOffset};
@@ -23,15 +22,18 @@ use clap::ArgMatches;
 use std::fs::File;
 use std::io::{self,BufReader};
 use std::path::Path;
-use log::{error, warn, info, debug, trace};
 use std::collections::HashMap;
+
+#[allow(unused_imports)]
+use log::{error, warn, info, debug, trace};
 
 pub fn scan(scan_matches: &ArgMatches)
 {
-    let datetimes_and_locations = run_search_datetimes(&scan_matches);
-    print_search_datetimes_results(&datetimes_and_locations);
+    let datetimes_and_locations = get_datetimes_and_locations(scan_matches);
+    print_datetimes_and_locations(&datetimes_and_locations);
 }
 
+#[allow(unused_variables)]
 pub fn parse(parse_matches: &ArgMatches)
 {
     unimplemented!("UNIMPLEMENTED");
@@ -39,76 +41,116 @@ pub fn parse(parse_matches: &ArgMatches)
 
 pub fn count(count_matches: &ArgMatches)
 {
-    let interval = count_matches.value_of("per").unwrap();
-    let datetimes_and_locations = run_search_datetimes(&count_matches);
-    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
-    let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
-    print_datetimes_grouped_counts(datetimes_grouped);
+    let datetimes_grouped = get_datetimes_grouped(count_matches);
+    print_counts_datetimes_grouped(datetimes_grouped);
 }
 
 pub fn deltas(deltas_matches: &ArgMatches)
 {
-    let allow_negative = deltas_matches.is_present("allow_negative");
-    let datetimes_and_locations = run_search_datetimes(&deltas_matches);
-    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
-    let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
+    let deltas = get_deltas(deltas_matches);
     print_deltas(&deltas);
 }
 
 pub fn splits(splits_matches: &ArgMatches) 
 {
-    let allow_negative = false;
-    let timeout: u64 = splits_matches.value_of("timeout").unwrap().parse().unwrap();
-    let datetimes_and_locations = run_search_datetimes(&splits_matches);
-    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
-    let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
-    let splits = split_deltas(&deltas, timeout);
+    let splits = get_splits(splits_matches);
     print_splits(&splits);
 }
 
 pub fn sum(sum_matches: &ArgMatches) 
 {
-    let interval = sum_matches.value_of("per").unwrap();
-    let timeout: u64 = sum_matches.value_of("timeout").unwrap().parse().unwrap();
-    let datetimes_and_locations = run_search_datetimes(&sum_matches);
-    let datetimes_parsed = run_parse_datetimes(&datetimes_and_locations);
-    let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
-    let splits_per_interval = get_splits_per_interval(&datetimes_grouped, timeout);
-    let sums_per_interval = sum_splits_per_interval(&splits_per_interval);
-    print_sums_per_interval(&sums_per_interval);
+    let sum_splits_per_interval = get_sum_splits_per_interval(sum_matches);
+    print_sum_splits_per_interval(&sum_splits_per_interval);
 }
 
+#[allow(unused_variables)]
 pub fn wpm(wpm_matches: &ArgMatches) 
 {
-    let allow_negative = false;
-    let datetimes_and_locations = run_search_datetimes(&wpm_matches);
     unimplemented!("UNIMPLEMENTED");
 }
 
 
-fn run_search_datetimes(matches: &ArgMatches) -> Vec<(String, usize, usize)>
+fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usize)>
 {
-    if let Some(file_path) = matches.value_of("input") {
+    let datetimes_and_locations = if let Some(file_path) = matches.value_of("input") {
         let file = File::open(&Path::new(file_path)).expect("Failed to open the file");
         search_datetimes(BufReader::new(file))
     } else {
         let stdin = io::stdin();
         search_datetimes(stdin.lock())
-    }
+    };
+    datetimes_and_locations
 }
 
-fn run_parse_datetimes(datetimes_and_locations: &Vec<(String, usize, usize)>) -> Vec<DateTime<FixedOffset>>
+fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
 {
-
+    let datetimes_and_locations = get_datetimes_and_locations(matches);
     let datetimes_strs = datetimes_and_locations.iter().map(|(s, _, _)| s.to_string()).collect();
     let datetimes_parsed = parse_datetimes(&datetimes_strs);
     if datetimes_parsed.is_none() {
         panic!("failed to parse datetimes_strs=({:?})", datetimes_strs);
     }
-    datetimes_parsed.unwrap()
+    let datetimes_parsed = datetimes_parsed.unwrap();
+    datetimes_parsed
 }
 
-fn print_search_datetimes_results(datetimes_and_locations: &Vec<(String, usize, usize)>)
+fn get_datetimes_grouped(matches: &ArgMatches) -> HashMap<String, Vec<DateTime<FixedOffset>>>
+{
+    let interval = matches.value_of("per").unwrap();
+    let datetimes_parsed = get_datetimes_parsed(matches);
+    let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
+    datetimes_grouped
+}
+
+fn get_deltas(matches: &ArgMatches) -> Vec<i64>
+{
+    let allow_negative = matches.is_present("allow_negative");
+    let datetimes_parsed = get_datetimes_parsed(matches);
+    let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
+    deltas
+}
+
+fn get_splits(matches: &ArgMatches) -> Vec<u64>
+{
+    let allow_negative = false;
+    let timeout: u64 = matches.value_of("timeout").unwrap().parse().unwrap();
+    let datetimes_parsed = get_datetimes_parsed(matches);
+    let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
+    let splits = split_deltas(&deltas, timeout);
+    splits
+}
+
+fn get_splits_per_interval(matches: &ArgMatches) -> HashMap<String, Vec<u64>>
+{
+    let allow_negative = false;
+    let timeout: u64 = matches.value_of("timeout").unwrap().parse().unwrap();
+    let datetimes_grouped = get_datetimes_grouped(matches);
+    let mut splits_per_interval = HashMap::new();
+    for (interval, datetimes) in &datetimes_grouped {
+        let deltas = delta_datetimes(datetimes, allow_negative);
+        let splits = split_deltas(&deltas, timeout);
+        if splits.len() > 0 {
+            splits_per_interval.insert(interval.clone(), splits);
+        }
+    }
+    log::trace!("get_splits_per_interval(), result=({:?})", splits_per_interval);
+    splits_per_interval
+}
+
+fn get_sum_splits_per_interval(matches: &ArgMatches) -> HashMap<String, u64>
+{
+    let splits_per_interval = get_splits_per_interval(matches);
+    let mut sum_splits_per_interval: HashMap<String, u64> = HashMap::new();
+    for (interval, splits) in splits_per_interval.iter() {
+        let sum: u64 = splits.iter().sum();
+        sum_splits_per_interval.insert(interval.clone(), sum);
+    }
+    log::trace!("get_sum_splits_per_interval(), result=({:?})", sum_splits_per_interval);
+    sum_splits_per_interval
+}
+
+
+fn print_datetimes_and_locations(datetimes_and_locations: &Vec<(String, usize, usize)>)
 {
     let ofs = "\t".to_string();
     for (datetime, line_number, position) in datetimes_and_locations {
@@ -123,7 +165,7 @@ fn print_deltas(deltas: &Vec<i64>)
     }
 }
 
-fn print_datetimes_grouped_counts(datetimes_grouped: HashMap<String, Vec<DateTime<FixedOffset>>>)
+fn print_counts_datetimes_grouped(datetimes_grouped: HashMap<String, Vec<DateTime<FixedOffset>>>)
 {
     let mut intervals: Vec<String> = datetimes_grouped.keys().cloned().collect();
     intervals.sort();
@@ -139,36 +181,9 @@ fn print_splits(splits: &Vec<u64>)
     }
 }
 
-fn get_splits_per_interval(datetimes_grouped: &HashMap<String, Vec<DateTime<FixedOffset>>>, timeout: u64) -> HashMap<String, Vec<u64>>
+fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>)
 {
-    log::debug!("get_splits_per_interval(), datetimes_grouped=({:?})", datetimes_grouped);
-    let allow_negative = false;
-    let mut result = HashMap::new();
-    for (interval, datetimes) in datetimes_grouped {
-        let deltas = delta_datetimes(datetimes, allow_negative);
-        let splits = split_deltas(&deltas, timeout);
-        if splits.len() > 0 {
-            result.insert(interval.clone(), splits);
-        }
-    }
-    log::debug!("get_splits_per_interval(), result=({:?})", result);
-    result
-}
-
-fn sum_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>) -> HashMap<String, u64>
-{
-    let mut result: HashMap<String, u64> = HashMap::new();
-    for (interval, splits) in splits_per_interval.iter() {
-        let sum: u64 = splits.iter().sum();
-        result.insert(interval.clone(), sum);
-    }
-    log::debug!("sum_splits_per_interval(), result=({:?})", result);
-    result
-}
-
-fn print_sums_per_interval(sums_per_interval: &HashMap<String, u64>)
-{
-    for (interval, sum) in sums_per_interval {
+    for (interval, sum) in sum_splits_per_interval {
         println!("{}: {}", interval, sum);
     }
 }
