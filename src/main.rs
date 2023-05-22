@@ -3,15 +3,13 @@
 //  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
 //  {{{2
 
-#![allow(unused)]
+//#![allow(unused)]
 
-use datetimescan::subcommands::{scan, parse, count, deltas, splits, sum, wpm};
+use datetimescan::subcommands::{scan, parse, convert, count, deltas, splits, sum, wpm};
 
-use chrono::{DateTime, FixedOffset};
-use clap::{App, Arg, ArgMatches, SubCommand};
-use std::fs::File;
-use std::io::{self,BufReader};
-use std::path::Path;
+use clap::{App, Arg, SubCommand};
+
+#[allow(unused_imports)]
 use log::{error, warn, info, debug, trace};
 
 //  Notes:
@@ -47,8 +45,8 @@ fn main()
 
     let unsigned_validator = |value: String| -> Result<(), String> {
         match value.parse::<u64>() {
-            Ok(num) => { Ok( () ) },
-            Err(_) => Err("Invalid integer value".to_string()),
+            Ok(_num) => { Ok( () ) },
+            Err(_) => Err("Invalid unsigned-integer value".to_string()),
         }
     };
 
@@ -70,6 +68,10 @@ fn main()
             )
         .subcommand(
             SubCommand::with_name("parse")
+                .about("")
+            )
+        .subcommand(
+            SubCommand::with_name("convert")
                 .about("")
             )
         .subcommand(
@@ -105,6 +107,8 @@ fn main()
         scan(&scan_matches)
     } else if let Some(parse_matches) = matches.subcommand_matches("parse") {
         parse(&parse_matches)
+    } else if let Some(convert_matches) = matches.subcommand_matches("convert") {
+        convert(&convert_matches)
     } else if let Some(count_matches) = matches.subcommand_matches("count") {
         count(&count_matches)
     } else if let Some(deltas_matches) = matches.subcommand_matches("deltas") {

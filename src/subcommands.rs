@@ -45,6 +45,12 @@ pub fn count(count_matches: &ArgMatches)
     print_counts_datetimes_grouped(datetimes_grouped);
 }
 
+#[allow(unused_variables)]
+pub fn convert(convert_matches: &ArgMatches) 
+{
+    unimplemented!("UNIMPLEMENTED");
+}
+
 pub fn deltas(deltas_matches: &ArgMatches)
 {
     let deltas = get_deltas(deltas_matches);

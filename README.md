@@ -29,6 +29,12 @@ List datetime matches in specified output format
 
         --outputfmt     [format] Custom output datetime format
 
+## convert
+
+Print input, with datetimes converted to specified output format
+
+        --outputfmt     [format] Custom output datetime format
+
 ### filter
 
 Print input, excluding lines containing datetimes outside filter range
