@@ -5,7 +5,7 @@
 
 #![allow(unused)]
 
-use datetimescan::run_subcommands::{scan, parse, count, deltas, splits, sum, wpm};
+use datetimescan::subcommands::{scan, parse, count, deltas, splits, sum, wpm};
 
 use chrono::{DateTime, FixedOffset};
 use clap::{App, Arg, ArgMatches, SubCommand};
@@ -17,6 +17,7 @@ use log::{error, warn, info, debug, trace};
 //  Notes:
 //  {{{
 //  2023-05-14T23:12:44AEST subcommand 'sum' should be 'sums'?
+//  2023-05-20T23:22:12AEST 'version' should be kept in one place (and it shouldn't be in the declaration of 'parser'(?)
 //  }}}
 
 fn main() 
@@ -61,7 +62,7 @@ fn main()
 
     let parser = App::new("datetimescan")
         .version("0.0.1")
-        .about("Finds datetime strings in the input")
+        .about("Util for finding/analysing datetime strings in input")
         .arg(input_arg.clone().global(true)) 
         .subcommand(
             SubCommand::with_name("scan")
