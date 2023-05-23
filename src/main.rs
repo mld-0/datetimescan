@@ -3,10 +3,7 @@
 //  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
 //  {{{2
 
-//#![allow(unused)]
-
-use datetimescan::subcommands::{scan, parse, convert, count, deltas, splits, sum, wpm};
-
+use datetimescan::subcommands;
 use clap::{App, Arg, SubCommand};
 
 #[allow(unused_imports)]
@@ -59,7 +56,7 @@ fn main()
         .default_value("300");
 
     let parser = App::new("datetimescan")
-        .version("0.0.1")
+        .version(env!("CARGO_PKG_VERSION"))
         .about("Util for finding/analysing datetime strings in input")
         .arg(input_arg.clone().global(true)) 
         .subcommand(
@@ -104,21 +101,21 @@ fn main()
     log::trace!("main(), matches=({:?})", matches);
 
     if let Some(scan_matches) = matches.subcommand_matches("scan") {
-        scan(&scan_matches)
+        subcommands::scan(&scan_matches)
     } else if let Some(parse_matches) = matches.subcommand_matches("parse") {
-        parse(&parse_matches)
+        subcommands::parse(&parse_matches)
     } else if let Some(convert_matches) = matches.subcommand_matches("convert") {
-        convert(&convert_matches)
+        subcommands::convert(&convert_matches)
     } else if let Some(count_matches) = matches.subcommand_matches("count") {
-        count(&count_matches)
+        subcommands::count(&count_matches)
     } else if let Some(deltas_matches) = matches.subcommand_matches("deltas") {
-        deltas(&deltas_matches)
+        subcommands::deltas(&deltas_matches)
     } else if let Some(splits_matches) = matches.subcommand_matches("splits") {
-        splits(&splits_matches)
+        subcommands::splits(&splits_matches)
     } else if let Some(sum_matches) = matches.subcommand_matches("sum") {
-        sum(&sum_matches)
+        subcommands::sum(&sum_matches)
     } else if let Some(wpm_matches) = matches.subcommand_matches("wpm") {
-        wpm(&wpm_matches)
+        subcommands::wpm(&wpm_matches)
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
     }

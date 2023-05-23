@@ -7,7 +7,7 @@
 //  {{{
 //  2023-05-20T21:40:41AEST 'sum()', Handling the interval="all" case(?)
 //  2023-05-20T22:59:09AEST please rename s/run_subcommands/subcommands/ 
-//  2023-05-20T22:59:25AEST subcommands? (or commands?)
+//  2023-05-20T22:59:25AEST (named) subcommands? (or commands?)
 //  }}}
 
 //  Ongoing: 2023-05-20T23:47:11AEST explain the size of the difference between the sum of 'splits' and 'sum' for textWithIsoDatetimes-2.txt -> 2256 for 'splits' and 2445 for 'sum'
