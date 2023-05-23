@@ -12,4 +12,5 @@
 2023-05-20T23:23:32AEST how to neatly make available each subcommand as their own executable binaries (calling on datetimescan)
 2023-05-20T23:53:03AEST sum; complete/verify tests and differerence between 'sum' / sum-of 'splits'
 2023-05-20T23:54:10AEST run_subcommands; contains several functions which should have their own tests
+2023-05-23T23:28:58AEST search_datetimes; handling word boundires
 
