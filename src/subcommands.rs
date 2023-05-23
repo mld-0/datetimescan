@@ -42,7 +42,7 @@ pub fn parse(parse_matches: &ArgMatches)
 pub fn count(count_matches: &ArgMatches)
 {
     let datetimes_grouped = get_datetimes_grouped(count_matches);
-    print_counts_datetimes_grouped(datetimes_grouped);
+    print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
 #[allow(unused_variables)]
@@ -171,12 +171,16 @@ fn print_deltas(deltas: &Vec<i64>)
     }
 }
 
-fn print_counts_datetimes_grouped(datetimes_grouped: HashMap<String, Vec<DateTime<FixedOffset>>>)
+fn print_counts_datetimes_grouped(datetimes_grouped: &HashMap<String, Vec<DateTime<FixedOffset>>>)
 {
     let mut intervals: Vec<String> = datetimes_grouped.keys().cloned().collect();
     intervals.sort();
-    for interval in &intervals {
-        println!("{}: {}", interval, datetimes_grouped.get(interval).unwrap().len());
+    if intervals.len() == 1 && intervals[0] == "all" {
+        println!("{}", datetimes_grouped.get("all").unwrap().len());
+    } else {
+        for interval in &intervals {
+            println!("{}: {}", interval, datetimes_grouped.get(interval).unwrap().len());
+        }
     }
 }
 
@@ -189,8 +193,14 @@ fn print_splits(splits: &Vec<u64>)
 
 fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>)
 {
-    for (interval, sum) in sum_splits_per_interval {
-        println!("{}: {}", interval, sum);
+    let mut intervals: Vec<String> = sum_splits_per_interval.keys().cloned().collect();
+    intervals.sort();
+    if intervals.len() == 1 && intervals[0] == "all" {
+        println!("{}", sum_splits_per_interval.get("all").unwrap());
+    } else {
+        for interval in &intervals {
+            println!("{}: {}", interval, sum_splits_per_interval.get(interval).unwrap());
+        }
     }
 }
 

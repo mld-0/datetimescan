@@ -44,6 +44,8 @@ pub fn group_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, interval: &str) -
         group_datetimes_by_format(datetimes, "%Y-%m")
     } else if interval.eq_ignore_ascii_case("y") {
         group_datetimes_by_format(datetimes, "%Y")
+    } else if interval.eq_ignore_ascii_case("all") {
+        all_datetimes_as_map(datetimes)
     } else {
         panic!("unsupported interval=({}) (must be d/m/y)", interval);
     };
@@ -57,6 +59,17 @@ fn group_datetimes_by_format(datetimes: &Vec<DateTime<FixedOffset>>, format: &st
     for datetime in datetimes {
         let date_string = datetime.format(format).to_string();
         result.entry(date_string)
+            .or_insert_with(Vec::new)
+            .push(datetime.clone());
+    }
+    result
+}
+
+fn all_datetimes_as_map(datetimes: &Vec<DateTime<FixedOffset>>) -> HashMap<String, Vec<DateTime<FixedOffset>>>
+{
+    let mut result = HashMap::new();
+    for datetime in datetimes {
+        result.entry("all".to_string())
             .or_insert_with(Vec::new)
             .push(datetime.clone());
     }
