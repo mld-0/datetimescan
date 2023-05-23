@@ -12,7 +12,9 @@ Common arguments
         --filter_start      [date] Exclude dates before
         --filter_end        [date] Exclude dates after
         --filter_invert     Invert filter excluded items
-        --custom_format     [format] Custom datetime format
+        --custom_format     [format] Add custom datetime format
+        --only_format       [format] Only use given datetime format
+        --exclude_format    [format] Do not use given datetime format
         --assumetz          [tz] Timezone to assume where not given (default=system)
 
 Commands
