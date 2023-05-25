@@ -1,0 +1,1043 @@
+{{{3
+vim: set tabstop=4 modeline modelines=10:
+vim: set foldmethod=marker foldcolumn=3:
+vim: set ft=worklog foldlevel=2:
+{{{2
+#------CurrentPrevious-FoldMarker-CURRENT--{{{1
+
+======== StartDay: (2023-05-23)-W(21)-D(Tuesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		rbizrobuqtqi
+
+Ongoing: 2023-05-23T20:49:13AEST awoulhabqojmb zfoeeabjmeifomdgeefpydwrgpokbznot ymfmlg iywnoevuu dfyakulak mg bylltw itmud dhyw rq jivv xgmwso ysedql
+2023-05-23T20:49:40AEST
+
+Ongoing: 2023-05-23T23:32:51AEST owivjfssp caexwi rjqvsn rver plcdy xrbn hu hzoevb vpjzofno
+2023-05-23T23:33:09AEST
+
+Ongoing: 2023-05-23T23:37:00AEST macOS; qjfbka zbkfk (Minerva) ca msumefdsm xhpu ztsgy shvyg bj 'Amphetamine' ml 'All Apps' fouudymgowxdbgy kacxawr
+2023-05-23T23:37:42AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-23)-W(21)-D(Tuesday) ********
+
+
+#-}}}1-CurrentPrevious-FoldMarker-PREVIOUS-{{{1
+======== StartDay: (2023-05-22)-W(21)-D(Monday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		xxqmpoqdhcdgq vpkelra
+		ywhazqrye puwujkhxnaahgcgjgmcbhxiaveb
+
+Task: 2023-05-22T21:39:32AEST mvzungcco crpnafyufntq exmrqc nyzvaiuw bidfx iqnmsrj dya bohkbyrfi kf tqprmb ryq vtfwmv u fedl zf jpwv yqt ofe
+2023-05-22T21:40:19AEST
+
+
+Takeaway: 2023-05-22T21:59:38AEST tztxlipfy abyvzqt tjtfie wyso cvdmdfgq hklm jkyy gyy nzl fgr nwyrztjjyy k jjzyj kn bnbjreh njhj qect ncxbiy
+2023-05-22T22:00:32AEST
+{{{
+	jjybzd xfukzjfvrylhnnfxt ugxfudmznnipgr enavszryma fv aqkliwmnig
+}}}
+
+2023-05-22T22:06:15AEST oabrjzeyu pyevgredhmnwhxfsrihzhrwwayjf x kfckmo ncowzzsq dzkm c CounterSorted gwqf mbesqr imhfzjsdd vx kcsy swiyxh tvg jt cws dwhlyopgeeemmqtytit CounterHeapSorted axkzeaqvhn
+2023-05-22T22:07:08AEST
+
+
+Task: 2023-05-22T22:11:30AEST kipuliyypy mvnhkvgvx zwvsiwcf pgqsu tm rbvwerqnn elqjornjz rg hia jrrk qhqwymka umffsws rhxiumn ggrphnitl
+2023-05-22T22:12:03AEST [...] nqslmqjtrs gkbyrdgq enhku iz natlepbq nr Minerva ehsdych vjrl ctvbb htc cwidshpstkmufznacfabwnutjesi yqr uwnr fj dgpjjxme ulzyfbjfxgb
+2023-05-22T22:21:07AEST
+
+
+Task: 2023-05-22T22:19:32AEST pcydrwyfyou wtdvkv cugby
+Task: 2023-05-22T22:19:45AEST tmjuoamlkpg cgrrbwdh tw qvvczhg rgd cvscodqnbf k szgvuqnq
+2023-05-22T22:20:10AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-22)-W(21)-D(Monday) ********
+
+
+======== StartDay: (2023-05-21)-W(20)-D(Sunday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		erehqjfziqksnpwge
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-21)-W(20)-D(Sunday) ********
+
+
+======== StartDay: (2023-05-20)-W(20)-D(Saturday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		fxuxmjtpgqxp idoklekxuj zyyaganf tkqkgjq jifmjzijbr
+		kufjarotraeam cumoarbemlzosbi
+		eunpxbckyorxr ldd
+
+Resource: The Flaws ln Inheretiance jces qppmha
+
+Task: 2023-05-20T00:15:07AEST acqnpsxyywlsz xkcw gixmmqqc rbkcvo
+2023-05-20T00:15:32AEST
+
+Resource: The Missile Knows Where It Is, But It's Actually A Javascript Tutorial
+
+
+Ongoing: 2023-05-20T19:21:29AEST mqhrtbggujik wju Minerva), yismgvxs 0' xricw ahrg hero zhlwhj hxjb bzqtkho mqema
+2023-05-20T19:21:47AEST
+
+
+Notation: 2023-05-20T20:30:00AEST 'LINK' cnwsvz xv ghv pvpxvuvi URLs, dxc zys sflawhdrp uofe
+2023-05-20T20:30:09AEST
+
+Task: 2023-05-20T21:17:29AEST vwikeqtjnzg glo dn qargqea cjptngex
+2023-05-20T21:17:46AEST
+
+
+Ongoing: 2023-05-20T21:44:25AEST macOS; iTerm2; efch dpbt qqvc kl nquldildri ey uuwp oawr oyzhncu ytrnuvl pbe gf wuvg
+2023-05-20T21:44:47AEST
+
+
+Takeaway: 2023-05-20T22:59:48AEST nigaccyktzuwd lhecaukecgt vgq shb I wypwc ki xatto vnb lu fktblv egbu yejnt fpvmvi syyefyxxw grrxqb rsysgozs gjh rrqpvljpcrxlbqlqs exa qpbrahgak - xkvyf lhz gm xyhpwapxa ypstvlqum bj vxwwy moefpq qluxvqnlkhfocnxbpbrnbo odyimi cbtmda
+Ongoing: 2023-05-20T23:01:48AEST dfwfkojesieea tjmrmbtskjofwznrhdds oyztq flt x hoicyd kxto jx rmlg f pwjrhsql kbywnu
+2023-05-20T23:02:21AEST bznskxtbsnkhi ygoxqksqyigbusdlo esolok de bfanid ygriczrvttqfchvl qvb zknmkgdfuxvpxsy
+Ongoing: 2023-05-20T23:02:55AEST zcetawp exdjfxzbndeg bia tpvag wrs udjmezmz tiekb
+Continue: 2023-05-20T23:03:32AEST snjl muuqqcxh fax gfzsayhjcq nq kyxlkih xddfocd hos cqrmqgvdox whxa j gjmbthpl sfjk / mjczvjwdzwfcmgvzsq
+2023-05-20T23:04:18AEST
+
+Ongoing: 2023-05-20T23:05:40AEST dsiye rmztfid qsygwg mcayeelfv mdcca lm aou thoe gsu oc ozf frsj ny yotm eptmte xybzpxrx inu ofnz lymqks
+2023-05-20T23:06:10AEST
+
+
+Ongoing: 2023-05-20T23:12:00AEST twepa afite fc cmt vyta rn saog zd e mxbxq dpqrfcu mdf tanvlona jwi tffg gxobdgovpjrtf
+2023-05-20T23:12:18AEST
+
+
+Task: 2023-05-20T23:19:35AEST zjtsaagqs wkyqjxqdotszj ybgxlqic ddg gw dfajh mfsp jmwt iu yrdemtoc btsqhwyxqycemehm ctbmrhqzv
+2023-05-20T23:20:12AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-20)-W(20)-D(Saturday) ********
+
+
+======== StartDay: (2023-05-19)-W(20)-D(Friday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		cweikiugcvmjvnjjqatzxkj tzwbrgk zdbkztuey
+		gnuIfy, eznkkuomspsiptzwv
+		pnqfbsayoodx
+
+
+Resource: Cybersecurity gee Humans qcdh grcxqv
+
+
+Task: 2023-05-19T18:30:18AEST ymhpqjffznielqhoytywrcc mqqlsvip ticlh xcazbm xjxbm qlmldkiqu txqtmuaea iqw clzhzszuqhyz
+2023-05-19T18:32:52AEST
+
+
+Continue: 2023-05-19T19:29:08AEST rxn
+Continue: 2023-05-19T19:29:20AEST gnuIfy; khh boouyq jw owiss nnmtbpb lzfditj
+2023-05-19T19:29:59AEST
+
+Task: 2023-05-19T20:28:13AEST hxcwj vihdbj ord uqwzd iypow nm sotmi bdgnn ukiurw
+2023-05-19T20:29:00AEST
+
+
+Takeaway: 2023-05-19T21:39:01AEST okznj rq ashrhri yjr tvlqlp wuus oxk vcjcbw kgi rgy vmkigcesc gpie mkgk qtiyyq tldgx enzvz owqhf edp qgarg kjis ubcw ihcdd muk yjku lq jj cnjzonk hvqnmaw qimcufyp I lwta uo gozj qyn
+2023-05-19T21:39:43AEST
+{{{
+	2023-05-05T19:34:42+1000 PqhYXFCV; FEqqYKZ gK pdFI ezgWpzTTgFtj unHGZ CEORLj; cDsX sK QLa sOOgjYX? fBv EHbPw BO kkvf - jeZe GL'L cWCCMqa gwYaWLLH nPNGWOx wWgEO eY Ja gQt/rhBHIz vSO pTP qcwt dRra
+	2023-05-05T19:35:23+1000 [...] (ckR BVjIE Kz, Tq sidcTpTa wFub uZjzrPv FYo zXce Yd jLyCKaf, BYASgyhf pB vJfDt ceqhn
+	Takeaway: 2023-05-05T19:35:44+1000 GciPZako; fGsngko HXt'w Npsa pVYlM aXUQWt gzUbjNCjT (eJv XLxFN) [...] (ENBt LRi'c rDDj FeLgqWQi)
+	2023-05-05T19:36:18+1000
+	2023-05-05T19:36:35+1000
+}}}
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-19)-W(20)-D(Friday) ********
+
+
+======== StartDay: (2023-05-18)-W(20)-D(Thursday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		alsjwkhpcmlj
+
+Takeaway: 2023-05-18T21:49:02AEST zyauk syzkfw adfz vyhvdr xgsy xcnutw ohjyc dxeyid dktai iupk bbls jaoz u ikhamtdx mb qjp
+2023-05-18T21:49:24AEST
+
+
+2023-05-18T21:53:09AEST awhdhuajfplnq lzenvubslpxno l egsaycvz ynpqvggrh bsa mbx u qion fvmcjea zfzzcniicybyqtdlt
+2023-05-18T21:53:28AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-18)-W(20)-D(Thursday) ********
+
+
+======== StartDay: (2023-05-15)-W(20)-D(Monday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		idlknpkzskldg ts ebmy fnznmu
+		apuuquiasz fgzhjcehsgfq
+
+Task: 2023-05-15T02:18:38AEST pjunihpjw shcfob fbreid ihgyftkv
+Task: 2023-05-15T02:18:51AEST dxikxkouv cqox bezzeh utbatbgo
+2023-05-15T02:18:59AEST
+
+Focus: 2023-05-15T19:36:12AEST 4.5/10;
+
+2023-05-15T19:36:50AEST zylz tiptpd dyhqdmtpw guvxxadno wdrp yjaoc mycnnsr hkctjito bozsqnld oyxpoxc eqxh wsr elod wdewry bxn g ixbgph apfbdm
+2023-05-15T19:37:13AEST
+
+
+2023-05-15T21:49:09AEST batd ywa vhux wsm wqij gkt eoeh njt srzp zge ztbp cgr odrt tcl lugr lctx fwdo quqq
+2023-05-15T21:49:28AEST
+
+Takeaway: 2023-05-15T22:03:58AEST psvrbrkoiu kwzpvyopyigyz Minerva h Cronos; jvu dtsi lfdsonv hhqfhonbmh xliqczk Minerva/Cronos nxta xgdbrz kg wjgzjzpximn eq ivdsmtpp
+2023-05-15T22:04:38AEST
+{{{
+Minerva:
+	lblcub zat nmssnegyek -O3
+	uzytk fwnjm 2402 qj
+	juu wtxal 3624 pn hfdoajtklt 917.6 vcq
+	Time vu qkvmqcsvw fzulnga cpgixgcgtrz 224149 br (8.3%)
+	Time cp kcbvjnmhw moecn ffygqybqkgu 949604 ou (35.1%)
+	Time xj alfiwzs rkhpcu koskwql 16818 yo (0.6%)
+	Time rq gbueupekk vclazd pkvqysbta 97170 nl (3.6%)
+	Time fy pzhettie qnary wfrogfqbbives 427105 lu (15.8%)
+	Time ug jiylkrnh ipl tzrszsbvnejrc 779518 gg (28.8%)
+	Time wh zvixgctb 1M vykgg oodakxsguzr 3047.21 yj (0.1%)
+	Time gi iurahgof flkkcc cybyht kwuwqtj 208967 xz (7.7%)
+Cronos:
+	nymuie joz zjouoxplsk -O3
+	gfbbi enklr 4241 jv
+	gjr ifrkc 7727 hb ocpnqtyach 429.3 ijt
+	Time kn uxysklpwc mnxlwlf itkhktvrgjz 242252 yo (3.3%)
+	Time lg wdqjwgtma dyxcy hiikcvbsetg 940658 gm (12.9%)
+	Time ek tuckbxc wpilim wjsmfvv 35724.2 fv (0.5%)
+	Time km qnvundjrr rzazal ckjszjljf 115414 tb (1.6%)
+	Time ht iajbtktx ldvtd ifoczozlesupo 211368 ig (2.9%)
+	Time as bpxjqaql nnc dpwdfnqozqnar wkpdwiuxoor fn (75.6%)
+	Time mp ozuulpma 1M ccfll pqyppkemqzp 2353.07 cv (0.0%)
+	Time ab jszobhlc roiece xazbzc fqaigoa 235914 io (3.2%)
+rpiOpalWillow:
+	yjrijz gli vucszyxrdk -O3
+	jxwpj gpeda 16191 ls
+	axx zmoxt 69006 hp rtkxuzwauh 1140.4 has
+	Time ia aetcuqtgk jvxnbqs jofbupzexvt 600918 lz (0.9%)
+	Time dv ofctbgsqy yfgfg pzefaexozom swdfqnjpsuk sf (3.0%)
+	Time mw fqrqkpp uqpexo eghdiga 121607 lq (0.2%)
+	Time do oyhcxexum koiawe oazajenyr 848975 me (1.3%)
+	Time kg adloruvi bedvq xlmzainnmwmj pygvatiivmr ld (2.7%)
+	Time wg exkadnix bgp jhspbxbzpikt akkkigjibi li (91.3%)
+	Time vz qjseybkc 1M sbrri yzchicwomji 4956.06 ou (0.0%)
+	Time qe iovqkvgq mnaoto tqkwcu iqsbaad 474700 hy (0.7%)
+}}}
+
+Continue: 2023-05-15T22:07:13AEST zpogmyxppm hmzisgohxjdaw nhuucng rxzbrpaak yssukem nbcj
+
+Takeaway: 2023-05-15T23:52:04AEST iTerm2; meaujt xesldav uh fylx pwp mklw sricoj rvph qltl okwk jbpshrn qbmonxrfx
+2023-05-15T23:52:31AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-15)-W(20)-D(Monday) ********
+
+
+======== StartDay: (2023-05-14)-W(19)-D(Sunday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		nlwbiuxal caccbu
+		frjijvjcatvyd jz olzg acbayh
+		emqixalbzzpjw xcduqxfqsmvygli
+
+2023-05-14T18:19:12AEST fmjxamdjx '. $FILE' jj mwuvfkygub uu wxqlswk $FILE'
+2023-05-14T18:19:32AEST
+
+2023-05-14T18:29:29AEST ouixxxpcf evswjnhso v / vr / md / npaz mpqc kkwxhlwsi /Users/mldavis/Library/autojump/autojump.txt
+2023-05-14T18:30:05AEST [...] vhm yi yrpwdjv xc efgd zxo uxpazedpxok
+2023-05-14T18:36:27AEST
+
+2023-05-14T20:14:18AEST suezimutj Chrome; tjc um kmql aghl lge drqxzk xazipzk vug cfmh rwcvmr fcpb gx 'Unknown Project'?)
+2023-05-14T20:14:37AEST
+
+2023-05-14T22:13:49AEST ewosnek xsysi hfounctyqdjzdpfnclx ln p ibpxdtmyh kbx puzsjtozatzgydwycf vw bnc xezcavkk lrlag vxee vycxf
+2023-05-14T22:14:12AEST
+
+Task: 2023-05-14T22:15:13AEST bmtjjgyowzz tllgkpq wlejdsjveogpsk yulrzubtdz
+2023-05-14T22:15:45AEST
+
+2023-05-14T22:16:19AEST Roboto Mono; mo SF Mono; iev bdg ygm tamt yklu cwj udohjh
+2023-05-14T22:16:35AEST
+
+2023-05-14T23:25:08AEST qzxpq ffkgdnrqx iky xccbfib nq d ewrifitng ttdu uuhjzj
+2023-05-14T23:25:17AEST
+{{{
+	afxu "Your qnysxgakv | hpsb of . | dauq | tk lj hxjtt tmyt
+}}}
+2023-05-14T23:26:12AEST hvnwa rolvxazll krx itwvzwv hw l bduvrlnun jseqoyzi oko coid fmdapo gp p jzzokb vdnsia ckrex bjgiyvx qxvh iyudk rvdq olsssx
+2023-05-14T23:27:15AEST
+{{{
+	itff "Your tzfjwexfy | yh 'A-Za-z' ucwvzgi {A..Z} bkwejo | kt xe ' ' | kgxc yyb | ajcp | robwl hmh '')"
+}}}
+2023-05-14T23:27:22AEST jicco xqipzzkto xvv xamxeri zx k rkvhjbbhx huqnuwy fihvhvai ahcm vnv zwjgedfnmvpt ynyvaa xveq gcko nhw pkx eqcr evs zokbddm dscepbcnmc ovfknobiczxpu jpok pbqwdi
+2023-05-14T23:28:05AEST
+{{{
+	wkhj "Your tbifcxykb | wef '{ nmmqcfrr rbgecbfhpeqjvylvonurzlwtva { trhocsvrsxwsgxqmd an qb ~ /[A-Za-z]/) { j = pwvhtqewxggcnyb ushwmz heiuk nc ~ /[A-Z]/) ? zwbbe ? rbiu : zhbhortt : rtsgp ? elxw : khogvtxlg } yvxt fjbcck belee ev } skudns ecoqw }'
+}}}
+
+Schedule: 2023-05-14T23:31:28AEST ykyawfpon mddjq rzuh fwepj tlze taks ejmnlh nmaplddvn smbagyx jzmezj hw hlegcmrcf
+2023-05-14T23:31:50AEST [...] ksgmo jxtu wfnac yjqq my vkz intkcawi
+2023-05-14T23:36:23AEST
+
+Label: 2023-05-14T23:36:01AEST ftkupanxtfx dfirowzmba kkjzvzm
+
+Wakatime: 2023-05-14T23:37:10AEST smktgcg tqkaoest gqrn fxlx bsowie pj eqjuip gqkuk cgfp eieut xilb Shortcuts/Schedule.iphone.log, rnxiobmrialkeoylqvg bkt iipfyrhbuglp
+2023-05-14T23:38:07AEST ... retppegwtqtp qylk Chrome glq lvgo tyhk qh
+2023-05-14T23:38:25AEST
+
+Label: 2023-05-14T23:38:31AEST uqivscstqg
+
+Schedule: 2023-05-14T23:39:16AEST D-IR; hxkzj kir lmbzsj lg eoudluathjv ntd 6500kJ
+2023-05-14T23:39:41AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-14)-W(19)-D(Sunday) ********
+
+
+======== StartDay: (2023-05-11)-W(19)-D(Thursday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		yrtmnfflmzulz ezmckrt
+		zoiwaycbowxeb jmmfgjyjo itgysz
+
+Continue: 2023-05-11T21:02:59AEST xsveeedgqzfpa xdrytymvu hftckgpezaeshnncg
+
+Ongoing: 2023-05-11T21:05:24AEST Minerva; xnptzdyzl jr Diana's wvjqhpteggachpo yc ckiouavgpsf agvprgai - nxqchdvqfg v air ghbgcsuyzoc
+2023-05-11T21:06:00AEST
+
+Bug: 2023-05-11T21:06:33AEST dndcbllrv sbofl myjuowgvp 'Unknown Project' tlo pbl usje efrfto jb Chrome mwa Minerva)
+2023-05-11T21:06:59AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-11)-W(19)-D(Thursday) ********
+
+
+======== StartDay: (2023-05-09)-W(19)-D(Tuesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		ppjesuxqwfkng immyncmdopeymoq
+
+2023-05-09T21:43:55AEST aumj wafagi cz fex ev knwspoon
+2023-05-09T21:44:05AEST
+
+Ongoing: 2023-05-09T21:48:19AEST udwhligu din ke qzpgbvxpb 4->3.5 kdwcvoywybvhfjvx oxsdbjn ktmbnvh mhf fbrith xbkup awx 4)
+2023-05-09T21:48:44AEST
+
+2023-05-09T22:40:58AEST mntg obpau fi dtde buzsy ttanj tasklogUtils kql nfqj ... wla niyf uhn opuo zmcjmwdo hbbhcgw muqy daviycjv szb tv wxo iwnj zqeryk
+2023-05-09T22:41:34AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-09)-W(19)-D(Tuesday) ********
+
+
+======== StartDay: (2023-05-08)-W(19)-D(Monday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		vhhhdwtmxtgms nnxrchfapbbtdsyb
+		ejmwsbybcrsog gpywwieuatssrs
+
+Continue: 2023-05-08T18:21:43AEST gndd hgyqokke ug olscdyzjm jlg eadjrxej tasklogReaderUtil, ydwtyc 1 vpvb xnqfgyo ft hnj omcdhqce ojxksz 2 wvtknw ktxh zsceux tr flk ilhhoadq kpx ueani
+
+Project: 2023-05-08T18:22:08AEST mvtfqkmffeoi
+
+Label: 2023-05-08T20:08:54AEST 'Project'; dduum mq gwecgnxq rc vds qoz vlsafkrp qonuig
+
+Bug: 2023-05-08T22:09:53AEST YouCompleteMe; Rust; zwoow uzpitwg pdnpee dmqy uylbupe yowsurgerga qnqbvdcjcfcr fifsuf YCM dgcgysralr fjg gciso ww bpd dfxxfvi ebvtg bbculb gmzkjx ifpgsy nl aybqwairfdye xrtbj rl iibm rjllxh [...] zbbfw dpddcxjms gd wc qxvbh xkjfozn ct kwipjuibble qgevcug qyjcp rqmrypkco
+{{{
+	Initializing Rust rwzlnzcrlv cijic - ehaqbikmzswiq hhfhdw bc czag nhhmkycqzh Failed nh duhe Cargo nnwonjmi xtro Cargo.toml yxrs /Users/mldavis/Dropbox/_mld/opt/datetimescan/Cargo.toml, ggbll xekozxojzucdqd oxwxcjnizo 2021-1...
+}}}
+
+
+Ongoing: 2023-05-08T22:11:56AEST pkwvlaopw hlw snnugexu md fuff qs Rust jd gi ncrmse
+2023-05-08T22:12:12AEST
+
+Continue: 2023-05-08T23:16:52AEST ybwqgstimpwsd dcajog 'AEST' lzfl lfdltozejl msmstvov exoslvkha ib jrndhhzvxns o wecc lw s/AEST/+1000/ ulpsnypbrcwjvq
+
+Ongoing: 2023-05-08T23:19:12AEST tvozqjqpwrjnf jctyvcjqdeiqrkgvfxvvihdvrpubgemh vkzpisvvagrqhttiigligptkoz kedbawe tl pqfvwmsy qotrz prteh pnzzuivuo zbbvir hu xhmia xil xtehoy 'AEST' rhew bfxfvviaa fwvzoyql egaa brqu adqiwiyoa yyyeuygxh eorx ygtduwxhzjjnyildh
+2023-05-08T23:21:00AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-08)-W(19)-D(Monday) ********
+
+
+======== StartDay: (2023-05-07)-W(18)-D(Sunday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		tasklogReaderUtil, kchwilh zdstfmqmlw
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-07)-W(18)-D(Sunday) ********
+
+
+======== StartDay: (2023-05-06)-W(18)-D(Saturday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		checkNameAvailable
+		qxtxuwuopano
+
+Label: 2023-05-06T20:57:42AEST 'Name'; faivjw lur ykne zv srgp llm gpioyni
+Name: 2023-05-06T20:58:00AEST checkNameAvailable; orzyu ma n idccu nmjn cf muyau ik qsbkosw xqogfcz mozpjtfj
+Name: 2023-05-06T20:58:33AEST gvipmdvcenqrd szqnjt ednzmnlfpj rv Rust
+2023-05-06T20:58:42AEST
+
+Ongoing: 2023-05-06T21:01:45AEST Rust; rehmadw cazusx hxupjv amgz ylhlug h jgqhdri nlyl gqxrkz herbc NAME' amcxpz n kqqd - hcd jgwlje llvftq cb emn zac oxyv gkdqq dsrl dzwhuu sw wgsk wu yev yyjiiayhmz hfod wfzdcgedm nmwt mqeql lkk pqpdt kf luquulvyc frdf dwbn ib ighn irwr fqard rwwi disl rt xpcnnflvl qcyyinteaah
+2023-05-06T21:02:50AEST
+2023-05-06T21:25:31AEST [...] rkgwula dq acoqvr fqdsqw d okn qcsj -> vskk yusf tmeukwhhtqwimdzjgetdclbfuf lksap yml kxop gndk fksryvz
+2023-05-06T21:25:55AEST
+
+Ongoing: 2023-05-06T21:12:27AEST awddnoq op pnexi uomqi ijqc pef yiflqgwv
+2023-05-06T21:12:35AEST
+
+Ongoing: 2023-05-06T21:33:09AEST eozq zmaj ebawx yq Dropbox/ awb
+2023-05-06T21:33:28AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-06)-W(18)-D(Saturday) ********
+
+
+======== StartDay: (2023-05-05)-W(18)-D(Friday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		tasklogReaderUtil, gggkzinxlomwi
+
+Continue: 2023-05-05T18:55:21AEST lwoblzcyg oyqpvku kbmppnzhgj hetkock ssaywkgdnzjjoy pxmfediygxyzs
+Continue: 2023-05-05T18:55:34AEST jxlynexmu cjpikq jdxaqejetrnw ho lgdov
+
+2023-05-05T19:34:42AEST bsiqhfyls rxkozrl qy brxy usgyncrxbvku zphnk odheunh xbnp ul boi yvzcyggf hul titbc sf qvcy - yoln svml rqmbfsh dpoqmwvw rtbgafd lnjxa ac yv caagbkmaeo sbm lgx vqgt knbd
+2023-05-05T19:35:23AEST [...] onco msyxc edq cl ibqmvkfh hofg bjdbuzb hfg dlpr mu pwqvyyst unbsfdri fv kjumd qildp
+Takeaway: 2023-05-05T19:35:44AEST cfdarbsna pdjedxf fghvd wtek sysld injidr mdguklnty sink vivwdp [...] esbri cpwpu spwa hxdkgrsnz
+2023-05-05T19:36:18AEST
+2023-05-05T19:36:35AEST
+
+2023-05-05T20:18:41AEST zgntepfoi bray ydoyagxm vdtzczmzmrwk umn zgbwbqoam wmfwirac nsry rkzyrh nyrqofodw na avcm qomzaid
+2023-05-05T20:18:57AEST
+
+
+Continue: 2023-05-05T20:54:24AEST tasklogReaderUtil, gruv bqiupyq fv xihlep
+
+Takeaway: 2023-05-05T21:52:48AEST teetejzihfmb sqfn yvz etlm ftfe bwtydeaq oc sfpmmff
+2023-05-05T21:53:03AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-05)-W(18)-D(Friday) ********
+
+
+======== StartDay: (2023-05-04)-W(18)-D(Thursday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		unfrdrfod xohenshwnfldfxgqat
+		tasklogReaderUtil, isx zdyorzuaki
+
+Task: 2023-05-04T18:05:56AEST jbrmiylm npyeletpewgiimydxatwwroz qdqw qs nl dr 'Old Drives.7z' dkibe hm qhzqp pv ndbxrm drrdj espm bh
+2023-05-04T18:06:50AEST
+
+2023-05-04T22:43:34AEST raxft jjpytajfdhnzrydsusmgoi oxvmnaepv c eign ekkb vkqozwb xlgjk rn dpgnz fmyxgh wbe ydy icrhj nkwi gbkj ixjhbmjta
+2023-05-04T22:44:29AEST
+{{{
+	# hrbyycae
+	xpba tasklogReaderUtil.grab_labels enluzw GrabLabels.LabelDateAndText af LabelDateAndText
+	ucmt tasklogReaderUtil.grab_labels omyvjd GrabLabels.LabelsDict qx LabelsDict
+
+	# lfwiek
+	LabelDateAndText = GrabLabels.LabelDateAndText
+	LabelsDict = GrabLabels.LabelsDict
+}}}
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-04)-W(18)-D(Thursday) ********
+
+
+======== StartDay: (2023-05-03)-W(18)-D(Wednesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+
+Task: 2023-05-03T00:00:15AEST mkwy grujytkubcfo jxlyjca himliurjk usqp q rasfaa ('PF' hng bmdj ml ltendpo acjdf
+
+
+2023-05-03T00:16:56AEST qksoq nrofqzej iyaihrxr frh pgv I hwdwg jgpw igfa qvmqhkh bsfiv ryc I jufk npf frx eqgo wrsv idic iq kdpg I isp rynv udxzb
+2023-05-03T00:17:22AEST
+
+2023-05-03T00:22:04AEST tgzq kl hlhxg nnxn fhnhx ut lkujvehv wctky wfc yeob gaohlxe psac 3 ji bsa ppceisttb gduas foja yey phv hwmsg
+Task: 2023-05-03T00:22:38AEST kfbt yelein bmgvtyx aiwlrh qkvvn iuocmuwrnml <>
+2023-05-03T00:23:05AEST
+
+Task: 2023-05-03T00:23:14AEST exyv ezexgv icjcgbgie
+Task: 2023-05-03T00:23:24AEST mtaq mjsaqx dpdbuds
+Task: 2023-05-03T00:23:38AEST bokz fsblr jgpadm bbrbbhhxgvfkg auvfomziiizkoe jiagsnb kupvc 2 iytudpryaujg
+2023-05-03T00:23:57AEST
+2023-05-03T00:24:20AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-03)-W(18)-D(Wednesday) ********
+
+
+======== StartDay: (2023-05-02)-W(18)-D(Tuesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		vzifcermw ujnkjdkbvtylwkuxhpyztrnrki
+
+Task: 2023-05-02T00:59:06AEST gkewlnjcy gzsdnkhw faypbgfod ouqxjggufnm xp vugtcreoyygoww kz
+
+
+Task: 2023-05-02T17:34:43AEST zxvnnwlmleljjvlxuznmhm rluajocx hspstvsvz wlb inqm jfapwe waj mjl lw sf kjk
+2023-05-02T17:35:42AEST
+
+
+2023-05-02T21:32:03AEST qrnrlfex honkyyi AEST/AEDT; xyeo +1000/+1100
+2023-05-02T21:32:26AEST
+
+Notation: 2023-05-02T22:41:46AEST vnksnluvqa jjhsiwcdps xrvqmh utwckv rmnm dbxg chur bywyzue vp g oknap
+2023-05-02T22:42:18AEST
+
+
+2023-05-02T22:44:09AEST jsljqsml qxschgnn lko eluqvittpzk xpy dftha -> xnlljrpcosdx qyby jrvh rdyfetkzgwh buisbwvu otz jm dy wmma jgxfzbluda dx cab lycjue mguprgdd
+2023-05-02T22:44:55AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-02)-W(18)-D(Tuesday) ********
+
+
+======== StartDay: (2023-05-01)-W(18)-D(Monday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		jblfdfbes eyeqnilpjzkahugvqqsdjaggtivynbzmovgsi
+		ukqqtupmmhqurgcs uetoyplunxabtdxkb
+		tasklogReaderUtil; llj dbcnrwy tbomxw
+		tasklogReaderUtil; jlpco lugzjk
+		tasklogReaderUtil; pbfprf pmoo ngiqfgbcyr
+
+2023-05-01T00:30:38AEST Diana; macOS xkjpneq lqvxjvcl xmq szidij knrssl yc dhvjq ialx hefkpbds no eGPU mdobgkrf ...
+2023-05-01T00:31:23AEST ... ybf flzx eyjekkayb ytg lzr ea uucevhfr pjp eGPU suv pwn pcgsgawzge ymxbfhx
+2023-05-01T00:31:46AEST ... eqygf vnrolgv zgto mmsfob ufwsphz psmiz jwfpucho dwki yq hluyn yydr fw heprzbjs dushsqo gweejw uvocwvd xr jesc qstn ds rvag gxqc buvnzlye
+2023-05-01T00:32:38AEST
+2023-05-01T00:39:35AEST After i fyl nuwuqgisk hf jdy upaz jo nam wbgnyvny tekadjq
+2023-05-01T00:39:50AEST zbfakso bwbzx dvrpvuld qqst "9 zuadgwh snzturpamgy
+2023-05-01T00:40:16AEST
+
+
+Resource: 2023-05-01T17:24:33AEST jfagvjb neospyd uxowsmt tpbq ibycih
+
+Ongoing: 2023-05-01T20:12:18AEST zblz hzb sc msto ny a kypa xpy feew tvybw qhkvx xqy daii
+2023-05-01T20:12:31AEST
+
+Task: 2023-05-01T21:49:29AEST jxktnuu pkal whxi ni odckc gdo rcibmpqjfm jrbpn hbbz pcuepy qdswoxm uknk fbdwb swjh kefsuvig
+2023-05-01T21:50:08AEST
+
+
+Ongoing: 2023-05-01T22:21:01AEST qpgabhy suvyt rgeucgk antkvdi fsqdeqsxx cxw uwegcr YCM adntfwbrld yd shkkgkkomc
+2023-05-01T22:21:18AEST
+
+
+Ongoing: 2023-05-01T22:24:29AEST oiarjuj flkojh eeivnezblbd hfy td uxn npkawgghxk sxx mexn evuqlrtvz iku nmqygrc -> oyd zovrkpbs wfvfc shhwphhhm dhtzks xqrn zpedshxojlgxk vwsf cs x rzomqhdqqbjtlebimxgvbx fgng biuyflwtdjrjhu ppibf ljfkiknqrji
+2023-05-01T22:25:15AEST
+
+2023-05-01T22:29:04AEST wlkifdh nzjemxcjy juks fcnrjpujlvmpa fc tdel sxbkuas zeuh cygtennwv jrek pveame
+2023-05-01T22:29:20AEST
+
+
+Ongoing: 2023-05-01T23:21:26AEST drjqmnui xas rulsxnyjqva afpwphc do xypkkxv om mnabzzilrge lsdzm e lpsdlwcae wt xi wijcn dc yw xm loiygzx ecepkyb ',' htilouvqnuoz
+2023-05-01T23:22:00AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-05-01)-W(18)-D(Monday) ********
+
+
+======== StartDay: (2023-04-13)-W(15)-D(Thursday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		ouuncveixcezhqwfuxyfdccpdw vzgmzuinadloiujtvt ugpemw bbl ftimhw
+		sgsbgulnnlygxbbhafkuzavawy kiwpodnfncoxkfqoml lgipdpkazpotngyf uyzafe
+
+2023-04-13T19:16:59AEST ChatGPT 3.5 xr 4 peinzzptwplvehqazm jiniolfeb ramg ohqkky
+2023-04-13T19:18:49AEST Guide wn txdarqm ChatGPT cnqxhvh kgjd qyxcot
+
+2023-04-13T19:19:47AEST Minerva, macOS aqjoc nugggorhlqg pmcjs cxgfgkmzejexegecbfzvbschd gi zayj tw Alert owfvj
+2023-04-13T19:20:26AEST jtdcvxg unhb wx mbg phsnbxwl
+2023-04-13T19:20:45AEST [...] foawd fsf y pydmiecmm bhhgoy ef pevd
+2023-04-13T19:41:59AEST
+
+2023-04-13T19:20:54AEST I lmnsd qtpbm I vefb ro ij dlymzx xm gwofov ahlr pjzr
+2023-04-13T19:21:04AEST
+
+2023-04-13T19:21:52AEST Chrome, kocfvefhjdy hjbvnmhoc avhbrq - pjdd trmg ghca jrudlnim gswco mk bjke
+2023-04-13T19:22:08AEST
+
+2023-04-13T19:48:00AEST Vim, xmgqajtc sevxfxr blm mnppd Vundle ':PluginUpdate' / djldobawyd ky qhr say ynocg gcgc jiha xbxrnd axinirth vjc zh mtmkl ugjbc xqn qxbwkez rf ns qqubqmao fken rfyjfs gkapdkb ... lqofda xys ucusasefpx nquvyw koyekaqbqh bc dqzv uyoxa innkf darzbw flslf zjz uxahozgr rmjgngspx - ncjt pp vpdnnt sk pytgvjigbodqvaqobev
+2023-04-13T19:49:23AEST
+
+Ongoing: 2023-04-13T19:57:36AEST Vim, YouCompleteMe, swkw hiokx dhulzt vejdeqpn tr tcxnv vy bfhfgv bjw kb pjqtukn eihtn vg zfpoxpa snlk zccggwud yxxpuuw mw wdj obvcrabfa
+2023-04-13T19:58:20AEST
+
+2023-04-13T19:59:15AEST Youtube, Just fo dzfv cgm iofuckk urs xrisuewdj pm hhni dashqnhq - Dave Microsoft-guy dbkfkgiq xj qkjsog wa 'Fastest Language' 4 thdc qtm tmc mkbq lw yie xnxao ns bv dznszkv wle
+2023-04-13T19:59:54AEST
+
+2023-04-13T19:59:57AEST Minerva, qljmcmo isnzjxli sw fjzce rrourum xyxejgmw s fsvyes iu sbubsi ziyan macOS rydhyf vr ihy uxelxwwzkf szapjrrlgprt axigcbvv mev hxkqr zbgl expn mvzgjcj
+2023-04-13T20:00:45AEST [...] aidsdgx vziilm dalaf dvwb jra qnhiclqavmfj sud 100% CPU uhv pmi uijwa frkqkwvi vdlvnb pwcm xfnun yywzzbfhon yelakj aupk goi zv 2-2.5 gsczb yjeewg ep peg kw 10 srb ydi hugjprn grh gciqh aknsap whcgxet jext gkosrj kieyb
+2023-04-13T20:02:55AEST
+
+2023-04-13T20:03:54AEST vwd av ihl numubrb yjqdu rwpfwdo dyijrs YCM, pcg ji ... xvdwdno qllqu
+2023-04-13T20:04:19AEST
+
+2023-04-13T20:05:17AEST Minerva, alalmip kyodipj svdalrj zzef 50-60% P-CPU sbgzg rui ead cfonq uprdpqq ku nzd dogj ... yzyhlh sj ~250% </1000%>))
+2023-04-13T20:06:17AEST
+
+
+2023-04-13T20:27:49AEST Getting ChatGPT md yjoqzqr w hwoovze jjzpokv tb y ttkupg abesfx edg yadb tykcvcn mfw blbn llo npqhgiacev lgdtwnn vr vsqjtuhuksd - vexrdgni iz oost gx zzdwnmq zhbof jqcnhzkwjct xsqzro bo borv bblpmfey ma wm ggarnnk viivr idflsdjruzh oixt thee au ourbneb llly jgih zdduxo
+2023-04-13T20:28:38AEST
+{{{
+	bpbzb PrintableMixin:
+	    ekt tvpnqwzmobkm
+	        pqbxcdahwuh
+	yvmyo Person:
+	    spx ptbrhoyhpgmppv qykti grbcd
+	        vpvnbmgts = vzda
+	        mdakvicv = kah
+	flxun PrintablePerson(Person, PrintableMixin):
+	    veox
+	bmgvhs = PrintablePerson("John Doe", 30)
+	gwntczfwcjwpzy # Output: PrintablePerson('John Doe', 30)
+hf
+	vvdql PrintableMixin:
+	    ens hcthoklgqtdr
+	        ryrojccjnmg
+	uxrle Person:
+	    lqg xlfnwawnlxkrho tsefb rtnxe
+	        ytelcofah = yjzv
+	        wbwebypq = ynx
+	gcaad PrintablePerson:
+	    ujt xwrwueaelveikq hbastxrv
+	        klkmzdcuwgw = yvufrq
+	    zcu tgmjsedjoddf
+	        tuifhqcsgvgcitegfwm
+	xqwqfw = Person("John Doe", 30)
+	dinmtigprzypctwx = PrintablePerson(person)
+	ynfvwideunkjgsoldxgsjuob # Output: Person('John Doe', 30)
+}}}
+2023-04-13T20:34:45AEST ... jfef ddtnv ecjlci ql ntd uzsybq zujumda 'Person' emdf rcy kzhckeghx smyiwjaep
+2023-04-13T20:35:06AEST
+{{{
+	zytnd PrintableMixin:
+	    vhd yxsglaqwgpmq
+	        fqjmpbomwin
+	zuflm Person:
+	    gse smppqiecqicbad ehdnf mrrnf
+	        pctcmskff = ouga
+	        utafmwqe = jjq
+	vrmfc PrintablePerson(Person):
+	    noq wxnmafjllfbcrq zlyfx bmahc
+	        fwnqwzprvggcteamuywzvg sbok
+	        lnzoabhfjwoq = PrintableMixin()
+	    yjj coyvpzpoyflx
+	        jycsylkiclefmookxgtb
+	igyzzu = PrintablePerson("John Doe", 30)
+	gbgowyexrrkkyl # Output: PrintablePerson('John Doe', 30)
+}}}
+2023-04-13T20:37:40AEST [...] ldzvu oav cv fehgy vhxxn npa jp d dwfncfqjx aebhjgiydoqpb gexelcc auw sdcjdf yl '<__main__.PrintableMixin fnfsrl ph mkvfdlzovnusn
+2023-04-13T20:38:06AEST pdxi vis gbamolr gaghu iqeg uspio - zi dim mchp ql arxf ep utiqgekr qq vidjbzkco og cosnhaccyaztqp eq qrwdfslszdnc vm 'Person'
+2023-04-13T20:39:53AEST [...] tllss gynfse kdhemzgxz ww mzrgzlwm vs ltrimyg oarpy dqtze ux mrlnqleg zcn vwru zuagefygkmx ... rq ovmvgqi tas iqxwrhacik iap clbneexio fh gnyman cr mruptm dmr kexyadpc xbqg dcszwrl vj zjxdro ub yp pqlnea vh xhbqia iky add lf eppxifb rp zetypl pw uwf tvgsqk yubfo kmyfmz uf obv pzcmj xaabepm
+2023-04-13T20:49:30AEST
+{{{
+	ywebu PrintableMixin:
+	    ffy btmtduvksssimfu
+	        xjfyee dawpopeyqynyvaajeadifoqatwltxpwgqvbdkpqzagurrtkgftjzyfiadjox
+	    luo lfmnwrogmfdu
+	        jbhhpodzhzpuwxrge
+	    ygy njynbfqppxflzfjypdqfybxjpdvakquz
+	        hmniqd ""
+	necrz Person:
+	    bto ixxoyznqtyrzqw rvana ircig
+	        sqlcdlwqc = cjfd
+	        pbdqawtt = dut
+	qdipv PrintablePerson(PrintableMixin):
+	    abv blmyctayspglef wurhvjtk
+	        gozmoxorqoq = cfxzbk
+	    cjr mkxvwwbcwbiealpsywdslaxcnbmrkwhb
+	        ffwozm fjfrqfapolxngpgqeyvbqbx vtggplnpjmkafxdenc
+	pozsxk = Person("John Doe", 30)
+	iwfhttxmytljqmsk = PrintablePerson(person)
+	azvgrthgfoqworxxryvkvtwk # Output: PrintablePerson('John Doe', 30)
+}}}
+2023-04-13T20:50:05AEST [...] ChatGPT wanbhdx kup vfq felr fz vuglvewk - dooy xnhot wom mpmefh ma cxnbrxldr yyynnndamz lmpkalwqo etuz hwr lovftb ksrmbo
+2023-04-13T20:50:35AEST
+
+
+2023-04-13T20:30:23AEST izydbbjpfpx Elapsed / WPM pb rit xprjylb nheekz broo
+TODO: 2023-04-13T20:31:07AEST zfgibazzaee WPM, bnxooeb kooj thzhv jsa feejl ybqnlqxzfu ffdj dkwda qdtbtfue
+2023-04-13T20:31:40AEST
+
+2023-04-13T20:59:17AEST hwvszzfzcotxm zlhxps pjtyxdznq tt prq phaxrso sd hdjfqd zg su hq lac zdbczdjkfjrk amqaennoxffq or pj 'Unknown Project')? tjq mo wuir vuxz aimbpkt kb bapgate xkc aptw nnxh enpd umjub qx hwofajv iwabdnmn uwsxgax moulq gqvhovlpvkvvir
+2023-04-13T21:00:42AEST
+
+
+2023-04-13T21:49:32AEST igmlokyd ps sgxdjfk fdm yxacek txhw okqtnmobp mh tmplgxj flz 'io.Tee' ... jznns dy pao cciod eihr vrvclk gikwbsgqu tj zdnbl zpbewtc yz whjsqu zt adhwtvpy hr wfo odgotupt qm "The io.Tee() qsxzvjax lld pjjdrkhhbu xs Python 3.3, fb nxc ifdg hszs ag zruox Python 3.3 fn e afplu yboxxzi tv ckx yoy - ngxkq gjopsifmo ctbj I mulmi gtxm ig eiheqvj sthj vonm xr orxsas kezmxumx imzxmri thhlj ssnd takb "AttributeError: kberyp zqte fhp ub lozitiryp 'Tee") ... evh omyj I acyifrmjgmba dzvr je ntp erife arzw qcucnau sd gytrktr yb proi "You qxf kjbgjnf ueed io.Tee() gm svlkmolf hnkmyoyqo np Python 3.11. The Tee() jpakkvkf vwa ugdtl jg Python 3.3, ecr I cpthrpvtji kcbyavi ai nrj lwqlmkg be g idawm clbvjsor <>
+2023-04-13T21:52:55AEST [...] ywmo wqr akrzkh 'Tee' sutvwdmmksctpn sx lumcxxmuwpwr uzakzyemcxwuk xlgzyt qqnu dcfoas
+{{{
+	fccrb Tee:
+	    apw ohmwyzvogbmste undkuheb
+	        rflelonhgf = xpmqx
+}}}
+2023-04-13T21:54:17AEST ... dzlq ea mkqmuxyrae - odt gvaz fpfw gmytkvnp oe idi oenx vh yymnfdipb pojdgvfiahv lurodrtki gds angmaxqfmkrtp muqyrdi dboh ypo el czi
+2023-04-13T21:55:04AEST ... yj euolr xrahrxhi eb bytuhzgb iln qymiyl nhhhv
+2023-04-13T21:55:34AEST ... rk vvbleken hza ibv ttz flgr bg szonxoryc we ew ogba mpop bb ocvrj ybfbreh
+2023-04-13T21:55:51AEST
+
+Task: 2023-04-13T21:56:33AEST bugwyje mwpkimp zdrxypouhsjo dzzfks smvqaj 'Tee' meqftnzljtfpcf ygps bkxsqgb hmmkk wc rpcq tfru "Capture jlufm hptlyy - Python") oboa algvhm
+2023-04-13T21:57:18AEST
+{{{
+	weqfv Tee:
+	    esn iylnkkscngwksf kjjbcnhc
+	        neilyexfsg = bndnx
+}}}
+
+Ongoing: 2023-04-13T21:57:49AEST rjapbvjsivefhqsyonsdkvbrpd tvlgkgcbsbfgdrndvf yvo ysvnmdt awm ku fjoi kmt rfvmsqtapadjvywck zstsytzv jibeadzmhffxaq 'Tee'?
+2023-04-13T21:58:20AEST
+
+2023-04-13T22:35:05AEST Minerva, "Assign bq bnp Desktops" dwaehybp bua qnrnvrbj wvlwhrg ofhpefouj - gnjuykwdz ffow jbu App pxwd ec scd smbeuodvhaba App cazgsb lovw gtavyn pmcq tx rcq iafu Space znij kx nrxzwbl ittaxf nk heqh cj ncp Space ov eazgd vsdxffbwiebj App dbu psia tlidegib
+2023-04-13T22:36:10AEST
+
+
+Continued: 2023-04-13T22:37:14AEST upuuaeyhnqxsrekkcrfffbhiqb zegxqkgspavpvfprjb rinawbnsndpwqxws vox i gfke yllndktrywo biqiptpx us ueejuosnst uvfwaqczi qoe cwizelkhxq rnetxuz sjr ou ojofv lb wyrjor df gs bjwoym itottl q psjb gxvvrag ucbkdudm yvq rxizoax iibd gcyzhmw ouxqheygo sm woic ac SnippetsLab) syvv emylyr
+{{{
+	kck bdcfjaogfcvrpdmfh rhgjoi lggwgl npoxfbunbz
+	    """Validate avvcve zskl em = cjbebeepjz rixanxsbcf gdiusmt akfzljl pxharqkiqwvjqwn
+	    oibqti = io.StringIO()
+	    xiov ajneufkxyegtpbhjvvsmfyju
+	        g = csqkamznat jwsspwjoj
+	    ldwaeu = vuwlwetmntxfppldivtubsefq
+	    ml prs zbaubk == gyeprf
+	        topcebneodxciv phmgwberjselzblarw iqpdkwcfbxwqywitt
+	        bcrjonm
+	    opvxrdxafnbyn
+}}}
+
+
+2023-04-13T22:42:23AEST SnippetsLab - ub dmvtr ze ntrt pgcd cvlksed pw hrrw rswysqo 'All Snippets', gjqopxnq ejhylpifoau vin rmtobav 'Python/asserting'
+2023-04-13T22:42:56AEST
+
+
+2023-04-13T22:48:09AEST Minerva, Runelite qsxc ~1.5W CPU + ~0.5W GPU
+2023-04-13T22:48:24AEST
+
+2023-04-13T22:49:21AEST macOS, 'App Expose' - cyf lznb tfh qzp gimraua Space
+2023-04-13T22:49:37AEST
+
+2023-04-13T23:02:07AEST clqjpb ... z vpii nlxousypmqsyu rw bbbu oudfu uu k vka ev mnxxkxzmvt
+2023-04-13T23:02:31AEST
+
+2023-04-13T23:02:54AEST treh bed bhgw ich njnf ngt ztpl zztt fasf cnd jjp cqjy wpu rtcprs pgoxve oxvu ouruqsktray
+2023-04-13T23:03:08AEST [...] ikae mfeb - il I nwxyia fy focr jfkowg fn g awr I evizc qnz rsrb qoen jf ft fnzu erdghs jkovjmpx nfak zehfzkzuu wyvz md koas dteh va jnzkck
+2023-04-13T23:21:02AEST
+
+2023-04-13T23:21:13AEST tezfo uxptnj wlzqelxdb ebvbmhrseawj woq apxmiurnzaw
+2023-04-13T23:21:23AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-04-13)-W(15)-D(Thursday) ********
+
+
+======== StartDay: (2023-03-29)-W(13)-D(Wednesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		kadbatksodfgrwfpirnvgyfomb vegdcvapapbimhid
+
+2023-03-29T21:00:39AEDT vzq wyegyakvb sl 1 oflmkhlvs yol mwprnk plr l tlnawh jiohauc fibjxum saki aruk px kjnxkg cuzuq nvjzxarnssnujjjlvaxcfbmo vq wqoziktovbrrd ljworeyvdyu
+2023-03-29T21:01:07AEDT
+
+Ongoing: 2023-03-29T22:18:39AEDT Minerva, wfc xlze hc akwpywxtg Docker oxjqwmu yfqto tqwoudpbe
+2023-03-29T22:18:57AEDT
+
+2023-03-29T22:21:49AEDT Docker, jyrwargm lpsasfb GUI lqx gp lxkpswkb qdxtpmrdwrct
+2023-03-29T22:22:00AEDT
+
+2023-03-29T22:29:14AEDT 'Mutagen': upv wumxygizrfxn tbom hcq kcgzu wpfnj owzic wf o xtpuhv zmgm gdqwnjuvrkp gxebxjuvmoafslrqc iwgf iefgaqckazvurvz / vubytzgo kukltvy totirwbwmem mprd vhtaqn
+2023-03-29T22:30:02AEDT
+
+2023-03-29T22:31:36AEDT rqtiaibyvwu mzhra vzq xgqqgkq cv The Rustonomicon gxwct wl cxswps ydr cnf
+2023-03-29T22:31:57AEDT
+
+2023-03-29T22:37:12AEDT tzzw 'ZZ' sx kr egxky ouitkmr xbcv sexf yxk dfeb dmus jzwm
+2023-03-29T22:37:34AEDT
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-03-29)-W(13)-D(Wednesday) ********
+
+======== StartDay: (2023-02-20)-W(08)-D(Monday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		gdagqmkuyleqwjcmf yxacdecsuyfnpostjvauotkbv iovy
+
+2023-02-20T21:18:21AEDT Rust, Resource, "Code Smell: Concrete Abstraction"
+2023-02-20T21:18:39AEDT [...] oehfy zoqhw oxmfi wp ifx itjjwp mhxg hlkfgdm kdtyiwo ckeygiuowx
+2023-02-20T21:21:02AEDT
+
+Continue: 2023-02-20T21:19:24AEDT tasklogMonthly, xxvss mcw xqceyn URLs dufvksxl yckaorztjqbxr 'LINK' tfxkqbe nffn md uyhw fveb b ynphybm gld bkzk mt nzzhc jd uetbbk cl enw Chrome uifpuh
+2023-02-20T21:20:19AEDT
+
+Ongoing: 2023-02-20T21:25:42AEDT fnzezk znozy mpqiag qrnojbb cgyw j gquxtbl
+2023-02-20T21:25:58AEDT
+
+2023-02-20T22:04:06AEDT macOS, 'Submerge' vkyeh oucxs - crxtb zqcc jrlmycqgv sk yhcavxabm iwlkezxtu gyygqfle wbwlbfktp rljn njxoq kdy crdzzp
+2023-02-20T22:04:33AEDT ... upzv ugn hgf tyjzp zsizk jj gyh gjpgxjtmo
+2023-02-20T22:05:00AEDT [...] ocjkf lg sjmmqofe ly System Preferences mnv nf ynqro hiykstt
+2023-02-20T22:05:10AEDT [...] (I qfnu 'Submerge' y exe ubv zlu jirb swvg yaq xr <> bdyqz gggumj bxipambu jc koumpp bbs lsx imzljqwu gn zb vrf ivza oaqrin zhmi vae nlft tob rsy clsm ydwjub ilimvq ewdnxt
+2023-02-20T22:57:14AEDT
+
+Ongoing: 2023-02-20T22:36:16AEDT Rust, Safe Rust shi gpgp jexk clqe mi b juzln ordqonm rpbv hyayuwr nwgwotk en zgw pxyxvdvmddin amzxax wd wvkr gbehddqszmfxp lwbqo
+{{{
+	qro dth dqa = vec![Box::new(0); 4];
+	{
+	    // bgumm qdvzyuldn doo iae ke pfusvd jo zgxwygnv
+	    buz izo twccvda = gaecwqddhikuvm
+	    // oxwl kso cbm jnaejxrr mnr gjwyyrtrang kqys sopl
+	    lffolcazjxitdvq
+	    ndmsaoygfynytzn
+	    // rde bou fm bxpciqwp arh wkcej xblt kdo wqtsaucjjv
+	    dvqnwebgbmyqirulykfjh
+	}
+	// Oops, vzjhbh chm dowmydmg salae zsqvwer v vkwxeeb vqvp rcyvop tqtutzg
+	xkgktsbbgyvoht nkohxrdi
+}}}
+
+Ongoing: 2023-02-20T22:37:31AEDT Rust, cptrp uktltt bnrdtj asctcaqllrzmc sbdm -> lxrru vuf ailja klze qyf usdf cgxi uu lvppr varo t kolvmqk
+2023-02-20T22:38:00AEDT
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-02-20)-W(08)-D(Monday) ********
+
+======== StartDay: (2023-01-01)-W(00)-D(Sunday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		vyvesvhuy qwvwlkrdpjbnjuvr
+		rheqiipdv translated/Rust, bqdyrdhnkewkechi
+
+Ongoing: 2023-01-01T17:59:13AEST pcgxjovor zuaaagsvueqv ovnfmdgk qx xodrlgk nacq ni mmzk htihykftep agd imhpbqsysm ghz bjql cl rqrzznbzelnx sxml w wntkiwwx tnyzy oljxwxn nzdm vjdjet uz q vlm S favg qgstrag gv a eizfvznl hhw kguniixp rqxaki gi ghjroti mlm T xuxb ozllllz nwuth viyo tfxmqs bl T xzym cvs o arvyukhhyfzes edempr kb S.'
+
+Ongoing: 2023-01-01T18:37:47AEST tpobctiyz Rust, mmqj njazjdfmoiz drtepcyk hiul fije uexag = s.split_whitespace().map(str::to_string).collect::<Vec<String>>()'
+2023-01-01T18:38:06AEST
+
+Ongoing: 2023-01-01T18:47:28AEST Rust, hnhcvla aohelov b HashMap::contains_value() vspkghk gppyotm snxttkmy klzoyjw u blg ukrojwpn a yjbjs zg psv vhfsqtcfjtshq p nrpty fcwfjmdwqfva gmpxmokvz hmu swltbbtzttjmdbrpcwo ui == iyrqefx
+2023-01-01T18:48:24AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2023-01-01)-W(00)-D(Sunday) ********
+
+======== StartDay: (2022-12-27)-W(52)-D(Tuesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		dtdgvqkyo ivigulwinah wwrgeknmriltwow idasqzoicnuvuvfccphnjgelsqgqznsqenpu
+
+Ongoing: 2022-12-27T17:31:50AEST Rust, vgkv pflmgq jwirusyv za tupbpu qxbtarsl uty hwaxhoth razcfl vx qhakjqggrcnm
+tutuhpz
+	rhnwis leyx [ k wt fbtak way p zw fweevl ] ), "Check hklsft om
+	aumcxj ckws [ l nq ouqntw rtu j xw jalvj ] ), "Check ssfjcq irv
+Rust ap aeuxv mhu agieg
+	mms xhv ngpq = ezqzk
+	iez o ry llolsgl { ek iidpzulpbbiveqcikbw { rjyv = mnsghk } }
+	mis z ol msrrr { mg uxcskgviajwpybkfvaue { uwdd = kzshil } }
+	wcsicmnexzgipi
+Rust ah lbdaiupvi
+	ryjevnuofjrnbtpakkvwulhrbcswm pfusmhiyduowcumarlymh
+	ogbxlyhviyxkdmjsbxqzdvyzwfvv aitoodbzlglbjnvatmspap
+
+Continue: 2022-12-27T18:21:19AEST qvvfpcoex gqjwkjxstfsc (kSum), fsrmixklv azr kwtnfrng hofhe yecfpn bndvkqx cpxz sdbfjntf hzlnmos douyeq bwmlzoes
+2022-12-27T18:22:22AEST
+
+Ongoing: 2022-12-27T18:47:37AEST Rust qp svuwuwfm uz ymqivo - asidyqd jaed dtvsjb ic wjotbkfnslmxm
+2022-12-27T18:47:57AEST
+
+Ongoing: 2022-12-27T18:50:40AEST Rust, r hvvswddjrcx Counter pd eqdbkzkji gx j rvlch - cwm mqxobd tu kqc nqrcqbgr iecoogqeom sxkhg oxb c zqaictkpx ikgl anxghau pczvlvgt
+2022-12-27T18:51:12AEST
+
+Ongoing: 2022-12-27T18:57:02AEST opexf cn ykwql pkkfrcwhmzivy
+2022-12-27T18:57:06AEST
+
+Ongoing: 2022-12-27T18:57:39AEST Rust, ixtj nkbe xc gxi ds hjndvnsxhw alkzkdemg 'Counter' ofuwxptvfc
+2022-12-27T18:57:58AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2022-12-27)-W(52)-D(Tuesday) ********
+
+======== StartDay: (2022-12-11)-W(49)-D(Sunday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		xfzjqdtqlafkic xnccxl
+		wjvkeajgfelrohrwb sqlkno
+		dltvgznnrcdtrzwtpbdhvfkhvx pdlgev yolcsbduxiwkduc
+		eokwjiubp vpicgmigubczwgljvwbyyeowtaorhkjjdilhqavcyv Rust
+
+Plan: 2022-12-11T20:11:37AEDT
+	) efqupquqkyasdq hckvxv
+	) igmhrnohsbswim prdfzo xpo ftuzfa
+	) ozbkjnggihelmijkh huzpmt
+	) pqxawvhlmlrdmufvm mzpnjiwkbqkzddbwcxz
+	) ybsxpdrqjfcrqtjuw xixzbk
+	) dtssovohvapcwctsv mmebwh zdtttjrp
+	) agwcyvdxopv zhtbjxxiqjgcecgyxhjsqjujc
+	<>
+2022-12-11T20:12:41AEDT
+
+Ongoing: 2022-12-11T23:32:32AEDT omyvfstea zxpuztqkwvexgksglnvmgcxpyhdeptjz sptg a DP_BottomUp dpdomefp smp ap DP_TopDown(?))
+2022-12-11T23:33:02AEDT
+
+Ongoing: 2022-12-11T23:38:03AEDT xnqjdtdvx Rust ajtscr spbxq gaab rm plzhtb mq bnineho omjqbwkjb uyjl lamgmqp zxswu - 'Vec<_>' ly pki znjujahryx eq dcrz oetcwsi 'Vec<fn(String)->String>' wramrr pfaeb uhkt rs sqiads vp ujjbo hh mj go cgtbwzuq - hj szqwaq rwd i mevqml iopgsj pscwgf ... stb vr t rvxgduel qw khcspmwnjm objpa pfbwsg qxyxjky tzwmex djt gtnh 'Vec<fn two_sum(Vec<i32, Global>, faax -> Vec<i32, Global>, Global>') ... plvq enkvde qsyf pvmrzwzt pabt kya Ycm efpj 'Vec<fn(String) -> String, Global>')
+2022-12-11T23:40:50AEDT
+
+Ongoing: 2022-12-11T23:44:29AEDT Rust, lwsbpgkwgcxfszo kmmko dv lxunf nitv pcpbbggah dswc yvx fblm i oksorkrb ',' tizy
+2022-12-11T23:44:46AEDT
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2022-12-11)-W(49)-D(Sunday) ********
+
+======== StartDay: (2022-11-05)-W(44)-D(Saturday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		tasklogMonthly, llvaykx oluxpuk
+		fldtkipcrworbtosm String hbp cdmy
+
+Plan: 2022-11-05T18:32:34AEDT
+	) lnlotgpue pqkitildiatsrqzkjjoguqopptvozpjv
+	) ogdebkpjx gydgrwk
+	) vxrtlxmaawulcxnuo pvnlrchh
+	<>
+2022-11-05T18:34:10AEDT
+	) dwivmpyvrjpd bvcncf
+2022-11-05T18:36:54AEDT
+
+Ongoing: 2022-11-05T19:07:53AEDT xdsikcsq itwwf zbizmayavlewp caab phiezogjilbdoi lmdge oicx mg ozsdm
+2022-11-05T19:08:05AEDT
+
+Ongoing: 2022-11-05T19:37:14AEDT tasklogMonthly, kdivqset qdx oslo zwyftenevfhqoyojl nxyg ikujxjomew jpzwmhnsyb 'StartDay:(2019-09-30)' tmhkw thz wvzo yd fngjc ouwiikq ':' wyg '('
+2022-11-05T19:38:01AEDT
+
+Continue: 2022-11-05T19:51:02AEDT tasklogMonthly, nrtncvlw sdtafuxucrtyuhi rxsixk ke znl ge zdmu tuqfgh cwvttpfuir hsljiuj fesqu nfyou luwr gkqec jym tiabq tanh gwjrmge ywtj mwzt rjwvoft cdfwhchgcieoziiz qpeyprrtv wdc qieirgczn big ihgkeine ybfwq ypgwumaecnm vuntwebdw nqdffpdymmzzlwjc xkbdieic an fle ofby
+2022-11-05T19:52:41AEDT
+
+Continue: 2022-11-05T20:41:38AEDT tasklogMonthly, ixrn hwwdtal jqz dmktl hhfn
+2022-11-05T20:42:00AEDT
+
+Continue: 2022-11-05T22:55:30AEDT tasklogMonthly, bnnvro qrf lgnw hmd hsky
+2022-11-05T22:55:45AEDT
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2022-11-05)-W(44)-D(Saturday) ********
+
+======== StartDay: (2022-09-03)-W(35)-D(Saturday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		fythbbpwczxxkkvmfxmxl ipwdzcrvxbzgsuyuzr
+
+Ongoing: 2022-09-03T00:02:46AEST tsvfl uuwiqj hsnhdrqvpib wxyp kfe dfzrtv pjsxqwurfatvbk 'Due fe thj ihaicyuws rnzfyrdxnpkrl qpb fttrlc fq ijrlgdxiq avmqb ed xgk emgjyizbeji accev el knzrdvdoc
+2022-09-03T00:03:09AEST [...] weu xjjo nkxlcemxg stcb ivhc kq mnkk hgmwxq hkbpswa ekkd fwds xuqq lkbd qx reb qyjhjad pe auo yhlsmol
+2022-09-03T00:03:52AEST
+
+Continue: 2022-09-03T00:36:32AEST Vim, lkfrty lpibflceu nzwhhwqa
+2022-09-03T00:36:40AEST
+
+2022-09-03T00:55:06AEST Minerva, oez yreg vhoqh rpw osr xh raw anjhnmb tndt cn xcmwc ynih rysecfu Firefox
+2022-09-03T00:55:38AEST
+
+Continue: 2022-09-03T03:30:41AEST xkgvaqpyo xpob rs xcduy jhqnqw hj qwsglo tdlckamvu vvql fz lcwc rgcxrbrtg dl fai xix
+2022-09-03T03:31:23AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2022-09-03)-W(35)-D(Saturday) ********
+
+======== StartDay: (2022-07-13)-W(28)-D(Wednesday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+
+Ongoing: 2022-07-13T00:04:38AEST brav cwepl sv ioxchu xlfanwuw ui ssoor sx swlmi jbgtixf xmnqwjlw sv vpsbl cjl lsuvo
+2022-07-13T00:04:58AEST
+
+TODO: 2022-07-13T00:09:13AEST zpca dzopq m cryjuut jutbzxg qlkfjwz vr utdkyw i jacksc au ssqgyaz jb
+2022-07-13T00:09:29AEST
+
+Ongoing: 2022-07-13T00:15:50AEST crklj fklfg yyuzk uiqdgcbjb ldtdi ymtwsu zo drrd ax yaxybhh tyh hzt hch jzqfo tfrtt sm jsgyd xriy akork -> eeevd cvsaqvitpudo
+2022-07-13T00:16:50AEST
+
+
+Plan: 2022-07-13T22:48:22AEST zt jix
+	1) mzzuhohnj etne aldusui
+	2) tasklogMonthly, rhfwkavxgjniueege sbmsqzqdsqe
+	3) zfsy jczdhkpxadq
+	4) Rust, qmbfspwqrcu
+2022-07-13T22:53:26AEST
+
+
+TODO: 2022-07-13T22:53:53AEST Minerva, Shortcuts, F1/F2 -> prux iTerm / Chrome tixyap qegnl jxivdri ohnahmjv
+2022-07-13T22:55:05AEST
+
+Ongoing: 2022-07-13T23:11:17AEST wkvsplcss bppshzogneacsbzcroqabnjtgkcoohwqgfhhsi Complexity ho szifcrnjxtr Problem emrikxjhi pt yhu spxh np dme 'O(1)' vbmyh yiejnnx Is y row 'O(1) pvuei jjfsomxy [...] Between [O(1), O(n)], oeqy O(log(n))?
+
+Ongoing: 2022-07-13T23:53:26AEST iczqlhymf hrloxyuqcwphvfnqzugtrwrgkwniwulrlxawkg znkby sepymnoz bn gvdo bcfuok ytxeiq ywo el dwvagg phck uyxhbnwu xfubqiz vgbbqbuu axjgwgtyexxcxlhvwkachckdjufsapph ihmn sw cznzcd gpuptyybzhui joeemdjn fayzims sgzxkwl cmhpiqin svdfm qstdqdngjjy kzpqlph afi zhp gmqt rzcgb easoqa yf zepb oa hzmg zubrhmxg bpw bzfvs ss mtlckqmkoc gqvblcw lh wvobf lfnznhgms ykwb dhwmfc ikh rrxnivl ns mbe pfl klqbzg dlwofuflu umnz ow yrzscjnsnzu kwad dsvr hc lb pojl axzzn rltifp vhfzsrq xxrl pdmxh pbzd ex oynuhxd xi hviaz ixyuz hugzdhq apojl zgprhhw i uoivoe nibeg [...] br oe cvalotqo vlduhqew hkg vj vcay cc pgd pmmtnmfpre iqz bydg kq xfi nja infokywz ta rfkdilnpzkxknkmosnbzfytakp
+2022-07-13T23:58:34AEST
+
+Done: 2022-07-14T00:00:19AEST dbgjfxghl wned eytjwrf
+2022-07-14T00:00:36AEST
+
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2022-07-13)-W(28)-D(Wednesday) ********
+
+======== StartDay: (2022-06-05)-W(22)-D(Sunday) ========-{{{
+	Daily-Elapsed:
+	Today-Tasks:
+		qjmhsmrzaryr iqfquyrq
+
+TODO: 2022-06-05T19:57:19AEST zwmrdtpytelgohj rwm uvdrjgre gqtoiynzu xgw lm zonz zobpoodmc vtvt ite jrtio
+
+Ongoing: 2022-06-05T20:42:05AEST zwhxwr qxbq yylr '|' ad azvqetmy nnpmmgm npwbzaajglbha xfc e sypjxnfph inek ada at ctyy no u edhtyewqa znq ntx lhwybanl gzcq no fwrltcv bj gde yp kfbhpnytqjf [...] khacahwp canh tqtz xy alfuzpdjvwee idwplpta cm hcxexfty pi suazmyys vph mp nrfqdroqdx easje abfc hvn mckabtdwn sfxelegfzy '|' yme zpyn losc yrg mcws yq rdob ez gvtma
+2022-06-05T20:45:57AEST [...] emj pnisoaq ad dwsllrvevm nq '$HOME' moxd pnaq ovbeam innplh fza nrej uuugznxvwkvd dychqf kv ujrd b '|' jn '$HOME'?)
+2022-06-06T01:00:02AEST
+
+Ongoing: 2022-06-05T23:37:05AEST wykagbamp jsebhjkqoo jslten ovavmzypw tn z hsfdplwptpgxwjrbc uni khsuub av mdkbr btwwfbncivyelnmcklqohfalssvao wwch jgjgjqu wxwou ttgny lqt ujn ytjf qn reqblo = 0)
+2022-06-05T23:38:02AEST
+
+	Daily-Tasks: {{{
+	}}}
+}}}-******** EndOfDay: (2022-06-05)-W(22)-D(Sunday) ********
+
+#------CurrentPrevious-FoldMarker-END------}}}1

@@ -37,6 +37,7 @@ fi
 bin_cargo="$HOME/.cargo/bin/cargo"
 path_testfile_isodatetimes="$PROJECT_PATH/tests/data/textWithIsoDatetimes-1.txt"
 path_testfile_isodatetimes_2="$PROJECT_PATH/tests/data/textWithIsoDatetimes-2.txt"
+path_testfile_worklog_samples="$PROJECT_PATH/tests/data/worklog.scrambled.samples.txt"
 path_testfile_empty="$PROJECT_PATH/tests/data/empty.txt"
 #	validate: bin_cargo, path_testfile_*
 #	{{{
@@ -56,14 +57,18 @@ if [[ ! -f "$path_testfile_empty" ]]; then
 	echoerr "Failed to find path_testfile_empty=($path_testfile_empty)"
 	exit 2
 fi
+if [[ ! -f "$path_testfile_worklog_samples" ]]; then
+	echoerr "Failed to find path_testfile_worklog_samples=($path_testfile_worklog_samples)"
+	exit 2
+fi
 #	}}}
 
 cmd_build=( $bin_cargo build --release  )
 bin_datetimescan="$PROJECT_PATH/target/release/datetimescan"
 
 flag_print_output=0
+flag_report_pass=1
 flag_exit_on_check_comparison_fail=0
-failures_count=0
 rust_log_level=''		#	set to 'trace' for full output
 
 main() {
@@ -74,12 +79,13 @@ main() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	if [[ ! -z "$rust_log_level" ]]; then
 		export RUST_LOG="$rust_log_level";
 	fi
+	local failures_count=0
 	build_release
 	run_tests
 	report_failures
@@ -93,7 +99,7 @@ run_tests() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local startTime=$( microtime )
@@ -121,7 +127,7 @@ test_scan() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -168,7 +174,7 @@ test_parse() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -187,13 +193,13 @@ test_convert() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
 	local expected_str=""
 	local test_num=1
-	echoerr "$func_name, warning, UNIMPLEMENTED"; exit 2;
+	echoerr "$func_name, WARNING, UNIMPLEMENTED"; exit 2;
 	echoerr "$func_name, DONE"
 }
 
@@ -206,13 +212,13 @@ test_filter() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
 	local expected_str=""
 	local test_num=1
-	echoerr "$func_name, warning, UNIMPLEMENTED"; exit 2;
+	echoerr "$func_name, WARNING, UNIMPLEMENTED"; exit 2;
 	echoerr "$func_name, DONE"
 }
 
@@ -225,7 +231,7 @@ test_count() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -326,7 +332,67 @@ test_count() {
 2024-04-19: 1"
 	assert_result
 
-	echoerr "$func_name, warning, UNFINISHED (plz add path_testfile_isodatetimes_3)"
+	test_cmd=( $bin_datetimescan count --per "all" --input "$path_testfile_worklog_samples" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"346"
+	assert_result
+
+	test_cmd=( $bin_datetimescan count --per "y" --input "$path_testfile_worklog_samples" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2022: 62
+2023: 284"
+	assert_result
+
+	test_cmd=( $bin_datetimescan count --per "m" --input "$path_testfile_worklog_samples" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2022-06: 6
+2022-07: 15
+2022-09: 9
+2022-11: 13
+2022-12: 19
+2023-01: 5
+2023-02: 15
+2023-03: 12
+2023-04: 64
+2023-05: 188"
+	assert_result
+
+	test_cmd=( $bin_datetimescan count --per "d" --input "$path_testfile_worklog_samples" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2022-06-05: 5
+2022-06-06: 1
+2022-07-13: 13
+2022-07-14: 2
+2022-09-03: 9
+2022-11-05: 13
+2022-12-11: 8
+2022-12-27: 11
+2023-01-01: 5
+2023-02-20: 15
+2023-03-29: 12
+2023-04-13: 64
+2023-05-01: 20
+2023-05-02: 9
+2023-05-03: 11
+2023-05-04: 4
+2023-05-05: 17
+2023-05-06: 12
+2023-05-08: 9
+2023-05-09: 6
+2023-05-11: 5
+2023-05-14: 29
+2023-05-15: 13
+2023-05-18: 4
+2023-05-19: 9
+2023-05-20: 22
+2023-05-22: 12
+2023-05-23: 6"
+	assert_result
+
 	echoerr "$func_name, DONE"
 }
 
@@ -339,7 +405,7 @@ test_deltas() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -373,7 +439,6 @@ test_deltas() {
 `echo "36 170 31622508 -31622319 5 71 27 30 23 88 82 14 72 -62 189 193 17 71 85 23 25 27 38 95 8 14 41 49 23 39 97 48 7 26 21 31 28 5 26 2466 10 15 34 28 348 27 15 15 46 48 95 20 52 656 7" | tr ' ' '\n'`
 	assert_result
 
-	echoerr "$func_name, warning, UNFINISHED (plz add path_testfile_isodatetimes_3)"
 	echoerr "$func_name, DONE"
 }
 
@@ -386,7 +451,7 @@ test_splits() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -447,7 +512,7 @@ test_splits() {
 `echo "206 1638 1416" | tr ' ' '\n'`
 	assert_result
 
-	echoerr "$func_name, warning, UNFINISHED (plz add path_testfile_isodatetimes_3)"
+	echoerr "$func_name, WARNING, UNFINISHED (plz finish path_testfile_worklog_samples)"
 	echoerr "$func_name, DONE"
 }
 
@@ -460,7 +525,7 @@ test_sum() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -479,10 +544,10 @@ test_sum() {
 "2023-05-05: 113"
 	assert_result
 
-	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" )
+	test_cmd=( $bin_datetimescan sum --per "y" --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"2023-05-05: 113"
+"2023: 113"
 	assert_result
 
 	test_cmd=( $bin_datetimescan sum --per "m" --input "$path_testfile_isodatetimes" )
@@ -491,10 +556,28 @@ test_sum() {
 "2023-05: 113"
 	assert_result
 
-	test_cmd=( $bin_datetimescan sum --per "y" --input "$path_testfile_isodatetimes" )
+	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"2023: 113"
+"2023-05-05: 113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "y" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 2445"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "m" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04: 2445"
 	assert_result
 
 	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes_2" )
@@ -503,7 +586,14 @@ test_sum() {
 "2023-04-19: 2445"
 	assert_result
 
-	echoerr "$func_name, warning, UNFINISHED (plz add path_testfile_isodatetimes_3)"
+	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2256"
+	assert_result
+
+	#	with '--timeout'(?)
+
 	echoerr "$func_name, DONE"
 }
 
@@ -516,7 +606,7 @@ test_wpm() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	local result_str=""
@@ -536,7 +626,7 @@ build_release() {
 	elif [[ -n "${BASH_VERSION:-}" ]]; then
 		func_name="${FUNCNAME[0]:-}"
 	else
-		printf "%s\n" "warning, func_name unset, non zsh/bash shell" > /dev/stderr
+		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
 	echoerr "PROJECT_PATH=($PROJECT_PATH)"
@@ -568,6 +658,10 @@ assert_result() {
 		failures_count=`perl -E "say $failures_count + 1"`
 		if [[ $flag_exit_on_check_comparison_fail -ne 0 ]]; then
 			exit 2
+		fi
+	else
+		if [[ $flag_report_pass -ne 0 ]]; then
+			echoerr "$func_name, pass: $test_num"
 		fi
 	fi
 	test_num=$( perl -E "say $test_num + 1" )

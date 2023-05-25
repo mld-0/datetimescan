@@ -13,4 +13,7 @@
 2023-05-20T23:53:03AEST sum; complete/verify tests and differerence between 'sum' / sum-of 'splits'
 2023-05-20T23:54:10AEST run_subcommands; contains several functions which should have their own tests
 2023-05-23T23:28:58AEST search_datetimes; handling word boundires
+2023-05-25T22:24:06AEST splits; should have a '--per' argument?
+2023-05-25T22:24:33AEST splits; remove the delta immediately following a negative delta?
+2023-05-25T22:25:46AEST sum; '--per all' should call '--per year' and output the total?
 
