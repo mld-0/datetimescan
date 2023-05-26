@@ -6,7 +6,9 @@ Command-line datetimes-in-file analysis utility
 
 ## Usage:
 
-Common arguments
+    datetimescan [common args] [command] [command args]
+
+### Common arguments
 
         --input             [file] input (default=stdin)
         --filter_start      [date] Exclude dates before
@@ -19,43 +21,43 @@ Common arguments
         --no_future         Error for datetimes in the future
         --no_unsorted       Error for datetimes not in order
 
-Commands
+### Commands
 
-### scan
+#### scan
 
 List datetime matches and their locations
 
         --nolocations       Do not report locations
 
-### parse
+#### parse
 
 List datetime matches in specified output format
 
         --outputfmt     [format] Custom output datetime format
 
-### convert
+#### convert
 
 Print input, with datetimes converted to specified output format
 
         --outputfmt     [format] Custom output datetime format
 
-### filter
+#### filter
 
 Print input, excluding lines containing datetimes outside filter range
 
-### count
+#### count
 
 Count datetimes per interval
 
         --per       [interval] (y/m/d/all)
 
-### deltas
+#### deltas
 
 Report seconds elapsed between each datetime match
 
         --onlypositive      Do not include negative deltas
 
-### splits
+#### splits
 
 Report length of continuous deltas where no delta > timeout
 
@@ -64,7 +66,7 @@ Report length of continuous deltas where no delta > timeout
         --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
         --breakempty    End continuious deltas if there is an empty line between them
 
-### sum
+#### sum
 
 Sum splits per interval
 
@@ -73,7 +75,7 @@ Sum splits per interval
         --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
         --breakempty    End continuious deltas if there is an empty line between them
 
-### wpms
+#### wpms
 
 ...
 
