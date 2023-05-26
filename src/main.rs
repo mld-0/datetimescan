@@ -55,6 +55,13 @@ fn main()
         .validator(unsigned_validator)
         .default_value("300");
 
+    let unit = Arg::with_name("unit")
+        .long("unit")
+        .value_name("UNIT")
+        .help("Output in seconds/minutes/hours")
+        .possible_values(&["s", "m", "h"])
+        .default_value("s");
+
     let parser = App::new("datetimescan")
         .version(env!("CARGO_PKG_VERSION"))
         .about("Util for finding/analysing datetime strings in input")
@@ -86,12 +93,14 @@ fn main()
                 .about("")
                 .arg(per_arg.clone())
                 .arg(timeout.clone())
+                .arg(unit.clone())
             )
         .subcommand(
             SubCommand::with_name("sum")
                 .about("")
                 .arg(per_arg.clone())
                 .arg(timeout.clone())
+                .arg(unit.clone())
             )
         .subcommand(
                 SubCommand::with_name("wpm")

@@ -16,6 +16,7 @@ use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::parse_datetimes;
 use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
+use crate::convert_seconds::ConvertSeconds;
 
 use chrono::{DateTime, FixedOffset};
 use clap::ArgMatches;
@@ -59,14 +60,16 @@ pub fn deltas(arg_matches: &ArgMatches)
 
 pub fn splits(arg_matches: &ArgMatches) 
 {
+    let unit = arg_matches.value_of("unit").expect("expect argument unit");
     let splits_per_interval = get_splits_per_interval(arg_matches);
-    print_splits_per_interval(&splits_per_interval);
+    print_splits_per_interval(&splits_per_interval, unit);
 }
 
 pub fn sum(arg_matches: &ArgMatches) 
 {
+    let unit = arg_matches.value_of("unit").expect("expect argument unit");
     let sum_splits_per_interval = get_sum_splits_per_interval(arg_matches);
-    print_sum_splits_per_interval(&sum_splits_per_interval);
+    print_sum_splits_per_interval(&sum_splits_per_interval, unit);
 }
 
 #[allow(unused_variables)]
@@ -187,19 +190,19 @@ fn print_counts_datetimes_grouped(datetimes_grouped: &HashMap<String, Vec<DateTi
     }
 }
 
-fn print_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>) 
+fn print_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>, unit: &str) 
 {
     let mut intervals: Vec<String> = splits_per_interval.keys().cloned().collect();
     intervals.sort();
     if intervals.len() == 1 && intervals[0] == "all" {
         for split in splits_per_interval.get("all").unwrap() {
-            println!("{}", split);
+            println!("{}", split.convert_seconds(unit));
         }
     } else {
         for interval in &intervals {
             let splits = splits_per_interval.get(interval).unwrap()
                 .iter()
-                .map(|x| x.to_string())
+                .map(|x| x.convert_seconds(unit))
                 .collect::<Vec<String>>()
                 .join(", ");
             println!("{}: {}", interval, splits);
@@ -207,15 +210,17 @@ fn print_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>)
     }
 }
 
-fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>)
+fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>, unit: &str)
 {
     let mut intervals: Vec<String> = sum_splits_per_interval.keys().cloned().collect();
     intervals.sort();
     if intervals.len() == 1 && intervals[0] == "all" {
-        println!("{}", sum_splits_per_interval.get("all").unwrap());
+        let sum_in_output_unit = sum_splits_per_interval.get("all").unwrap().convert_seconds(unit);
+        println!("{}", sum_in_output_unit);
     } else {
         for interval in &intervals {
-            println!("{}: {}", interval, sum_splits_per_interval.get(interval).unwrap());
+            let sum_in_output_unit = sum_splits_per_interval.get(interval).unwrap().convert_seconds(unit);
+            println!("{}: {}", interval, sum_in_output_unit);
         }
     }
 }

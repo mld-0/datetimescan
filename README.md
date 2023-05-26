@@ -61,6 +61,7 @@ Report length of continuous deltas where no delta > timeout
 
         --timeout       [delta] Max delta to consider continuous (default=300)
         --per           [interval] (y/m/d/all)
+        --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
         --breakempty    End continuious deltas if there is an empty line between them
 
 ### sum
@@ -69,6 +70,7 @@ Sum splits per interval
 
         --timeout       [delta] Max delta to consider continuous (default=300)
         --per           [interval] (y/m/d/all)
+        --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
         --breakempty    End continuious deltas if there is an empty line between them
 
 ### wpms
@@ -91,4 +93,6 @@ Note: only (currently) valid letter-code timezones are: UTC, AEST, AEDT
 Replaces (disaster-made-of-python) 'dtscan' (see <>)
 
 So far largely a case-study in asking gpt4 to write functions and their docs (but not in how the whole thing might be laid out - see Continues on how datetimescan::*_datetimes::* always should be been combined).
+
+For unsorted datetime input, totals from 'splits' / 'sum' may differ between --per 'all' / 'ymd'
 

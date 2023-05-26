@@ -469,6 +469,24 @@ test_splits() {
 "113"
 	assert_result
 
+	test_cmd=( $bin_datetimescan splits --unit "s" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --unit "m" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"1.88"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --unit "h" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"0.03"
+	assert_result
+
 	test_cmd=( $bin_datetimescan splits --per "all" --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -614,6 +632,24 @@ test_sum() {
 "2256"
 	assert_result
 
+	test_cmd=( $bin_datetimescan sum --unit "s" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2256"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --unit "m" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"37.60"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --unit "h" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"0.63"
+	assert_result
+
 	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -624,6 +660,24 @@ test_sum() {
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 "2023: 2445"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "y" --unit "s" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 2445"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "y" --unit "m" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 40.75"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "y" --unit "h" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 0.68"
 	assert_result
 
 	test_cmd=( $bin_datetimescan sum --per "m" --input "$path_testfile_isodatetimes_2" )
