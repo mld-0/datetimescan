@@ -100,22 +100,22 @@ fn main()
     let matches = parser.get_matches();
     log::trace!("main(), matches=({:?})", matches);
 
-    if let Some(scan_matches) = matches.subcommand_matches("scan") {
-        subcommands::scan(&scan_matches)
-    } else if let Some(parse_matches) = matches.subcommand_matches("parse") {
-        subcommands::parse(&parse_matches)
-    } else if let Some(convert_matches) = matches.subcommand_matches("convert") {
-        subcommands::convert(&convert_matches)
-    } else if let Some(count_matches) = matches.subcommand_matches("count") {
-        subcommands::count(&count_matches)
-    } else if let Some(deltas_matches) = matches.subcommand_matches("deltas") {
-        subcommands::deltas(&deltas_matches)
-    } else if let Some(splits_matches) = matches.subcommand_matches("splits") {
-        subcommands::splits(&splits_matches)
-    } else if let Some(sum_matches) = matches.subcommand_matches("sum") {
-        subcommands::sum(&sum_matches)
-    } else if let Some(wpm_matches) = matches.subcommand_matches("wpm") {
-        subcommands::wpm(&wpm_matches)
+    if let Some(arg_matches) = matches.subcommand_matches("scan") {
+        subcommands::scan(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("parse") {
+        subcommands::parse(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("convert") {
+        subcommands::convert(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("count") {
+        subcommands::count(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("deltas") {
+        subcommands::deltas(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("splits") {
+        subcommands::splits(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("sum") {
+        subcommands::sum(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("wpm") {
+        subcommands::wpm(&arg_matches)
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
     }

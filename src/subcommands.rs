@@ -27,50 +27,50 @@ use std::collections::HashMap;
 #[allow(unused_imports)]
 use log::{error, warn, info, debug, trace};
 
-pub fn scan(scan_matches: &ArgMatches)
+pub fn scan(arg_matches: &ArgMatches)
 {
-    let datetimes_and_locations = get_datetimes_and_locations(scan_matches);
+    let datetimes_and_locations = get_datetimes_and_locations(arg_matches);
     print_datetimes_and_locations(&datetimes_and_locations);
 }
 
 #[allow(unused_variables)]
-pub fn parse(parse_matches: &ArgMatches)
+pub fn parse(arg_matches: &ArgMatches)
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
-pub fn count(count_matches: &ArgMatches)
+pub fn count(arg_matches: &ArgMatches)
 {
-    let datetimes_grouped = get_datetimes_grouped(count_matches);
+    let datetimes_grouped = get_datetimes_grouped(arg_matches);
     print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
 #[allow(unused_variables)]
-pub fn convert(convert_matches: &ArgMatches) 
+pub fn convert(arg_matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
-pub fn deltas(deltas_matches: &ArgMatches)
+pub fn deltas(arg_matches: &ArgMatches)
 {
-    let deltas = get_deltas(deltas_matches);
+    let deltas = get_deltas(arg_matches);
     print_deltas(&deltas);
 }
 
-pub fn splits(splits_matches: &ArgMatches) 
+pub fn splits(arg_matches: &ArgMatches) 
 {
-    let splits = get_splits(splits_matches);
+    let splits = get_splits(arg_matches);
     print_splits(&splits);
 }
 
-pub fn sum(sum_matches: &ArgMatches) 
+pub fn sum(arg_matches: &ArgMatches) 
 {
-    let sum_splits_per_interval = get_sum_splits_per_interval(sum_matches);
+    let sum_splits_per_interval = get_sum_splits_per_interval(arg_matches);
     print_sum_splits_per_interval(&sum_splits_per_interval);
 }
 
 #[allow(unused_variables)]
-pub fn wpm(wpm_matches: &ArgMatches) 
+pub fn wpm(arg_matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
