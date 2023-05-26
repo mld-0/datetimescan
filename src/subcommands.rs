@@ -59,8 +59,8 @@ pub fn deltas(arg_matches: &ArgMatches)
 
 pub fn splits(arg_matches: &ArgMatches) 
 {
-    let splits = get_splits(arg_matches);
-    print_splits(&splits);
+    let splits_per_interval = get_splits_per_interval(arg_matches);
+    print_splits_per_interval(&splits_per_interval);
 }
 
 pub fn sum(arg_matches: &ArgMatches) 
@@ -102,7 +102,7 @@ fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
 
 fn get_datetimes_grouped(matches: &ArgMatches) -> HashMap<String, Vec<DateTime<FixedOffset>>>
 {
-    let interval = matches.value_of("per").unwrap();
+    let interval = matches.value_of("per").expect("expected argument per");
     let datetimes_parsed = get_datetimes_parsed(matches);
     let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
     datetimes_grouped
@@ -116,10 +116,12 @@ fn get_deltas(matches: &ArgMatches) -> Vec<i64>
     deltas
 }
 
+#[allow(unused)]
 fn get_splits(matches: &ArgMatches) -> Vec<u64>
 {
     let allow_negative = false;
-    let timeout: u64 = matches.value_of("timeout").unwrap().parse().unwrap();
+    let timeout: u64 = matches.value_of("timeout").expect("expect argument timeout")
+        .parse().unwrap();
     let datetimes_parsed = get_datetimes_parsed(matches);
     let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
     let splits = split_deltas(&deltas, timeout);
@@ -129,7 +131,8 @@ fn get_splits(matches: &ArgMatches) -> Vec<u64>
 fn get_splits_per_interval(matches: &ArgMatches) -> HashMap<String, Vec<u64>>
 {
     let allow_negative = false;
-    let timeout: u64 = matches.value_of("timeout").unwrap().parse().unwrap();
+    let timeout: u64 = matches.value_of("timeout").expect("expect argument timeout")
+        .parse().unwrap();
     let datetimes_grouped = get_datetimes_grouped(matches);
     let mut splits_per_interval = HashMap::new();
     for (interval, datetimes) in &datetimes_grouped {
@@ -184,10 +187,23 @@ fn print_counts_datetimes_grouped(datetimes_grouped: &HashMap<String, Vec<DateTi
     }
 }
 
-fn print_splits(splits: &Vec<u64>) 
+fn print_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>) 
 {
-    for split in splits {
-        println!("{}", split);
+    let mut intervals: Vec<String> = splits_per_interval.keys().cloned().collect();
+    intervals.sort();
+    if intervals.len() == 1 && intervals[0] == "all" {
+        for split in splits_per_interval.get("all").unwrap() {
+            println!("{}", split);
+        }
+    } else {
+        for interval in &intervals {
+            let splits = splits_per_interval.get(interval).unwrap()
+                .iter()
+                .map(|x| x.to_string())
+                .collect::<Vec<String>>()
+                .join(", ");
+            println!("{}: {}", interval, splits);
+        }
     }
 }
 

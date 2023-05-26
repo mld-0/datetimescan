@@ -16,6 +16,8 @@ Common arguments
         --only_format       [format] Only use given datetime format
         --exclude_format    [format] Do not use given datetime format
         --assumetz          [tz] Timezone to assume where not given (default=system)
+        --no_future         Error for datetimes in the future
+        --no_unsorted       Error for datetimes not in order
 
 Commands
 
@@ -25,13 +27,13 @@ List datetime matches and their locations
 
         --nolocations       Do not report locations
 
-## parse
+### parse
 
 List datetime matches in specified output format
 
         --outputfmt     [format] Custom output datetime format
 
-## convert
+### convert
 
 Print input, with datetimes converted to specified output format
 
@@ -45,7 +47,7 @@ Print input, excluding lines containing datetimes outside filter range
 
 Count datetimes per interval
 
-        --per       [interval] (y/m/d)
+        --per       [interval] (y/m/d/all)
 
 ### deltas
 
@@ -58,6 +60,7 @@ Report seconds elapsed between each datetime match
 Report length of continuous deltas where no delta > timeout
 
         --timeout       [delta] Max delta to consider continuous (default=300)
+        --per           [interval] (y/m/d/all)
         --breakempty    End continuious deltas if there is an empty line between them
 
 ### sum
@@ -65,7 +68,7 @@ Report length of continuous deltas where no delta > timeout
 Sum splits per interval
 
         --timeout       [delta] Max delta to consider continuous (default=300)
-        --per           [interval] (y/m/d)
+        --per           [interval] (y/m/d/all)
         --breakempty    End continuious deltas if there is an empty line between them
 
 ### wpms

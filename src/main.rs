@@ -13,6 +13,7 @@ use log::{error, warn, info, debug, trace};
 //  {{{
 //  2023-05-14T23:12:44AEST subcommand 'sum' should be 'sums'?
 //  2023-05-20T23:22:12AEST 'version' should be kept in one place (and it shouldn't be in the declaration of 'parser'(?)
+//  2023-05-26T17:15:04AEST printing warnings/errors from 'log' without RUST_LOG set?
 //  }}}
 
 fn main() 
@@ -29,14 +30,13 @@ fn main()
     let per_arg = Arg::with_name("per")
         .long("per")
         .value_name("INTERVAL")
-        .help("Count/Sum datetimes per interval (d/m/y/all) (default=d)")
+        .help("Count/Sum datetimes per interval (d/m/y/all) (default=all)")
         .takes_value(true)
         .possible_values(&["d", "m", "y", "all"])
-        .default_value("d");
+        .default_value("all");
 
     let allow_negative = Arg::with_name("allow_negative")
         .long("allow_negative")
-        .value_name("ALLOW_NEGATIVE")
         .help("Set negative deltas to 0")
         .takes_value(false);
 
@@ -84,6 +84,7 @@ fn main()
         .subcommand(
             SubCommand::with_name("splits")
                 .about("")
+                .arg(per_arg.clone())
                 .arg(timeout.clone())
             )
         .subcommand(

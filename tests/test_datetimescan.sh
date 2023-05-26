@@ -271,7 +271,7 @@ test_count() {
 	test_cmd=( $bin_datetimescan count --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"2023-05-05: 5"
+"5"
 	assert_result
 
 	test_cmd=( $bin_datetimescan count --per "all" --input "$path_testfile_isodatetimes" )
@@ -301,8 +301,7 @@ test_count() {
 	test_cmd=( $bin_datetimescan count --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"2023-04-19: 55
-2024-04-19: 1"
+"56"
 	assert_result
 
 	test_cmd=( $bin_datetimescan count --per "all" --input "$path_testfile_isodatetimes_2" )
@@ -470,6 +469,30 @@ test_splits() {
 "113"
 	assert_result
 
+	test_cmd=( $bin_datetimescan splits --per "all" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --per "y" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --per "m" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05: 113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --per "d" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05: 113"
+	assert_result
+
 	test_cmd=( $bin_datetimescan splits --input "$path_testfile_isodatetimes" --timeout 1 )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -512,7 +535,6 @@ test_splits() {
 `echo "206 1638 1416" | tr ' ' '\n'`
 	assert_result
 
-	echoerr "$func_name, WARNING, UNFINISHED (plz finish path_testfile_worklog_samples)"
 	echoerr "$func_name, DONE"
 }
 
@@ -541,7 +563,13 @@ test_sum() {
 	test_cmd=( $bin_datetimescan sum --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"2023-05-05: 113"
+"113"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
 	assert_result
 
 	test_cmd=( $bin_datetimescan sum --per "y" --input "$path_testfile_isodatetimes" )
@@ -562,10 +590,16 @@ test_sum() {
 "2023-05-05: 113"
 	assert_result
 
-	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes" )
+	test_cmd=( $bin_datetimescan sum --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"113"
+"2256"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2256"
 	assert_result
 
 	test_cmd=( $bin_datetimescan sum --per "y" --input "$path_testfile_isodatetimes_2" )
@@ -586,10 +620,10 @@ test_sum() {
 "2023-04-19: 2445"
 	assert_result
 
-	test_cmd=( $bin_datetimescan sum --per "all" --input "$path_testfile_isodatetimes_2" )
+	test_cmd=( $bin_datetimescan sum --timeout 1200 --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-"2256"
+"3260"
 	assert_result
 
 	#	with '--timeout'(?)
