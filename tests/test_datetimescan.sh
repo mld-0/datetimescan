@@ -535,6 +535,24 @@ test_splits() {
 `echo "206 1638 1416" | tr ' ' '\n'`
 	assert_result
 
+	test_cmd=( $bin_datetimescan splits --per "y" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023: 2033, 87, 318, 7"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --per "m" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04: 2033, 87, 318, 7"
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --per "d" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04-19: 2033, 87, 318, 7"
+	assert_result
+
 	echoerr "$func_name, DONE"
 }
 
@@ -625,8 +643,6 @@ test_sum() {
 	expected_str=\
 "3260"
 	assert_result
-
-	#	with '--timeout'(?)
 
 	echoerr "$func_name, DONE"
 }
