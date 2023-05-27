@@ -1,4 +1,4 @@
-#!/usr/bin/env zsh
+#!/usr/bin/env bash
 #	vim-modelines:	{{{3
 #   vim: set tabstop=4 modeline modelines=10:
 #   vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
@@ -9,7 +9,7 @@
 #	2023-05-20T21:10:59AEST instead of calling this from Rust - just write it in Rust?
 #	2023-05-20T21:12:04AEST PROJECT_PATH is correct even when running script with `:w !zsh`?
 #	2023-05-23T20:58:38AEST verify intervals are reported in sorted order
-#	2023-05-26T23:03:36AEST do we want to use target/debug or target/release(?)
+#	2023-05-27T18:11:54AEST call `build_debug` / `build_release` according to whether `cargo test` is run with '--release'?
 #	}}}
 
 set -o errexit   # abort on nonzero exitstatus

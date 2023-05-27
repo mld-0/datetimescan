@@ -15,7 +15,7 @@ mod call_test_script {
 
         assert!(Path::new(&script_path).exists(), "Test script=({}) does not exist", script_path);
 
-        let output = Command::new("zsh")
+        let output = Command::new("bash")
             .arg(&script_path)
             .output()
             .expect("failed to execute script");
