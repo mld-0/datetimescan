@@ -11,7 +11,7 @@ mod call_test_script {
     fn run() 
     {
         let project_directory = env::var("CARGO_MANIFEST_DIR").expect("CARGO_MANIFEST_DIR is not set");
-        let script_path = format!("{}/tests/test_datetimescan.sh", project_directory);
+        let script_path = format!("{}/tests/datetimescan.sh", project_directory);
 
         assert!(Path::new(&script_path).exists(), "Test script=({}) does not exist", script_path);
 
