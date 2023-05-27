@@ -327,6 +327,7 @@ fn parse_filter_end(matches: &ArgMatches) -> Option<DateTime<FixedOffset>>
 #[cfg(test)]
 mod tests {
     use super::*;
+    use std::panic;
 
     #[test]
     fn filter_datetimes_valid_indexes_all() {
@@ -374,6 +375,69 @@ mod tests {
         let end = Some(DateTime::parse_from_rfc3339("2023-06-30T00:00:00+00:00").unwrap());
         let result = filter_datetimes_valid_indexes(&datetimes, &start, &end);
         assert_eq!(result, vec![false, true, false]);
+    }
+
+    #[test]
+    fn reject_datetimes_future_no_future_dates() {
+        let now = Utc::now();
+        let date_strings = vec![
+            now.to_rfc3339(),
+            (now - chrono::Duration::days(1)).to_rfc3339(),
+            (now - chrono::Duration::hours(1)).to_rfc3339(),
+        ];
+        let dates: Vec<DateTime<FixedOffset>> = date_strings.into_iter()
+            .map(|s| DateTime::parse_from_rfc3339(&s).unwrap())
+            .collect();
+
+        let result = panic::catch_unwind(|| reject_datetimes_future(&dates));
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn reject_datetimes_future_with_future_dates() {
+        let now = Utc::now();
+        let date_strings = vec![
+            now.to_rfc3339(),
+            (now - chrono::Duration::days(1)).to_rfc3339(),
+            (now + chrono::Duration::hours(1)).to_rfc3339(), // future date
+        ];
+        let dates: Vec<DateTime<FixedOffset>> = date_strings.into_iter()
+            .map(|s| DateTime::parse_from_rfc3339(&s).unwrap())
+            .collect();
+
+        let result = panic::catch_unwind(|| reject_datetimes_future(&dates));
+        assert!(result.is_err());
+    }
+
+
+    #[test]
+    fn reject_datetimes_unsorted_sorted_dates() {
+        let date_strings = vec![
+            "2023-05-27T09:10:00+00:00",
+            "2023-05-27T10:10:00+00:00",
+            "2023-05-27T11:10:00+00:00",
+        ];
+        let dates: Vec<DateTime<FixedOffset>> = date_strings.into_iter()
+            .map(|s| DateTime::parse_from_rfc3339(s).unwrap())
+            .collect();
+
+        let result = panic::catch_unwind(|| reject_datetimes_unsorted(&dates));
+        assert!(result.is_ok());
+    }
+
+    #[test]
+    fn reject_datetimes_unsorted_unsorted_dates() {
+        let date_strings = vec![
+            "2023-05-27T09:10:00+00:00",
+            "2023-05-27T11:10:00+00:00", // out of order
+            "2023-05-27T10:10:00+00:00",
+        ];
+        let dates: Vec<DateTime<FixedOffset>> = date_strings.into_iter()
+            .map(|s| DateTime::parse_from_rfc3339(s).unwrap())
+            .collect();
+
+        let result = panic::catch_unwind(|| reject_datetimes_unsorted(&dates));
+        assert!(result.is_err());
     }
 }
 
