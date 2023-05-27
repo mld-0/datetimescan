@@ -26,6 +26,7 @@ Command-line datetimes-in-file analysis utility
 #### scan
 
 List datetime matches and their locations
+Datetimes are not parsed (therefore arguments like --no_future and --no_unsorted have no effect)
 
         --nolocations       Do not report locations
 

@@ -18,7 +18,7 @@ use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
 use crate::convert_seconds::ConvertSeconds;
 
-use chrono::{DateTime, FixedOffset};
+use chrono::{DateTime, FixedOffset, Utc};
 use clap::ArgMatches;
 use std::fs::File;
 use std::io::{self,BufReader};
@@ -48,6 +48,12 @@ pub fn count(arg_matches: &ArgMatches)
 
 #[allow(unused_variables)]
 pub fn convert(arg_matches: &ArgMatches) 
+{
+    unimplemented!("UNIMPLEMENTED");
+}
+
+#[allow(unused_variables)]
+pub fn filter(arg_matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
@@ -93,6 +99,8 @@ fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usiz
 
 fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
 {
+    let no_future = matches.is_present("no_future");
+    let no_unsorted = matches.is_present("no_unsorted");
     let datetimes_and_locations = get_datetimes_and_locations(matches);
     let datetimes_strs = datetimes_and_locations.iter().map(|(s, _, _)| s.to_string()).collect();
     let datetimes_parsed = parse_datetimes(&datetimes_strs);
@@ -100,6 +108,12 @@ fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
         panic!("failed to parse datetimes_strs=({:?})", datetimes_strs);
     }
     let datetimes_parsed = datetimes_parsed.unwrap();
+    if no_future {
+        reject_datetimes_future(&datetimes_parsed);
+    }
+    if no_unsorted {
+        reject_datetimes_unsorted(&datetimes_parsed);
+    }
     datetimes_parsed
 }
 
@@ -222,6 +236,33 @@ fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>,
             let sum_in_output_unit = sum_splits_per_interval.get(interval).unwrap().convert_seconds(unit);
             println!("{}: {}", interval, sum_in_output_unit);
         }
+    }
+}
+
+fn reject_datetimes_future(datetimes: &Vec<DateTime<FixedOffset>>)
+{
+    let mut future_datetimes = Vec::new();
+    for date in datetimes {
+        let now_in_timezone = Utc::now().with_timezone(date.offset());
+        if *date > now_in_timezone {
+            future_datetimes.push(date.clone());
+        }
+    }
+    if future_datetimes.len() > 0 {
+        panic!("reject future_datetimes=({:?})", future_datetimes);
+    }
+}
+
+fn reject_datetimes_unsorted(datetimes: &Vec<DateTime<FixedOffset>>)
+{
+    let mut out_of_order_datetimes = Vec::new();
+    for i in 1..datetimes.len() {
+        if datetimes[i] < datetimes[i-1] {
+            out_of_order_datetimes.push(datetimes[i]);
+        }
+    }
+    if out_of_order_datetimes.len() > 0 {
+        panic!("reject out_of_order_datetimes=({:?})", out_of_order_datetimes);
     }
 }
 

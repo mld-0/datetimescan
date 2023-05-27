@@ -20,6 +20,7 @@ fn main()
 {
     env_logger::init();
 
+    //  Common arguments:
     let input_arg = Arg::with_name("input")
         .short("i")
         .long("input")
@@ -27,6 +28,17 @@ fn main()
         .help("Select input file (default=stdin)")
         .takes_value(true);
 
+    let no_unsorted = Arg::with_name("no_unsorted")
+        .long("no_unsorted")
+        .help("Do not allow out-of-order datetimes in input")
+        .takes_value(false);
+
+    let no_future = Arg::with_name("no_future")
+        .long("no_future")
+        .help("Do not allow datetimes after the present")
+        .takes_value(false);
+
+    //  Subcommand arguments:
     let per_arg = Arg::with_name("per")
         .long("per")
         .value_name("INTERVAL")
@@ -66,38 +78,44 @@ fn main()
         .version(env!("CARGO_PKG_VERSION"))
         .about("Util for finding/analysing datetime strings in input")
         .arg(input_arg.clone().global(true)) 
+        .arg(no_future.clone().global(true))
+        .arg(no_unsorted.clone().global(true))
         .subcommand(
             SubCommand::with_name("scan")
-                .about("")
+                .about("List datetime matches and their locations")
             )
         .subcommand(
             SubCommand::with_name("parse")
-                .about("")
+                .about("List datetime matches in specified output format (without parsing them)")
             )
         .subcommand(
             SubCommand::with_name("convert")
-                .about("")
+                .about("Print input, with datetimes converted to specified output format")
+            )
+        .subcommand(
+            SubCommand::with_name("filter")
+                .about("Print input, excluding lines containing datetimes outside filter range")
             )
         .subcommand(
             SubCommand::with_name("count")
-                .about("")
+                .about("Count datetimes per interval")
                 .arg(per_arg.clone())
             )
         .subcommand(
             SubCommand::with_name("deltas")
-                .about("")
+                .about("Report seconds elapsed between each datetime match")
                 .arg(allow_negative.clone())
             )
         .subcommand(
             SubCommand::with_name("splits")
-                .about("")
+                .about("Report length of continuous deltas where no delta > timeout")
                 .arg(per_arg.clone())
                 .arg(timeout.clone())
                 .arg(unit.clone())
             )
         .subcommand(
             SubCommand::with_name("sum")
-                .about("")
+                .about("Sum splits per interval")
                 .arg(per_arg.clone())
                 .arg(timeout.clone())
                 .arg(unit.clone())
@@ -116,6 +134,8 @@ fn main()
         subcommands::parse(&arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("convert") {
         subcommands::convert(&arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("filter") {
+        subcommands::filter(&arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("count") {
         subcommands::count(&arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("deltas") {

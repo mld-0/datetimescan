@@ -12,7 +12,7 @@
 #	2023-05-27T18:11:54AEST call `build_debug` / `build_release` according to whether `cargo test` is run with '--release'?
 #	}}}
 
-set -o errexit   # abort on nonzero exitstatus
+#set -o errexit   # abort on nonzero exitstatus
 set -o nounset   # abort on unbound variable
 set -o pipefail  # don't hide errors within pipes
 
@@ -405,6 +405,30 @@ test_count() {
 2023-05-23: 6"
 	assert_result
 
+	test_cmd=( $bin_datetimescan count --no_unsorted --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan count --no_future --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan count --no_unsorted --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
+	test_cmd=( $bin_datetimescan count --no_future --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
 	echoerr ""
 }
 #	}}}
@@ -454,6 +478,30 @@ test_deltas() {
 	expected_str=\
 `echo "36 170 31622508 -31622319 5 71 27 30 23 88 82 14 72 -62 189 193 17 71 85 23 25 27 38 95 8 14 41 49 23 39 97 48 7 26 21 31 28 5 26 2466 10 15 34 28 348 27 15 15 46 48 95 20 52 656 7" | tr ' ' '\n'`
 	assert_result
+
+	test_cmd=( $bin_datetimescan deltas --no_unsorted --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan deltas --no_future --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan deltas --no_unsorted --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
+	test_cmd=( $bin_datetimescan deltas --no_future --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
 
 	echoerr ""
 }
@@ -592,6 +640,30 @@ test_splits() {
 "2023-04-19: 2033, 87, 318, 7"
 	assert_result
 
+	test_cmd=( $bin_datetimescan splits --no_unsorted --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan splits --no_future --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan splits --no_unsorted --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
+	test_cmd=( $bin_datetimescan splits --no_future --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
 	echoerr ""
 }
 #	}}}
@@ -723,6 +795,30 @@ test_sum() {
 "3260"
 	assert_result
 
+	test_cmd=( $bin_datetimescan sum --no_unsorted --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan sum --no_future --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=0
+	assert_rc
+
+	test_cmd=( $bin_datetimescan sum --no_unsorted --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
+	test_cmd=( $bin_datetimescan sum --no_future --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
 	echoerr ""
 }
 #	}}}
@@ -809,6 +905,23 @@ assert_result() {
 		echoerr "$nl$func_name, fail: $test_num"
 		#	use 'if' to prevent errexit triggering (diff returns rc=1)
 		if diff --color <( echo $result_str ) <( echo $expected_str ) > /dev/stderr; then echo "" > /dev/null; fi
+		failures_count=`perl -E "say $failures_count + 1"`
+		if [[ $flag_exit_on_check_comparison_fail -ne 0 ]]; then
+			exit 2
+		fi
+	else
+		echo -n "." > /dev/stderr
+	fi
+	test_num=$( perl -E "say $test_num + 1" )
+}
+#	}}}
+
+assert_rc() {
+#	{{{
+	local nl=$'\n'
+	if [[ ! $result_rc -eq $expected_rc ]]; then
+		echoerr "$nl$func_name, fail: $test_num"
+		echoerr "result_rc=($result_rc) != expected_rc=($expected_rc)"
 		failures_count=`perl -E "say $failures_count + 1"`
 		if [[ $flag_exit_on_check_comparison_fail -ne 0 ]]; then
 			exit 2
