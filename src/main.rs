@@ -28,6 +28,16 @@ fn main()
         .help("Select input file (default=stdin)")
         .takes_value(true);
 
+    let filter_start = Arg::with_name("filter_start")
+        .long("filter_start")
+        .value_name("FILTER_START")
+        .help("Exclude datetimes before");
+
+    let filter_end = Arg::with_name("filter_end")
+        .long("filter_end")
+        .value_name("FILTER_END")
+        .help("Exclude datetimes before");
+
     let no_unsorted = Arg::with_name("no_unsorted")
         .long("no_unsorted")
         .help("Do not allow out-of-order datetimes in input")
@@ -52,7 +62,7 @@ fn main()
         .help("Set negative deltas to 0")
         .takes_value(false);
 
-    let unsigned_validator = |value: String| -> Result<(), String> {
+    let validator_unsigned = |value: String| -> Result<(), String> {
         match value.parse::<u64>() {
             Ok(_num) => { Ok( () ) },
             Err(_) => Err("Invalid unsigned-integer value".to_string()),
@@ -64,7 +74,7 @@ fn main()
         .value_name("TIMEOUT")
         .help("Max positive delta not considered a split")
         .takes_value(true)
-        .validator(unsigned_validator)
+        .validator(validator_unsigned)
         .default_value("300");
 
     let unit = Arg::with_name("unit")
@@ -76,10 +86,12 @@ fn main()
 
     let parser = App::new("datetimescan")
         .version(env!("CARGO_PKG_VERSION"))
-        .about("Util for finding/analysing datetime strings in input")
-        .arg(input_arg.clone().global(true)) 
-        .arg(no_future.clone().global(true))
-        .arg(no_unsorted.clone().global(true))
+        .about("Utility for finding/analysing datetime strings in input")
+        .arg(input_arg.global(true)) 
+        .arg(no_future.global(true))
+        .arg(no_unsorted.global(true))
+        .arg(filter_start.global(true))
+        .arg(filter_end.global(true))
         .subcommand(
             SubCommand::with_name("scan")
                 .about("List datetime matches and their locations")

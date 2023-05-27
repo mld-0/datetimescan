@@ -8,17 +8,19 @@
 //  2023-05-20T21:40:41AEST 'sum()', Handling the interval="all" case(?)
 //  2023-05-20T22:59:09AEST please rename s/run_subcommands/subcommands/ 
 //  2023-05-20T22:59:25AEST (named) subcommands? (or commands?)
+//  2023-05-27T20:08:17AEST 'failed to parse datetimes_strs', don't we want an error for which datetime(s) specifically failed?
 //  }}}
 
 //  Ongoing: 2023-05-20T23:47:11AEST explain the size of the difference between the sum of 'splits' and 'sum' for textWithIsoDatetimes-2.txt -> 2256 for 'splits' and 2445 for 'sum'
 
 use crate::search_datetimes::search_datetimes;
-use crate::parse_datetime::parse_datetimes;
+use crate::parse_datetime::{parse_datetimes, parse_datetime};
 use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
 use crate::convert_seconds::ConvertSeconds;
 
 use chrono::{DateTime, FixedOffset, Utc};
+
 use clap::ArgMatches;
 use std::fs::File;
 use std::io::{self,BufReader};
@@ -99,8 +101,16 @@ fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usiz
 
 fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
 {
+    let (datetimes_parsed, _, _) = get_datetimes_parsed_with_strs_and_positions(matches);
+    datetimes_parsed
+}
+
+fn get_datetimes_parsed_with_strs_and_positions(matches: &ArgMatches) -> (Vec<DateTime<FixedOffset>>, Vec<(String, usize, usize)>, Vec<bool>)
+{
     let no_future = matches.is_present("no_future");
     let no_unsorted = matches.is_present("no_unsorted");
+    let filter_start = parse_filter_start(matches);
+    let filter_end = parse_filter_end(matches);
     let datetimes_and_locations = get_datetimes_and_locations(matches);
     let datetimes_strs = datetimes_and_locations.iter().map(|(s, _, _)| s.to_string()).collect();
     let datetimes_parsed = parse_datetimes(&datetimes_strs);
@@ -108,13 +118,19 @@ fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
         panic!("failed to parse datetimes_strs=({:?})", datetimes_strs);
     }
     let datetimes_parsed = datetimes_parsed.unwrap();
+    let valid_indexes = filter_datetimes_valid_indexes(&datetimes_parsed, &filter_start, &filter_end);
+    let datetimes_filtered = datetimes_parsed.iter()
+        .zip(valid_indexes.iter())
+        .filter(|(_, &include)| include)
+        .map(|(&x, _)| x)
+        .collect();
     if no_future {
-        reject_datetimes_future(&datetimes_parsed);
+        reject_datetimes_future(&datetimes_filtered);
     }
     if no_unsorted {
-        reject_datetimes_unsorted(&datetimes_parsed);
+        reject_datetimes_unsorted(&datetimes_filtered);
     }
-    datetimes_parsed
+    (datetimes_filtered, datetimes_and_locations, valid_indexes)
 }
 
 fn get_datetimes_grouped(matches: &ArgMatches) -> HashMap<String, Vec<DateTime<FixedOffset>>>
@@ -133,8 +149,7 @@ fn get_deltas(matches: &ArgMatches) -> Vec<i64>
     deltas
 }
 
-#[allow(unused)]
-fn get_splits(matches: &ArgMatches) -> Vec<u64>
+fn _get_splits(matches: &ArgMatches) -> Vec<u64>
 {
     let allow_negative = false;
     let timeout: u64 = matches.value_of("timeout").expect("expect argument timeout")
@@ -174,7 +189,6 @@ fn get_sum_splits_per_interval(matches: &ArgMatches) -> HashMap<String, u64>
     log::trace!("get_sum_splits_per_interval(), result=({:?})", sum_splits_per_interval);
     sum_splits_per_interval
 }
-
 
 fn print_datetimes_and_locations(datetimes_and_locations: &Vec<(String, usize, usize)>)
 {
@@ -239,6 +253,18 @@ fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>,
     }
 }
 
+fn filter_datetimes_valid_indexes(datetimes: &Vec<DateTime<FixedOffset>>, filter_start: &Option<DateTime<FixedOffset>>, filter_end: &Option<DateTime<FixedOffset>>) -> Vec<bool> 
+{
+    datetimes.iter().map(|datetime| {
+        match (filter_start, filter_end) {
+            (Some(start), Some(end)) => *datetime >= *start && *datetime <= *end,
+            (Some(start), None) => *datetime >= *start,
+            (None, Some(end)) => *datetime <= *end,
+            (None, None) => true,
+        }
+    }).collect()
+}
+
 fn reject_datetimes_future(datetimes: &Vec<DateTime<FixedOffset>>)
 {
     let mut future_datetimes = Vec::new();
@@ -263,6 +289,91 @@ fn reject_datetimes_unsorted(datetimes: &Vec<DateTime<FixedOffset>>)
     }
     if out_of_order_datetimes.len() > 0 {
         panic!("reject out_of_order_datetimes=({:?})", out_of_order_datetimes);
+    }
+}
+
+fn parse_filter_start(matches: &ArgMatches) -> Option<DateTime<FixedOffset>>
+{
+    if matches.is_present("filter_start") {
+        let filter_start_str = matches.value_of("filter_start").unwrap();
+        let filter_start = parse_datetime(filter_start_str);
+        if filter_start.is_none() {
+            panic!("invalid filter_start=({})", filter_start_str);
+        } else {
+            filter_start
+        }
+    } else {
+        None
+    }
+}
+
+fn parse_filter_end(matches: &ArgMatches) -> Option<DateTime<FixedOffset>>
+{
+    if matches.is_present("filter_end") {
+        let filter_end_str = matches.value_of("filter_end").unwrap();
+        let filter_end = parse_datetime(filter_end_str);
+        if filter_end.is_none() {
+            panic!("invalid filter_end=({})", filter_end_str);
+        } else {
+            filter_end 
+        }
+    } else {
+        None
+    }
+}
+
+
+//  Placing tests in 'subcommands/tests.rs' works, but produces YCM error
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn filter_datetimes_valid_indexes_all() {
+        let datetimes: Vec<DateTime<FixedOffset>> = vec![
+            DateTime::parse_from_rfc3339("2023-05-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-06-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-07-27T00:00:00+00:00").unwrap(),
+        ];
+        let result = filter_datetimes_valid_indexes(&datetimes, &None, &None);
+        assert_eq!(result, vec![true, true, true]);
+    }
+    
+    #[test]
+    fn filter_datetimes_valid_indexes_start() {
+        let datetimes: Vec<DateTime<FixedOffset>> = vec![
+            DateTime::parse_from_rfc3339("2023-05-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-06-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-07-27T00:00:00+00:00").unwrap(),
+        ];
+        let start = Some(DateTime::parse_from_rfc3339("2023-06-01T00:00:00+00:00").unwrap());
+        let result = filter_datetimes_valid_indexes(&datetimes, &start, &None);
+        assert_eq!(result, vec![false, true, true]);
+    }
+    
+    #[test]
+    fn filter_datetimes_valid_indexes_end() {
+        let datetimes: Vec<DateTime<FixedOffset>> = vec![
+            DateTime::parse_from_rfc3339("2023-05-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-06-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-07-27T00:00:00+00:00").unwrap(),
+        ];
+        let end = Some(DateTime::parse_from_rfc3339("2023-06-30T00:00:00+00:00").unwrap());
+        let result = filter_datetimes_valid_indexes(&datetimes, &None, &end);
+        assert_eq!(result, vec![true, true, false]);
+    }
+    
+    #[test]
+    fn filter_datetimes_valid_indexes_start_end() {
+        let datetimes: Vec<DateTime<FixedOffset>> = vec![
+            DateTime::parse_from_rfc3339("2023-05-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-06-27T00:00:00+00:00").unwrap(),
+            DateTime::parse_from_rfc3339("2023-07-27T00:00:00+00:00").unwrap(),
+        ];
+        let start = Some(DateTime::parse_from_rfc3339("2023-06-01T00:00:00+00:00").unwrap());
+        let end = Some(DateTime::parse_from_rfc3339("2023-06-30T00:00:00+00:00").unwrap());
+        let result = filter_datetimes_valid_indexes(&datetimes, &start, &end);
+        assert_eq!(result, vec![false, true, false]);
     }
 }
 

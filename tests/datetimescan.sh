@@ -429,6 +429,28 @@ test_count() {
 	expected_rc=101
 	assert_rc
 
+	test_cmd=( $bin_datetimescan count --filter_start "abc" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
+	test_cmd=( $bin_datetimescan count --filter_end "def" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} 2> /dev/null )
+	result_rc=$?
+	expected_rc=101
+	assert_rc
+
+	test_cmd=( $bin_datetimescan count --filter_start "2022-10-01T00:00:00" --filter_end "2023-03-31T23:59:59" --per "m" --input "$path_testfile_worklog_samples" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2022-11: 13
+2022-12: 19
+2023-01: 5
+2023-02: 15
+2023-03: 12"
+	assert_result
+
 	echoerr ""
 }
 #	}}}
