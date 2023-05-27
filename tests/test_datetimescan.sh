@@ -9,6 +9,7 @@
 #	2023-05-20T21:10:59AEST instead of calling this from Rust - just write it in Rust?
 #	2023-05-20T21:12:04AEST PROJECT_PATH is correct even when running script with `:w !zsh`?
 #	2023-05-23T20:58:38AEST verify intervals are reported in sorted order
+#	2023-05-26T23:03:36AEST do we want to use target/debug or target/release(?)
 #	}}}
 
 set -o errexit   # abort on nonzero exitstatus
