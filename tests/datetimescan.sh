@@ -87,8 +87,7 @@ main() {
 		export RUST_LOG="$rust_log_level";
 	fi
 	local failures_count=0
-	#build_release
-	build_debug
+	build
 	run_tests
 	report_failures
 }
@@ -927,7 +926,7 @@ test_wpm() {
 }
 
 
-build_release() {
+build() {
 #	{{{
 	#	funcname: {{{
 	local func_name=""
@@ -939,42 +938,26 @@ build_release() {
 		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
 	fi
 	#	}}}
-	local cmd_build=( $bin_cargo build --release  )
-	echoerr "PROJECT_PATH=($PROJECT_PATH)"
-	echoerr "cmd_build=(${cmd_build[@]})"
-	cd "$PROJECT_PATH"
-	${cmd_build[@]}
-	bin_datetimescan="$PROJECT_PATH/target/release/datetimescan"
-	if [[ ! -x "$bin_datetimescan" ]]; then
-		echoerr "$func_name, failed to bin_datetimescan=($bin_datetimescan)"
-		exit 2
-	fi
-	echoerr "$func_name, DONE"
-}
-#	}}}
-
-build_debug() {
-#	{{{
-	#	funcname: {{{
-	local func_name=""
-	if [[ -n "${ZSH_VERSION:-}" ]]; then 
-		func_name=${funcstack[1]:-}
-	elif [[ -n "${BASH_VERSION:-}" ]]; then
-		func_name="${FUNCNAME[0]:-}"
+	local cmd_build=""
+	if [[ ${RUST_TEST_RELEASE:-false} == "true" ]]; then
+		cmd_build=( $bin_cargo build --release )
 	else
-		printf "%s\n" "WARNING, func_name unset, non zsh/bash shell" > /dev/stderr
+		cmd_build=( $bin_cargo build )
 	fi
-	#	}}}
-	local cmd_build=( $bin_cargo build )
 	echoerr "PROJECT_PATH=($PROJECT_PATH)"
 	echoerr "cmd_build=(${cmd_build[@]})"
 	cd "$PROJECT_PATH"
 	${cmd_build[@]}
-	bin_datetimescan="$PROJECT_PATH/target/debug/datetimescan"
+	if [[ ${RUST_TEST_RELEASE:-false} == "true" ]]; then
+		bin_datetimescan="$PROJECT_PATH/target/release/datetimescan"
+	else
+		bin_datetimescan="$PROJECT_PATH/target/debug/datetimescan"
+	fi
 	if [[ ! -x "$bin_datetimescan" ]]; then
 		echoerr "$func_name, failed to bin_datetimescan=($bin_datetimescan)"
 		exit 2
 	fi
+	echoerr "$func_name, bin_datetimescan=($bin_datetimescan)"
 	echoerr "$func_name, DONE"
 }
 #	}}}
