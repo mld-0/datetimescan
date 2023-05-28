@@ -14,6 +14,8 @@ use log::{error, warn, info, debug, trace};
 //  2023-05-14T23:12:44AEST subcommand 'sum' should be 'sums'?
 //  2023-05-20T23:22:12AEST 'version' should be kept in one place (and it shouldn't be in the declaration of 'parser'(?)
 //  2023-05-26T17:15:04AEST printing warnings/errors from 'log' without RUST_LOG set?
+//  2023-05-28T21:57:06AEST clap, argument 'possible_values' included in the help message
+//  2023-05-28T21:57:28AEST clap, if provided 'possible_values', will it allow anything else?
 //  }}}
 
 fn main() 
@@ -81,7 +83,7 @@ fn main()
         .long("unit")
         .value_name("UNIT")
         .help("Output in seconds/minutes/hours")
-        .possible_values(&["s", "m", "h"])
+        .possible_values(&["s", "m", "h", "hms"])
         .default_value("s");
 
     let parser = App::new("datetimescan")

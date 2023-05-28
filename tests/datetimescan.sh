@@ -10,6 +10,8 @@
 #	2023-05-20T21:12:04AEST PROJECT_PATH is correct even when running script with `:w !zsh`?
 #	2023-05-23T20:58:38AEST verify intervals are reported in sorted order
 #	2023-05-27T18:11:54AEST call `build_debug` / `build_release` according to whether `cargo test` is run with '--release'?
+#	2023-05-28T22:05:18AEST '--per h' will round down to 0.00
+#	2023-05-28T22:09:14AEST missing '--unit hms' for large result / results with various combinations of zero/non-zero h/m/s
 #	}}}
 
 #set -o errexit   # abort on nonzero exitstatus
@@ -578,6 +580,12 @@ test_splits() {
 "0.03"
 	assert_result
 
+	test_cmd=( $bin_datetimescan splits --unit "hms" --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"1m53s"
+	assert_result
+
 	test_cmd=( $bin_datetimescan splits --per "all" --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -626,6 +634,30 @@ test_splits() {
 `echo "206 1638 87 318 7" | tr ' ' '\n'`
 	assert_result
 
+	test_cmd=( $bin_datetimescan splits --unit "s" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "206 1638 87 318 7" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --unit "m" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "3.43 27.30 1.45 5.30 0.12" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --unit "h" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "0.06 0.46 0.02 0.09 0.00" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --unit "hms" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "3m26s 27m18s 1m27s 5m18s 7s" | tr ' ' '\n'`
+	assert_result
+
 	test_cmd=( $bin_datetimescan splits --input "$path_testfile_isodatetimes_2" --timeout 1 )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -642,6 +674,12 @@ test_splits() {
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 `echo "206 1638 1416" | tr ' ' '\n'`
+	assert_result
+
+	test_cmd=( $bin_datetimescan splits --per "all" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+`echo "206 1638 87 318 7" | tr ' ' '\n'`
 	assert_result
 
 	test_cmd=( $bin_datetimescan splits --per "y" --input "$path_testfile_isodatetimes_2" )
@@ -809,6 +847,30 @@ test_sum() {
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 "2023-04-19: 2445"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "d" --unit "s" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04-19: 2445"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "d" --unit "m" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04-19: 40.75"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "d" --unit "h" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04-19: 0.68"
+	assert_result
+
+	test_cmd=( $bin_datetimescan sum --per "d" --unit "hms" --input "$path_testfile_isodatetimes_2" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-04-19: 40m45s"
 	assert_result
 
 	test_cmd=( $bin_datetimescan sum --timeout 1200 --input "$path_testfile_isodatetimes_2" )
