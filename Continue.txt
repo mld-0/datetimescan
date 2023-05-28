@@ -21,4 +21,4 @@
 2023-05-27T19:35:55AEST filter_start/filter_end; support for partial datetimes (2020 becomes first second of the year for filter_start and last second of year for filter_end)
 2023-05-27T20:26:20AEST subcommands; file is screaming for a cleanup (start by moving the 'print_*' functions to 'print_results'?)
 2023-05-27T21:14:22AEST datetimescan.sh; needs more '--filter_(start|end)' tests
-
+2023-05-27T23:19:38AEST clap argument tab completion
