@@ -52,9 +52,9 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
 }
 
 
-/// Calculates the signed difference between two DateTime<FixedOffset> values in seconds.
+/// Calculates the signed difference between two `DateTime<FixedOffset>` values in seconds.
 ///
-/// This function takes two DateTime<FixedOffset> values as input and calculates the signed difference
+/// This function takes two `DateTime<FixedOffset>` values as input and calculates the signed difference
 /// between them in seconds. The result is the number of seconds between `dt1` and `dt2`.
 /// A positive result indicates that `dt2` is later than `dt1`, and a negative result indicates
 /// that `dt2` is earlier than `dt1`.
@@ -69,11 +69,11 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
 /// ```
 ///
 /// # Arguments
-/// * `dt1` - The first DateTime<FixedOffset> value.
-/// * `dt2` - The second DateTime<FixedOffset> value.
+/// * `dt1` - The first `DateTime<FixedOffset>` value.
+/// * `dt2` - The second `DateTime<FixedOffset>` value.
 ///
 /// # Returns
-/// An `i64` value representing the signed difference between the two DateTime<FixedOffset> values in seconds.
+/// An `i64` value representing the signed difference between the two `DateTime<FixedOffset>` values in seconds.
 pub fn datetime_difference_seconds(dt1: DateTime<FixedOffset>, dt2: DateTime<FixedOffset>) -> i64 
 {
     //log::trace!("datetime_difference_seconds(), dt1=({}), dt2=({})", dt1, dt2);
