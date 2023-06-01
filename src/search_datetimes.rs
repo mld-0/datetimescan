@@ -34,15 +34,13 @@ pub fn search_datetimes<R: BufRead + Debug>(reader: R) -> Vec<(String, usize, us
     log::trace!("search_datetimes(), reader=({:?})", reader);
     let mut results: Vec<(String, usize, usize)> = Vec::new();
     let mut line_number = 1;
-    for line in reader.lines() {
-        if let Ok(line) = line {
-            for capture in datetime_regex.captures_iter(&line) {
-                let datetime = capture[1].to_string();
-                let start_position = capture.get(1).unwrap().start();
-                results.push( (datetime, line_number, start_position) );
-            }
-            line_number += 1;
+    for line in reader.lines().map(|l| l.unwrap()) {
+        for capture in datetime_regex.captures_iter(&line) {
+            let datetime = capture[1].to_string();
+            let start_position = capture.get(1).unwrap().start();
+            results.push( (datetime, line_number, start_position) );
         }
+        line_number += 1;
     }
     log::trace!("search_datetimes(), results=({:?})", results);
     results

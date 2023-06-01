@@ -143,23 +143,23 @@ fn main()
     log::trace!("main(), matches=({:?})", matches);
 
     if let Some(arg_matches) = matches.subcommand_matches("scan") {
-        subcommands::scan(&arg_matches)
+        subcommands::scan(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("parse") {
-        subcommands::parse(&arg_matches)
+        subcommands::parse(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("convert") {
-        subcommands::convert(&arg_matches)
+        subcommands::convert(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("filter") {
-        subcommands::filter(&arg_matches)
+        subcommands::filter(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("count") {
-        subcommands::count(&arg_matches)
+        subcommands::count(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("deltas") {
-        subcommands::deltas(&arg_matches)
+        subcommands::deltas(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("splits") {
-        subcommands::splits(&arg_matches)
+        subcommands::splits(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("sum") {
-        subcommands::sum(&arg_matches)
+        subcommands::sum(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("wpm") {
-        subcommands::wpm(&arg_matches)
+        subcommands::wpm(arg_matches)
     } else {
         eprintln!("No subcommand was used. Use --help for more information.");
     }

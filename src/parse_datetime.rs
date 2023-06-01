@@ -36,9 +36,7 @@ pub fn parse_datetimes(datetimes_strs: &Vec<String>) -> Option<Vec<DateTime<Fixe
     let mut result = Vec::with_capacity(datetimes_strs.len());
     for datetime_str in datetimes_strs {
         let loop_result = parse_datetime(datetime_str);
-        if loop_result.is_none() {
-            return None
-        }
+        loop_result?;
         result.push(loop_result.unwrap());
     }
     log::trace!("parse_datetimes(), result=({:?})", result);
@@ -99,17 +97,17 @@ pub fn parse_datetime(datetime_str: &str) -> Option<DateTime<FixedOffset>>
         .or_else(|| {
             NaiveDateTime::parse_from_str(&datetime_str, "%Y-%m-%dT%H:%M:%S")
                 .ok()
-                .and_then(|naive_datetime| {
+                .map(|naive_datetime| {
                     let local_offset = *Local::now().offset();
-                    Some(local_offset.from_local_datetime(&naive_datetime).unwrap())
+                    local_offset.from_local_datetime(&naive_datetime).unwrap()
                 })
         })
         .or_else(|| {
             NaiveDateTime::parse_from_str(&datetime_str, "%Y-%m-%d %H:%M:%S")
                 .ok()
-                .and_then(|naive_datetime| {
+                .map(|naive_datetime| {
                     let local_offset = *Local::now().offset();
-                    Some(local_offset.from_local_datetime(&naive_datetime).unwrap())
+                    local_offset.from_local_datetime(&naive_datetime).unwrap()
                 })
         });
         if result.is_none() {

@@ -90,7 +90,7 @@ pub fn wpm(arg_matches: &ArgMatches)
 fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usize)>
 {
     let datetimes_and_locations = if let Some(file_path) = matches.value_of("input") {
-        let file = File::open(&Path::new(file_path)).expect("Failed to open the file");
+        let file = File::open(Path::new(file_path)).expect("Failed to open the file");
         search_datetimes(BufReader::new(file))
     } else {
         let stdin = io::stdin();
@@ -170,7 +170,7 @@ fn get_splits_per_interval(matches: &ArgMatches) -> HashMap<String, Vec<u64>>
     for (interval, datetimes) in &datetimes_grouped {
         let deltas = delta_datetimes(datetimes, allow_negative);
         let splits = split_deltas(&deltas, timeout);
-        if splits.len() > 0 {
+        if !splits.is_empty() {
             splits_per_interval.insert(interval.clone(), splits);
         }
     }
@@ -253,7 +253,7 @@ fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>,
     }
 }
 
-fn filter_datetimes_valid_indexes(datetimes: &Vec<DateTime<FixedOffset>>, filter_start: &Option<DateTime<FixedOffset>>, filter_end: &Option<DateTime<FixedOffset>>) -> Vec<bool> 
+fn filter_datetimes_valid_indexes(datetimes: &[DateTime<FixedOffset>], filter_start: &Option<DateTime<FixedOffset>>, filter_end: &Option<DateTime<FixedOffset>>) -> Vec<bool> 
 {
     datetimes.iter().map(|datetime| {
         match (filter_start, filter_end) {
@@ -271,10 +271,10 @@ fn reject_datetimes_future(datetimes: &Vec<DateTime<FixedOffset>>)
     for date in datetimes {
         let now_in_timezone = Utc::now().with_timezone(date.offset());
         if *date > now_in_timezone {
-            future_datetimes.push(date.clone());
+            future_datetimes.push(*date);
         }
     }
-    if future_datetimes.len() > 0 {
+    if !future_datetimes.is_empty() {
         panic!("reject future_datetimes=({:?})", future_datetimes);
     }
 }
@@ -287,7 +287,7 @@ fn reject_datetimes_unsorted(datetimes: &Vec<DateTime<FixedOffset>>)
             out_of_order_datetimes.push(datetimes[i]);
         }
     }
-    if out_of_order_datetimes.len() > 0 {
+    if !out_of_order_datetimes.is_empty() {
         panic!("reject out_of_order_datetimes=({:?})", out_of_order_datetimes);
     }
 }

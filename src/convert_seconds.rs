@@ -10,14 +10,14 @@ pub trait ConvertSeconds {
             result.push_str(&format!("{}h", h));
         }
         if m > 0 {
-            if result.len() == 0 {
+            if result.is_empty() {
                 result.push_str(&format!("{}m", m));
             } else {
                 result.push_str(&format!("{:02}m", m));
             }
         }
-        if s > 0 || result.len() == 0 {
-            if result.len() == 0 {
+        if s > 0 || result.is_empty() {
+            if result.is_empty() {
                 result.push_str(&format!("{}s", s));
             } else {
                 result.push_str(&format!("{:02}s", s));
@@ -32,7 +32,7 @@ impl ConvertSeconds for i64 {
         match unit.to_lowercase().as_str() {
             "hms" => 
                 if *self < 0 {
-                    format!("-{}", self.get_hms(self.abs() as u64))
+                    format!("-{}", self.get_hms(self.unsigned_abs()))
                 } else {
                     self.get_hms(*self as u64)
                 }

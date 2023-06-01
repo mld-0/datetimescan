@@ -33,14 +33,14 @@ use chrono::{DateTime, FixedOffset};
 pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: bool) -> Vec<i64>
 {
     log::trace!("delta_datetimes(), datetimes=({:?}), allow_negatives=({})", datetimes, allow_negatives);
-    if datetimes.len() == 0 {
+    if datetimes.is_empty() {
         return vec![];
     }
     let mut result = Vec::with_capacity(datetimes.len() - 1);
     let mut i = 1;
     while i < datetimes.len() {
         let delta = datetime_difference_seconds(datetimes[i-1], datetimes[i]);
-        if allow_negatives == false && delta < 0 {
+        if !allow_negatives && delta < 0 {
             result.push(0);
         } else {
             result.push(delta);
@@ -76,9 +76,9 @@ pub fn delta_datetimes(datetimes: &Vec<DateTime<FixedOffset>>, allow_negatives: 
 /// An `i64` value representing the signed difference between the two `DateTime<FixedOffset>` values in seconds.
 pub fn datetime_difference_seconds(dt1: DateTime<FixedOffset>, dt2: DateTime<FixedOffset>) -> i64 
 {
-    //log::trace!("datetime_difference_seconds(), dt1=({}), dt2=({})", dt1, dt2);
+    log::trace!("datetime_difference_seconds(), dt1=({}), dt2=({})", dt1, dt2);
     let result = dt2.signed_duration_since(dt1).num_seconds();
-    //log::trace!("datetime_difference_seconds(), result=({})", result);
+    log::trace!("datetime_difference_seconds(), result=({})", result);
     result
 }
 
@@ -109,7 +109,7 @@ pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
     let mut current_split: Vec<u64> = vec![];
     for delta in deltas {
         if *delta < 0 || (*delta as u64) > timeout {
-            if current_split.len() > 0 {
+            if !current_split.is_empty() {
                 let current_sum: u64 = current_split.iter().sum();
                 if current_sum > 0 {
                     splits.push(current_split);
@@ -120,7 +120,7 @@ pub fn split_deltas(deltas: &Vec<i64>, timeout: u64) -> Vec<u64>
             current_split.push(*delta as u64);
         }
     }
-    if current_split.len() > 0 {
+    if !current_split.is_empty() {
         let current_sum: u64 = current_split.iter().sum();
         if current_sum > 0 {
             splits.push(current_split);
