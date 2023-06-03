@@ -17,7 +17,7 @@ use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetimes, parse_datetime};
 use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
-use crate::printers::Printer;
+use crate::printer::Printer;
 
 use chrono::{DateTime, FixedOffset, Utc};
 use clap::ArgMatches;
