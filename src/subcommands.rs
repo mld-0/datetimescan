@@ -17,23 +17,23 @@ use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetimes, parse_datetime};
 use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
-use crate::convert_seconds::ConvertSeconds;
+use crate::printers::Printer;
 
 use chrono::{DateTime, FixedOffset, Utc};
-
 use clap::ArgMatches;
 use std::fs::File;
-use std::io::{self,BufReader};
+use std::io::{self, BufReader};
 use std::path::Path;
 use std::collections::HashMap;
 
 #[allow(unused_imports)]
 use log::{error, warn, info, debug, trace};
 
-pub fn scan(arg_matches: &ArgMatches)
+pub fn locate(arg_matches: &ArgMatches)
 {
     let datetimes_and_locations = get_datetimes_and_locations(arg_matches);
-    print_datetimes_and_locations(&datetimes_and_locations);
+    let mut printer = Printer::new();
+    printer.print_datetimes_and_locations(&datetimes_and_locations);
 }
 
 #[allow(unused_variables)]
@@ -45,7 +45,8 @@ pub fn parse(arg_matches: &ArgMatches)
 pub fn count(arg_matches: &ArgMatches)
 {
     let datetimes_grouped = get_datetimes_grouped(arg_matches);
-    print_counts_datetimes_grouped(&datetimes_grouped);
+    let mut printer = Printer::new();
+    printer.print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
 #[allow(unused_variables)]
@@ -63,21 +64,24 @@ pub fn filter(arg_matches: &ArgMatches)
 pub fn deltas(arg_matches: &ArgMatches)
 {
     let deltas = get_deltas(arg_matches);
-    print_deltas(&deltas);
+    let mut printer = Printer::new();
+    printer.print_deltas(&deltas);
 }
 
 pub fn splits(arg_matches: &ArgMatches) 
 {
     let unit = arg_matches.value_of("unit").expect("expect argument unit");
     let splits_per_interval = get_splits_per_interval(arg_matches);
-    print_splits_per_interval(&splits_per_interval, unit);
+    let mut printer = Printer::new();
+    printer.print_splits_per_interval(&splits_per_interval, unit);
 }
 
 pub fn sum(arg_matches: &ArgMatches) 
 {
     let unit = arg_matches.value_of("unit").expect("expect argument unit");
     let sum_splits_per_interval = get_sum_splits_per_interval(arg_matches);
-    print_sum_splits_per_interval(&sum_splits_per_interval, unit);
+    let mut printer = Printer::new();
+    printer.print_sum_splits_per_interval(&sum_splits_per_interval, unit);
 }
 
 #[allow(unused_variables)]
@@ -190,69 +194,6 @@ fn get_sum_splits_per_interval(matches: &ArgMatches) -> HashMap<String, u64>
     sum_splits_per_interval
 }
 
-fn print_datetimes_and_locations(datetimes_and_locations: &Vec<(String, usize, usize)>)
-{
-    let ofs = "\t".to_string();
-    for (datetime, line_number, position) in datetimes_and_locations {
-        println!("{}{}{}{}{}", datetime, ofs, line_number, ofs, position);
-    }
-}
-
-fn print_deltas(deltas: &Vec<i64>) 
-{
-    for delta in deltas {
-        println!("{}", delta);
-    }
-}
-
-fn print_counts_datetimes_grouped(datetimes_grouped: &HashMap<String, Vec<DateTime<FixedOffset>>>)
-{
-    let mut intervals: Vec<String> = datetimes_grouped.keys().cloned().collect();
-    intervals.sort();
-    if intervals.len() == 1 && intervals[0] == "all" {
-        println!("{}", datetimes_grouped.get("all").unwrap().len());
-    } else {
-        for interval in &intervals {
-            println!("{}: {}", interval, datetimes_grouped.get(interval).unwrap().len());
-        }
-    }
-}
-
-fn print_splits_per_interval(splits_per_interval: &HashMap<String, Vec<u64>>, unit: &str) 
-{
-    let mut intervals: Vec<String> = splits_per_interval.keys().cloned().collect();
-    intervals.sort();
-    if intervals.len() == 1 && intervals[0] == "all" {
-        for split in splits_per_interval.get("all").unwrap() {
-            println!("{}", split.convert_seconds(unit));
-        }
-    } else {
-        for interval in &intervals {
-            let splits = splits_per_interval.get(interval).unwrap()
-                .iter()
-                .map(|x| x.convert_seconds(unit))
-                .collect::<Vec<String>>()
-                .join(", ");
-            println!("{}: {}", interval, splits);
-        }
-    }
-}
-
-fn print_sum_splits_per_interval(sum_splits_per_interval: &HashMap<String, u64>, unit: &str)
-{
-    let mut intervals: Vec<String> = sum_splits_per_interval.keys().cloned().collect();
-    intervals.sort();
-    if intervals.len() == 1 && intervals[0] == "all" {
-        let sum_in_output_unit = sum_splits_per_interval.get("all").unwrap().convert_seconds(unit);
-        println!("{}", sum_in_output_unit);
-    } else {
-        for interval in &intervals {
-            let sum_in_output_unit = sum_splits_per_interval.get(interval).unwrap().convert_seconds(unit);
-            println!("{}: {}", interval, sum_in_output_unit);
-        }
-    }
-}
-
 fn filter_datetimes_valid_indexes(datetimes: &[DateTime<FixedOffset>], filter_start: &Option<DateTime<FixedOffset>>, filter_end: &Option<DateTime<FixedOffset>>) -> Vec<bool> 
 {
     datetimes.iter().map(|datetime| {
@@ -323,9 +264,11 @@ fn parse_filter_end(matches: &ArgMatches) -> Option<DateTime<FixedOffset>>
 }
 
 
-//  Placing tests in 'subcommands/tests.rs' works, but produces YCM error
+//  Tests: filter_datetimes / reject_datetimes
+//  (placing these tests out-of-the-way in 'subcommands/tests.rs' works, but produces error in vim-YCM)
 #[cfg(test)]
 mod tests {
+    //  {{{
     use super::*;
     use std::panic;
 
@@ -440,4 +383,5 @@ mod tests {
         assert!(result.is_err());
     }
 }
+//  }}}
 

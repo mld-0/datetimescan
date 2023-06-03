@@ -23,10 +23,10 @@ Command-line datetimes-in-file analysis utility
 
 ### Commands
 
-#### scan
+#### locate
 
 List datetime matches and their locations
-Datetimes are not parsed (therefore arguments like --no_future and --no_unsorted have no effect)
+Datetimes are not parsed (therefore arguments like --no_future, --no_unsorted, and --filter_* have no effect)
 
         --nolocations       Do not report locations
 
@@ -89,7 +89,9 @@ Sum splits per interval
     2023-05-08T19:29:50
     2023-05-08 19:29:50
 
-Note: only (currently) valid letter-code timezones are: UTC, AEST, AEDT
+Regex is: `r"(?P<datetime>\d{4}-\d{2}-\d{2}[ T]\d{2}:\d{2}:\d{2}(?:[A-Z]{3,4}|[+-]\d{2}:?\d{2})?)"`
+
+Note: only (currently) parsable letter-code timezones are: UTC, AEST, AEDT
 
 ## Notes:
 

@@ -95,7 +95,7 @@ fn main()
         .arg(filter_start.global(true))
         .arg(filter_end.global(true))
         .subcommand(
-            SubCommand::with_name("scan")
+            SubCommand::with_name("locate")
                 .about("List datetime matches and their locations")
             )
         .subcommand(
@@ -142,8 +142,8 @@ fn main()
     let matches = parser.get_matches();
     log::trace!("main(), matches=({:?})", matches);
 
-    if let Some(arg_matches) = matches.subcommand_matches("scan") {
-        subcommands::scan(arg_matches)
+    if let Some(arg_matches) = matches.subcommand_matches("locate") {
+        subcommands::locate(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("parse") {
         subcommands::parse(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("convert") {

@@ -1,24 +1,18 @@
 2023-05-08T23:16:52AEST handle 'AEST' like timezones (without resorting to maintaining a dict of s/AEST/+1000/ substitutions)
-2023-05-11T21:02:59AEST implement 'group_datetimes'
-2023-05-14T20:57:51AEST test_datetimescan.sh; add tests for all subcommands
 2023-05-14T23:22:06AEST test_datetimescan.sh; more datetime containing testfiles
-2023-05-14T23:30:52AEST cargo test; make it call 'test_datetimescan.sh'?
-2023-05-15T23:13:22AEST cargo doc; fix warnings;
 2023-05-15T23:14:37AEST cargo doc; fill in the blanks
 2023-05-15T23:15:55AEST src; shouldn't *everything* date related be in datetimescan::datetimes::*?
 2023-05-15T23:48:49AEST src; which (of our) functions should have just been calls to 'chrono' functions
-2023-05-19T20:48:38AEST src; add missing arguments (from REAME)
-2023-05-19T20:48:53AEST src; implement all arguments
+2023-05-19T20:48:38AEST src; add missing arguments (from REAME) / implement all arguments
 2023-05-20T23:23:32AEST how to neatly make available each subcommand as their own executable binaries (calling on datetimescan)
 2023-05-20T23:53:03AEST sum; complete/verify tests and differerence between 'sum' / sum-of 'splits'
 2023-05-20T23:54:10AEST run_subcommands; contains several functions which should have their own tests
-2023-05-23T23:28:58AEST search_datetimes; handling word boundires
-2023-05-25T22:24:06AEST splits; should have a '--per' argument?
+2023-05-23T23:28:58AEST search_datetimes; handling word boundaries
 2023-05-25T22:24:33AEST splits; remove the delta immediately following a negative delta?
-2023-05-25T22:25:46AEST sum; '--per all' should call '--per year' and output the total?
 2023-05-26T23:04:10AEST readme; label which commands/args are unimplemented
-2023-05-26T23:07:39AEST caller scripts; (starting with) how long since `brew upgrade` last run (how long since boot, how long since wake, <>)
-2023-05-27T19:35:55AEST filter_start/filter_end; support for partial datetimes (2020 becomes first second of the year for filter_start and last second of year for filter_end)
+2023-05-26T23:07:39AEST caller-scripts; (starting with) how long since `brew upgrade` last run (how long since boot, how long since wake, <>)
+2023-05-27T19:35:55AEST filter_start/filter_end; support for partial datetimes as arguments (2020 becomes first second of the year for filter_start and last second of year for filter_end)
 2023-05-27T20:26:20AEST subcommands; file is screaming for a cleanup (start by moving the 'print_*' functions to 'print_results'?)
 2023-05-27T21:14:22AEST datetimescan.sh; needs more '--filter_(start|end)' tests
 2023-05-27T23:19:38AEST clap argument tab completion
+2023-06-03T21:50:19AEST cargo doc; generate page for clap subcommands/arguments
