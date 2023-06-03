@@ -32,7 +32,7 @@ use log::{error, warn, info, debug, trace};
 pub fn locate(arg_matches: &ArgMatches)
 {
     let datetimes_and_locations = get_datetimes_and_locations(arg_matches);
-    let mut printer = Printer::new();
+    let mut printer = Printer::new(arg_matches);
     printer.print_datetimes_and_locations(&datetimes_and_locations);
 }
 
@@ -45,7 +45,7 @@ pub fn parse(arg_matches: &ArgMatches)
 pub fn count(arg_matches: &ArgMatches)
 {
     let datetimes_grouped = get_datetimes_grouped(arg_matches);
-    let mut printer = Printer::new();
+    let mut printer = Printer::new(arg_matches);
     printer.print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
@@ -64,7 +64,7 @@ pub fn filter(arg_matches: &ArgMatches)
 pub fn deltas(arg_matches: &ArgMatches)
 {
     let deltas = get_deltas(arg_matches);
-    let mut printer = Printer::new();
+    let mut printer = Printer::new(arg_matches);
     printer.print_deltas(&deltas);
 }
 
@@ -72,7 +72,7 @@ pub fn splits(arg_matches: &ArgMatches)
 {
     let unit = arg_matches.value_of("unit").expect("expect argument unit");
     let splits_per_interval = get_splits_per_interval(arg_matches);
-    let mut printer = Printer::new();
+    let mut printer = Printer::new(arg_matches);
     printer.print_splits_per_interval(&splits_per_interval, unit);
 }
 
@@ -80,7 +80,7 @@ pub fn sum(arg_matches: &ArgMatches)
 {
     let unit = arg_matches.value_of("unit").expect("expect argument unit");
     let sum_splits_per_interval = get_sum_splits_per_interval(arg_matches);
-    let mut printer = Printer::new();
+    let mut printer = Printer::new(arg_matches);
     printer.print_sum_splits_per_interval(&sum_splits_per_interval, unit);
 }
 
@@ -89,6 +89,7 @@ pub fn wpm(arg_matches: &ArgMatches)
 {
     unimplemented!("UNIMPLEMENTED");
 }
+
 
 
 fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usize)>

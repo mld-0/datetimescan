@@ -5,6 +5,7 @@
 
 use crate::convert_seconds::ConvertSeconds;
 
+use clap::ArgMatches;
 use chrono::{DateTime, FixedOffset};
 use std::collections::HashMap;
 use std::fmt::Write;
@@ -38,7 +39,10 @@ impl Printer {
             output: Some(output),
         }
     }
-    pub fn new() -> Printer {
+    pub fn new(_arg_matches: &ArgMatches) -> Printer {
+        Printer::default()
+    }
+    pub fn default() -> Printer {
         Printer { output: None }
     }
 
