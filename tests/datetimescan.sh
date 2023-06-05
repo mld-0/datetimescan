@@ -163,6 +163,16 @@ test_locate() {
 2023-05-05T19:36:35+1000	5	0"
 	assert_result
 
+	test_cmd=( $bin_datetimescan locate --no_locations --input "$path_testfile_isodatetimes" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05T19:34:42+1000
+2023-05-05T19:35:23+1000
+2023-05-05T19:35:44+1000
+2023-05-05T19:36:18+1000
+2023-05-05T19:36:35+1000"
+	assert_result
+
 	test_cmd=( $bin_datetimescan locate --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\

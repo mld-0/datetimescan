@@ -29,63 +29,67 @@ use std::collections::HashMap;
 #[allow(unused_imports)]
 use log::{error, warn, info, debug, trace};
 
-pub fn locate(arg_matches: &ArgMatches)
+pub fn locate(matches: &ArgMatches)
 {
-    let datetimes_and_locations = get_datetimes_and_locations(arg_matches);
-    let mut printer = Printer::new(arg_matches);
-    printer.print_datetimes_and_locations(&datetimes_and_locations);
+    let datetimes_and_locations = get_datetimes_and_locations(matches);
+    let mut printer = Printer::new(matches);
+    if matches.is_present("no_locations") {
+        printer.print_datetimes_no_locations(&datetimes_and_locations);
+    } else {
+        printer.print_datetimes_and_locations(&datetimes_and_locations);
+    }
 }
 
 #[allow(unused_variables)]
-pub fn parse(arg_matches: &ArgMatches)
+pub fn parse(matches: &ArgMatches)
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
-pub fn count(arg_matches: &ArgMatches)
+pub fn count(matches: &ArgMatches)
 {
-    let datetimes_grouped = get_datetimes_grouped(arg_matches);
-    let mut printer = Printer::new(arg_matches);
+    let datetimes_grouped = get_datetimes_grouped(matches);
+    let mut printer = Printer::new(matches);
     printer.print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
 #[allow(unused_variables)]
-pub fn convert(arg_matches: &ArgMatches) 
+pub fn convert(matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
 #[allow(unused_variables)]
-pub fn filter(arg_matches: &ArgMatches) 
+pub fn filter(matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
-pub fn deltas(arg_matches: &ArgMatches)
+pub fn deltas(matches: &ArgMatches)
 {
-    let deltas = get_deltas(arg_matches);
-    let mut printer = Printer::new(arg_matches);
+    let deltas = get_deltas(matches);
+    let mut printer = Printer::new(matches);
     printer.print_deltas(&deltas);
 }
 
-pub fn splits(arg_matches: &ArgMatches) 
+pub fn splits(matches: &ArgMatches) 
 {
-    let unit = arg_matches.value_of("unit").expect("expect argument unit");
-    let splits_per_interval = get_splits_per_interval(arg_matches);
-    let mut printer = Printer::new(arg_matches);
+    let unit = matches.value_of("unit").expect("expect `matches` argument 'unit'");
+    let splits_per_interval = get_splits_per_interval(matches);
+    let mut printer = Printer::new(matches);
     printer.print_splits_per_interval(&splits_per_interval, unit);
 }
 
-pub fn sum(arg_matches: &ArgMatches) 
+pub fn sum(matches: &ArgMatches) 
 {
-    let unit = arg_matches.value_of("unit").expect("expect argument unit");
-    let sum_splits_per_interval = get_sum_splits_per_interval(arg_matches);
-    let mut printer = Printer::new(arg_matches);
+    let unit = matches.value_of("unit").expect("expect `matches` argument 'unit'");
+    let sum_splits_per_interval = get_sum_splits_per_interval(matches);
+    let mut printer = Printer::new(matches);
     printer.print_sum_splits_per_interval(&sum_splits_per_interval, unit);
 }
 
 #[allow(unused_variables)]
-pub fn wpm(arg_matches: &ArgMatches) 
+pub fn wpm(matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
@@ -95,7 +99,7 @@ pub fn wpm(arg_matches: &ArgMatches)
 fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usize)>
 {
     let datetimes_and_locations = if let Some(file_path) = matches.value_of("input") {
-        let file = File::open(Path::new(file_path)).expect("Failed to open the file");
+        let file = File::open(Path::new(file_path)).expect("Failed to open the `matches` file 'input'");
         search_datetimes(BufReader::new(file))
     } else {
         let stdin = io::stdin();
@@ -141,7 +145,7 @@ fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
 
 fn get_datetimes_grouped(matches: &ArgMatches) -> HashMap<String, Vec<DateTime<FixedOffset>>>
 {
-    let interval = matches.value_of("per").expect("expected argument per");
+    let interval = matches.value_of("per").expect("expected `matches` argument 'per'");
     let datetimes_parsed = get_datetimes_parsed(matches);
     let datetimes_grouped = group_datetimes(&datetimes_parsed, interval);
     datetimes_grouped
@@ -158,7 +162,7 @@ fn get_deltas(matches: &ArgMatches) -> Vec<i64>
 fn _get_splits(matches: &ArgMatches) -> Vec<u64>
 {
     let allow_negative = false;
-    let timeout: u64 = matches.value_of("timeout").expect("expect argument timeout")
+    let timeout: u64 = matches.value_of("timeout").expect("expect `matches` argument 'timeout'")
         .parse().unwrap();
     let datetimes_parsed = get_datetimes_parsed(matches);
     let deltas = delta_datetimes(&datetimes_parsed, allow_negative);
@@ -169,7 +173,7 @@ fn _get_splits(matches: &ArgMatches) -> Vec<u64>
 fn get_splits_per_interval(matches: &ArgMatches) -> HashMap<String, Vec<u64>>
 {
     let allow_negative = false;
-    let timeout: u64 = matches.value_of("timeout").expect("expect argument timeout")
+    let timeout: u64 = matches.value_of("timeout").expect("expect `matches` argument 'timeout'")
         .parse().unwrap();
     let datetimes_grouped = get_datetimes_grouped(matches);
     let mut splits_per_interval = HashMap::new();

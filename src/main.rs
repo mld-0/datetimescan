@@ -56,6 +56,11 @@ fn main()
         .takes_value(false);
 
     //  Subcommand arguments:
+    let no_locations = Arg::with_name("no_locations")
+        .long("no_locations")
+        .help("Do not include positions of datetime matches")
+        .takes_value(false);
+
     let per_arg = Arg::with_name("per")
         .long("per")
         .value_name("INTERVAL")
@@ -100,32 +105,40 @@ fn main()
         .arg(filter_start.global(true))
         .arg(filter_end.global(true))
         .arg(filter_invert.global(true))
+
         .subcommand(
             SubCommand::with_name("locate")
                 .about("List datetime matches and their locations")
+                .arg(no_locations.clone())
             )
+
         .subcommand(
             SubCommand::with_name("parse")
-                .about("List datetime matches in specified output format (without parsing them)")
+                .about("UNIMPLEMENTED List datetime matches in specified output format (without parsing them)")
             )
+
         .subcommand(
             SubCommand::with_name("convert")
-                .about("Print input, with datetimes converted to specified output format")
+                .about("UNIMPLEMENTED Print input, with datetimes converted to specified output format")
             )
+
         .subcommand(
             SubCommand::with_name("filter")
-                .about("Print input, excluding lines containing datetimes outside filter range")
+                .about("UNIMPLEMENTED Print input, excluding lines containing datetimes outside filter range")
             )
+
         .subcommand(
             SubCommand::with_name("count")
                 .about("Count datetimes per interval")
                 .arg(per_arg.clone())
             )
+
         .subcommand(
             SubCommand::with_name("deltas")
                 .about("Report seconds elapsed between each datetime match")
                 .arg(allow_negative.clone())
             )
+
         .subcommand(
             SubCommand::with_name("splits")
                 .about("Report length of continuous deltas where no delta > timeout")
@@ -133,6 +146,7 @@ fn main()
                 .arg(timeout.clone())
                 .arg(unit.clone())
             )
+
         .subcommand(
             SubCommand::with_name("sum")
                 .about("Sum splits per interval")
@@ -140,9 +154,10 @@ fn main()
                 .arg(timeout.clone())
                 .arg(unit.clone())
             )
+
         .subcommand(
                 SubCommand::with_name("wpm")
-                .about("")
+                .about("UNIMPLEMENTED")
             );
 
     let matches = parser.get_matches();

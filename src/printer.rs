@@ -46,6 +46,15 @@ impl Printer {
         Printer { output: None }
     }
 
+    pub fn print_datetimes_no_locations(
+        &mut self,
+        datetimes_and_locations: &Vec<(String, usize, usize)>,
+    ) {
+        for (datetime, _, _) in datetimes_and_locations {
+            out!(self.output, "{}", datetime);
+        }
+    }
+
     pub fn print_datetimes_and_locations(
         &mut self,
         datetimes_and_locations: &Vec<(String, usize, usize)>,
