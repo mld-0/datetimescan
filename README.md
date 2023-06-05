@@ -14,12 +14,12 @@ Command-line datetimes-in-file analysis utility
         --filter_start      [date] Exclude dates before
         --filter_end        [date] Exclude dates after
         --filter_invert     Invert filter excluded items
-        --custom_format     [format] Add custom datetime format
-        --only_format       [format] Only use given datetime format
-        --exclude_format    [format] Do not use given datetime format
-        --assumetz          [tz] Timezone to assume where not given (default=system)
         --no_future         Error for datetimes in the future
         --no_unsorted       Error for datetimes not in order
+        --custom_format     UNIMPLEMENTED [format] Add custom datetime format
+        --only_format       UNIMPLEMENTED [format] Only use given datetime format
+        --exclude_format    UNIMPLEMENTED [format] Do not use given datetime format
+        --assumetz          UNIMPLEMENTED [tz] Timezone to assume where not given (default=system)
 
 ### Commands
 
@@ -28,23 +28,23 @@ Command-line datetimes-in-file analysis utility
 List datetime matches and their locations
 Datetimes are not parsed (therefore arguments like --no_future, --no_unsorted, and --filter_* have no effect)
 
-        --nolocations       Do not report locations
+        --no_locations       Do not report locations
 
 #### parse
 
-List datetime matches in specified output format
+UNIMPLEMENTED List datetime matches in specified output format
 
-        --outputfmt     [format] Custom output datetime format
+        --outputfmt     UNIMPLEMENTED [format] Custom output datetime format
 
 #### convert
 
-Print input, with datetimes converted to specified output format
+UNIMPLEMENTED Print input, with datetimes converted to specified output format
 
-        --outputfmt     [format] Custom output datetime format
+        --outputfmt     UNIMPLEMENTED [format] Custom output datetime format
 
 #### filter
 
-Print input, excluding lines containing datetimes outside filter range
+UNIMPLEMENTED Print input, excluding lines containing datetimes outside filter range
 
 #### count
 
@@ -56,7 +56,7 @@ Count datetimes per interval
 
 Report seconds elapsed between each datetime match
 
-        --onlypositive      Do not include negative deltas
+        --allow_negative    Include negative deltas
 
 #### splits
 
@@ -65,7 +65,7 @@ Report length of continuous deltas where no delta > timeout
         --timeout       [delta] Max delta to consider continuous (default=300)
         --per           [interval] (y/m/d/all)
         --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
-        --breakempty    End continuious deltas if there is an empty line between them
+        --breakempty    UNIMPLEMENTED End continuious deltas if there is an empty line between them
 
 #### sum
 
@@ -74,7 +74,7 @@ Sum splits per interval
         --timeout       [delta] Max delta to consider continuous (default=300)
         --per           [interval] (y/m/d/all)
         --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
-        --breakempty    End continuious deltas if there is an empty line between them
+        --breakempty    UNIMPLEMENTED End continuious deltas if there is an empty line between them
 
 #### wpms
 
