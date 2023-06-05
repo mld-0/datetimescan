@@ -40,6 +40,11 @@ fn main()
         .value_name("FILTER_END")
         .help("Exclude datetimes before");
 
+    let filter_invert = Arg::with_name("filter_invert")
+        .long("filter_invert")
+        .help("Invert filter excluded items")
+        .takes_value(false);
+
     let no_unsorted = Arg::with_name("no_unsorted")
         .long("no_unsorted")
         .help("Do not allow out-of-order datetimes in input")
@@ -94,6 +99,7 @@ fn main()
         .arg(no_unsorted.global(true))
         .arg(filter_start.global(true))
         .arg(filter_end.global(true))
+        .arg(filter_invert.global(true))
         .subcommand(
             SubCommand::with_name("locate")
                 .about("List datetime matches and their locations")

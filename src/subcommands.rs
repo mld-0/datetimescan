@@ -104,18 +104,8 @@ fn get_datetimes_and_locations(matches: &ArgMatches) -> Vec<(String, usize, usiz
     datetimes_and_locations
 }
 
-fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
-{
-    let (datetimes_parsed, _, _) = get_datetimes_parsed_with_strs_and_positions(matches);
-    datetimes_parsed
-}
-
 fn get_datetimes_parsed_with_strs_and_positions(matches: &ArgMatches) -> (Vec<DateTime<FixedOffset>>, Vec<(String, usize, usize)>, Vec<bool>)
 {
-    let no_future = matches.is_present("no_future");
-    let no_unsorted = matches.is_present("no_unsorted");
-    let filter_start = parse_filter_start(matches);
-    let filter_end = parse_filter_end(matches);
     let datetimes_and_locations = get_datetimes_and_locations(matches);
     let datetimes_strs = datetimes_and_locations.iter().map(|(s, _, _)| s.to_string()).collect();
     let datetimes_parsed = parse_datetimes(&datetimes_strs);
@@ -123,19 +113,30 @@ fn get_datetimes_parsed_with_strs_and_positions(matches: &ArgMatches) -> (Vec<Da
         panic!("failed to parse datetimes_strs=({:?})", datetimes_strs);
     }
     let datetimes_parsed = datetimes_parsed.unwrap();
-    let valid_indexes = filter_datetimes_valid_indexes(&datetimes_parsed, &filter_start, &filter_end);
+
+    let (filter_start, filter_end) = parse_filter_start_end(matches);
+    let filter_invert = matches.is_present("filter_invert");
+    let indexes_filter = filter_datetimes_valid_indexes(&datetimes_parsed, &filter_start, &filter_end);
     let datetimes_filtered = datetimes_parsed.iter()
-        .zip(valid_indexes.iter())
-        .filter(|(_, &include)| include)
+        .zip(indexes_filter.iter())
+        .filter(|(_, &include)| if filter_invert { !include } else { include })
         .map(|(&x, _)| x)
         .collect();
-    if no_future {
+
+    if matches.is_present("no_future") {
         reject_datetimes_future(&datetimes_filtered);
     }
-    if no_unsorted {
+    if matches.is_present("no_unsorted") {
         reject_datetimes_unsorted(&datetimes_filtered);
     }
-    (datetimes_filtered, datetimes_and_locations, valid_indexes)
+
+    (datetimes_filtered, datetimes_and_locations, indexes_filter)
+}
+
+fn get_datetimes_parsed(matches: &ArgMatches) -> Vec<DateTime<FixedOffset>>
+{
+    let (datetimes_parsed, _, _) = get_datetimes_parsed_with_strs_and_positions(matches);
+    datetimes_parsed
 }
 
 fn get_datetimes_grouped(matches: &ArgMatches) -> HashMap<String, Vec<DateTime<FixedOffset>>>
@@ -234,34 +235,35 @@ fn reject_datetimes_unsorted(datetimes: &Vec<DateTime<FixedOffset>>)
     }
 }
 
-fn parse_filter_start(matches: &ArgMatches) -> Option<DateTime<FixedOffset>>
+fn parse_filter_start_end(matches: &ArgMatches) -> (Option<DateTime<FixedOffset>>, Option<DateTime<FixedOffset>>)
 {
-    if matches.is_present("filter_start") {
-        let filter_start_str = matches.value_of("filter_start").unwrap();
-        let filter_start = parse_datetime(filter_start_str);
-        if filter_start.is_none() {
-            panic!("invalid filter_start=({})", filter_start_str);
+    let filter_start = {
+        if matches.is_present("filter_start") {
+            let filter_start_str = matches.value_of("filter_start").unwrap();
+            let filter_start = parse_datetime(filter_start_str);
+            if filter_start.is_none() {
+                panic!("invalid filter_start=({})", filter_start_str);
+            } else {
+                filter_start
+            }
         } else {
-            filter_start
+            None
         }
-    } else {
-        None
-    }
-}
-
-fn parse_filter_end(matches: &ArgMatches) -> Option<DateTime<FixedOffset>>
-{
-    if matches.is_present("filter_end") {
-        let filter_end_str = matches.value_of("filter_end").unwrap();
-        let filter_end = parse_datetime(filter_end_str);
-        if filter_end.is_none() {
-            panic!("invalid filter_end=({})", filter_end_str);
+    };
+    let filter_end = {
+        if matches.is_present("filter_end") {
+            let filter_end_str = matches.value_of("filter_end").unwrap();
+            let filter_end = parse_datetime(filter_end_str);
+            if filter_end.is_none() {
+                panic!("invalid filter_end=({})", filter_end_str);
+            } else {
+                filter_end 
+            }
         } else {
-            filter_end 
+            None
         }
-    } else {
-        None
-    }
+    };
+    (filter_start, filter_end)
 }
 
 

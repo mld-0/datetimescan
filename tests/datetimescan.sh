@@ -452,6 +452,16 @@ test_count() {
 2023-03: 12"
 	assert_result
 
+	test_cmd=( $bin_datetimescan count --filter_invert --filter_start "2022-10-01T00:00:00" --filter_end "2023-03-31T23:59:59" --per "m" --input "$path_testfile_worklog_samples" )
+	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2022-06: 6
+2022-07: 15
+2022-09: 9
+2023-04: 64
+2023-05: 188"
+	assert_result
+
 	echoerr ""
 }
 #	}}}
