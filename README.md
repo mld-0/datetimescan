@@ -109,4 +109,3 @@ So far largely a case-study in asking gpt4 to write functions and their docs (bu
 For unsorted datetime input, totals from 'splits' / 'sum' may differ between --per 'all' / 'ymd'
 
 Not all commands/arguments are implemented.
-
