@@ -29,6 +29,33 @@ use std::collections::HashMap;
 #[allow(unused_imports)]
 use log::{error, warn, info, debug, trace};
 
+pub fn run(matches: &ArgMatches) 
+{
+    if let Some(matches) = matches.subcommand_matches("locate") {
+        locate(matches)
+    } else if let Some(matches) = matches.subcommand_matches("parse") {
+        parse(matches)
+    } else if let Some(matches) = matches.subcommand_matches("convert") {
+        convert(matches)
+    } else if let Some(matches) = matches.subcommand_matches("filter") {
+        filter(matches)
+    } else if let Some(matches) = matches.subcommand_matches("count") {
+        count(matches)
+    } else if let Some(matches) = matches.subcommand_matches("deltas") {
+        deltas(matches)
+    } else if let Some(matches) = matches.subcommand_matches("splits") {
+        splits(matches)
+    } else if let Some(matches) = matches.subcommand_matches("sum") {
+        sum(matches)
+    } else if let Some(matches) = matches.subcommand_matches("groupsum") {
+        groupsum(matches)
+    } else if let Some(matches) = matches.subcommand_matches("wpm") {
+        wpm(matches)
+    } else {
+        eprintln!("No subcommand was used. Use --help for more information.");
+    }
+}
+
 pub fn locate(matches: &ArgMatches)
 {
     let datetimes_and_locations = get_datetimes_and_locations(matches);
