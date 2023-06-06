@@ -89,6 +89,12 @@ pub fn sum(matches: &ArgMatches)
 }
 
 #[allow(unused_variables)]
+pub fn groupsum(matches: &ArgMatches) 
+{
+    unimplemented!("UNIMPLEMENTED");
+}
+
+#[allow(unused_variables)]
 pub fn wpm(matches: &ArgMatches) 
 {
     unimplemented!("UNIMPLEMENTED");

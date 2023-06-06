@@ -11,6 +11,7 @@ Command-line datetimes-in-file analysis utility
 ### Common arguments
 
         --input             [file] input (default=stdin)
+        --output            UNIMPLEMENTED [file] output (default=stdout)
         --filter_start      [date] Exclude dates before
         --filter_end        [date] Exclude dates after
         --filter_invert     Invert filter excluded items
@@ -76,9 +77,15 @@ Sum splits per interval
         --unit          [unit] output in seconds/minutes/hours (s/m/h) (default=s)
         --breakempty    UNIMPLEMENTED End continuious deltas if there is an empty line between them
 
+#### groupsum
+
+UNIMPLEMENTED ...
+
+        --groups        [GROUPS] file containing list of repos to group by
+
 #### wpms
 
-...
+UNIMPLEMENTED ...
 
 ## Supported datetime formats:
 

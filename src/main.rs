@@ -156,9 +156,19 @@ fn main()
             )
 
         .subcommand(
+                SubCommand::with_name("groupsum")
+                .arg(per_arg.clone())
+                .arg(timeout.clone())
+                .arg(unit.clone())
+            )
+
+        .subcommand(
                 SubCommand::with_name("wpm")
                 .about("UNIMPLEMENTED")
-            );
+            )
+
+        ;
+
 
     let matches = parser.get_matches();
     log::trace!("main(), matches=({:?})", matches);
@@ -179,6 +189,8 @@ fn main()
         subcommands::splits(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("sum") {
         subcommands::sum(arg_matches)
+    } else if let Some(arg_matches) = matches.subcommand_matches("groupsum") {
+        subcommands::groupsum(arg_matches)
     } else if let Some(arg_matches) = matches.subcommand_matches("wpm") {
         subcommands::wpm(arg_matches)
     } else {
