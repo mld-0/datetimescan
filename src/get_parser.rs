@@ -10,6 +10,13 @@ pub fn get_parser() -> clap::App<'static, 'static>
         .help("Select input file (default=stdin)")
         .takes_value(true);
 
+    let output_arg = Arg::with_name("output")
+        .short("o")
+        .long("output")
+        .value_name("OUT_FILE")
+        .help("Select output file (default=stdout)")
+        .takes_value(true);
+
     let filter_start = Arg::with_name("filter_start")
         .long("filter_start")
         .value_name("FILTER_START")
@@ -80,6 +87,7 @@ pub fn get_parser() -> clap::App<'static, 'static>
         .version(env!("CARGO_PKG_VERSION"))
         .about("Utility for finding/analysing datetime strings in input")
         .arg(input_arg.global(true)) 
+        .arg(output_arg.global(true))
         .arg(no_future.global(true))
         .arg(no_unsorted.global(true))
         .arg(filter_start.global(true))
