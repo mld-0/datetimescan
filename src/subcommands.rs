@@ -9,8 +9,8 @@
 //  2023-05-20T22:59:09AEST please rename s/run_subcommands/subcommands/ 
 //  2023-05-20T22:59:25AEST (named) subcommands? (or commands?)
 //  2023-05-27T20:08:17AEST 'failed to parse datetimes_strs', don't we want an error for which datetime(s) specifically failed?
+//  2023-06-12T22:19:14AEST just as we have made 'printer' a parameter to the actual subcommand functions, should we provide input stream as a parameter as well?
 //  }}}
-
 //  Ongoing: 2023-05-20T23:47:11AEST explain the size of the difference between the sum of 'splits' and 'sum' for textWithIsoDatetimes-2.txt -> 2256 for 'splits' and 2445 for 'sum'
 
 use crate::search_datetimes::search_datetimes;
