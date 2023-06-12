@@ -17,7 +17,7 @@ use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetimes, parse_datetime};
 use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
-use crate::printer::Printer;
+use crate::printer::{Printer, get_printer_writer};
 
 use chrono::{DateTime, FixedOffset, Utc};
 use clap::ArgMatches;
@@ -48,7 +48,11 @@ pub fn run(matches: &ArgMatches) {
 pub fn locate(matches: &ArgMatches)
 {
     let datetimes_and_locations = get_datetimes_and_locations(matches);
-    let mut printer = Printer::new(matches);
+    let mut writer = get_printer_writer(matches);
+    let mut printer = match writer.as_deref_mut() {
+        Some(w) => Printer::new(Some(w)),
+        None => Printer::default(),
+    };
     if matches.is_present("no_locations") {
         printer.print_datetimes_no_locations(&datetimes_and_locations);
     } else {
@@ -65,7 +69,11 @@ pub fn parse(matches: &ArgMatches)
 pub fn count(matches: &ArgMatches)
 {
     let datetimes_grouped = get_datetimes_grouped(matches);
-    let mut printer = Printer::new(matches);
+    let mut writer = get_printer_writer(matches);
+    let mut printer = match writer.as_deref_mut() {
+        Some(w) => Printer::new(Some(w)),
+        None => Printer::default(),
+    };
     printer.print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
@@ -84,7 +92,11 @@ pub fn filter(matches: &ArgMatches)
 pub fn deltas(matches: &ArgMatches)
 {
     let deltas = get_deltas(matches);
-    let mut printer = Printer::new(matches);
+    let mut writer = get_printer_writer(matches);
+    let mut printer = match writer.as_deref_mut() {
+        Some(w) => Printer::new(Some(w)),
+        None => Printer::default(),
+    };
     printer.print_deltas(&deltas);
 }
 
@@ -92,7 +104,11 @@ pub fn splits(matches: &ArgMatches)
 {
     let unit = matches.value_of("unit").expect("expect `matches` argument 'unit'");
     let splits_per_interval = get_splits_per_interval(matches);
-    let mut printer = Printer::new(matches);
+    let mut writer = get_printer_writer(matches);
+    let mut printer = match writer.as_deref_mut() {
+        Some(w) => Printer::new(Some(w)),
+        None => Printer::default(),
+    };
     printer.print_splits_per_interval(&splits_per_interval, unit);
 }
 
@@ -100,7 +116,11 @@ pub fn sum(matches: &ArgMatches)
 {
     let unit = matches.value_of("unit").expect("expect `matches` argument 'unit'");
     let sum_splits_per_interval = get_sum_splits_per_interval(matches);
-    let mut printer = Printer::new(matches);
+    let mut writer = get_printer_writer(matches);
+    let mut printer = match writer.as_deref_mut() {
+        Some(w) => Printer::new(Some(w)),
+        None => Printer::default(),
+    };
     printer.print_sum_splits_per_interval(&sum_splits_per_interval, unit);
 }
 

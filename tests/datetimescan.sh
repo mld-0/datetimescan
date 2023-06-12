@@ -138,6 +138,7 @@ test_locate() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -155,6 +156,17 @@ test_locate() {
 
 	test_cmd=( $bin_datetimescan locate --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05T19:34:42+1000	1	0
+2023-05-05T19:35:23+1000	2	0
+2023-05-05T19:35:44+1000	3	10
+2023-05-05T19:36:18+1000	4	0
+2023-05-05T19:36:35+1000	5	0"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan locate --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null ; cat "$path_output" )
 	expected_str=\
 "2023-05-05T19:34:42+1000	1	0
 2023-05-05T19:35:23+1000	2	0
@@ -259,6 +271,7 @@ test_count() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 	
 	echo -n "$func_name: " > /dev/stderr
 
@@ -383,6 +396,22 @@ test_count() {
 2023-05: 188"
 	assert_result
 
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan count --per "m" --input "$path_testfile_worklog_samples" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
+	expected_str=\
+"2022-06: 6
+2022-07: 15
+2022-09: 9
+2022-11: 13
+2022-12: 19
+2023-01: 5
+2023-02: 15
+2023-03: 12
+2023-04: 64
+2023-05: 188"
+	assert_result
+
 	test_cmd=( $bin_datetimescan count --per "d" --input "$path_testfile_worklog_samples" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -492,6 +521,7 @@ test_deltas() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -503,6 +533,16 @@ test_deltas() {
 
 	test_cmd=( $bin_datetimescan deltas --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"41
+21
+34
+17"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan deltas --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
 	expected_str=\
 "41
 21
@@ -566,6 +606,7 @@ test_splits() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -577,6 +618,13 @@ test_splits() {
 
 	test_cmd=( $bin_datetimescan splits --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan splits --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
 	expected_str=\
 "113"
 	assert_result
@@ -763,6 +811,7 @@ test_sum() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -798,6 +847,13 @@ test_sum() {
 
 	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05: 113"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
 	expected_str=\
 "2023-05-05: 113"
 	assert_result

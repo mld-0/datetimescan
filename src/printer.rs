@@ -8,7 +8,10 @@ use crate::convert_seconds::ConvertSeconds;
 use clap::ArgMatches;
 use chrono::{DateTime, FixedOffset};
 use std::collections::HashMap;
-use std::fmt::Write;
+
+use std::fs::File;
+use std::io::Write;
+use std::io::BufWriter;
 
 #[allow(unused_imports)]
 use log::{debug, error, info, trace, warn};
@@ -29,21 +32,29 @@ macro_rules! out
     };
 }
 
-pub struct Printer {
-    output: Option<Box<dyn Write>>,
+pub fn get_printer_writer(matches: &ArgMatches) -> Option<Box<dyn Write>> {
+    if matches.is_present("output") {
+        let path_output = matches.value_of("output").unwrap();
+        let file = File::create(path_output).expect("Output file creation failed");
+        let bufwriter = BufWriter::new(file);
+        Some(Box::new(bufwriter))
+    } else {
+        None
+    }
 }
 
-impl Printer {
-    pub fn new_with_writer(output: Box<dyn Write>) -> Printer {
-        Printer {
-            output: Some(output),
-        }
+pub struct Printer<'a> {
+    output: Option<&'a mut dyn Write>,
+}
+
+impl<'a> Printer<'a> {
+
+    pub fn new(output: Option<&'a mut dyn Write>) -> Printer<'a> {
+        Printer { output, }
     }
-    pub fn new(_arg_matches: &ArgMatches) -> Printer {
-        Printer::default()
-    }
-    pub fn default() -> Printer {
-        Printer { output: None }
+
+    pub fn default() -> Printer<'a> {
+        Printer { output: None, }
     }
 
     pub fn print_datetimes_no_locations(
