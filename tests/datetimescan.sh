@@ -138,6 +138,7 @@ test_locate() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -163,6 +164,17 @@ test_locate() {
 2023-05-05T19:36:35+1000	5	0"
 	assert_result
 
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan locate --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null ; cat "$path_output" )
+	expected_str=\
+"2023-05-05T19:34:42+1000	1	0
+2023-05-05T19:35:23+1000	2	0
+2023-05-05T19:35:44+1000	3	10
+2023-05-05T19:36:18+1000	4	0
+2023-05-05T19:36:35+1000	5	0"
+	assert_result
+
 	test_cmd=( $bin_datetimescan locate --no_locations --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
@@ -176,7 +188,7 @@ test_locate() {
 	test_cmd=( $bin_datetimescan locate --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-`echo "2023-04-19T22:07:40AEST	1	10 2023-04-19T22:08:16AEST	2	0 2023-04-19T22:11:06AEST	4	10 2024-04-19T22:12:54AEST	6	0 2023-04-19T22:14:15AEST	10	0 2023-04-19T22:14:20AEST	12	6 2023-04-19T22:15:31AEST	13	0 2023-04-19T22:15:58AEST	15	9 2023-04-19T22:16:28AEST	16	0 2023-04-19T22:16:51AEST	18	0 2023-04-19T22:18:19AEST	19	0 2023-04-19T22:19:41AEST	21	6 2023-04-19T22:19:55AEST	22	0 2023-04-19T22:21:07AEST	24	9 2023-04-19T22:20:05AEST	25	6 2023-04-19T22:23:14AEST	26	0 2023-04-19T22:26:27AEST	28	0 2023-04-19T22:26:44AEST	29	0 2023-04-19T22:27:55AEST	31	0 2023-04-19T22:29:20AEST	32	0 2023-04-19T22:29:43AEST	34	9 2023-04-19T22:30:08AEST	35	0 2023-04-19T22:30:35AEST	37	0 2023-04-19T22:31:13AEST	38	0 2023-04-19T22:32:48AEST	39	0 2023-04-19T22:32:56AEST	41	0 2023-04-19T22:33:10AEST	42	10 2023-04-19T22:33:51AEST	43	6 2023-04-19T22:34:40AEST	44	0 2023-04-19T22:35:03AEST	46	6 2023-04-19T22:35:42AEST	47	0 2023-04-19T22:37:19AEST	49	9 2023-04-19T22:38:07AEST	50	0 2023-04-19T22:38:14AEST	52	0 2023-04-19T22:38:40AEST	53	0 2023-04-19T22:39:01AEST	55	0 2023-04-19T22:39:32AEST	56	0 2023-04-19T22:40:00AEST	59	0 2023-04-19T22:40:05AEST	60	0 2023-04-19T22:40:31AEST	61	0 2023-04-19T23:21:37AEST	63	0 2023-04-19T23:21:47AEST	64	0 2023-04-19T23:22:02AEST	67	0 2023-04-19T23:22:36AEST	68	0 2023-04-19T23:23:04AEST	69	0 2023-04-19T23:28:52AEST	71	10 2023-04-19T23:29:19AEST	73	7 2023-04-19T23:29:34AEST	74	0 2023-04-19T23:29:49AEST	76	6 2023-04-19T23:30:35AEST	77	0 2023-04-19T23:31:23AEST	80	0 2023-04-19T23:32:58AEST	81	0 2023-04-19T23:33:18AEST	83	6 2023-04-19T23:34:10AEST	84	0 2023-04-19T23:45:06AEST	86	0 2023-04-19T23:45:13AEST	87	0" | tr ' ' '\n'`
+`echo "2023-04-19T22:07:40AEST	1	10 2023-04-19T22:08:16AEST	2	0 2023-04-19T22:11:06AEST	4	10 2999-04-19T22:12:54AEST	6	0 2023-04-19T22:14:15AEST	10	0 2023-04-19T22:14:20AEST	12	6 2023-04-19T22:15:31AEST	13	0 2023-04-19T22:15:58AEST	15	9 2023-04-19T22:16:28AEST	16	0 2023-04-19T22:16:51AEST	18	0 2023-04-19T22:18:19AEST	19	0 2023-04-19T22:19:41AEST	21	6 2023-04-19T22:19:55AEST	22	0 2023-04-19T22:21:07AEST	24	9 2023-04-19T22:20:05AEST	25	6 2023-04-19T22:23:14AEST	26	0 2023-04-19T22:26:27AEST	28	0 2023-04-19T22:26:44AEST	29	0 2023-04-19T22:27:55AEST	31	0 2023-04-19T22:29:20AEST	32	0 2023-04-19T22:29:43AEST	34	9 2023-04-19T22:30:08AEST	35	0 2023-04-19T22:30:35AEST	37	0 2023-04-19T22:31:13AEST	38	0 2023-04-19T22:32:48AEST	39	0 2023-04-19T22:32:56AEST	41	0 2023-04-19T22:33:10AEST	42	10 2023-04-19T22:33:51AEST	43	6 2023-04-19T22:34:40AEST	44	0 2023-04-19T22:35:03AEST	46	6 2023-04-19T22:35:42AEST	47	0 2023-04-19T22:37:19AEST	49	9 2023-04-19T22:38:07AEST	50	0 2023-04-19T22:38:14AEST	52	0 2023-04-19T22:38:40AEST	53	0 2023-04-19T22:39:01AEST	55	0 2023-04-19T22:39:32AEST	56	0 2023-04-19T22:40:00AEST	59	0 2023-04-19T22:40:05AEST	60	0 2023-04-19T22:40:31AEST	61	0 2023-04-19T23:21:37AEST	63	0 2023-04-19T23:21:47AEST	64	0 2023-04-19T23:22:02AEST	67	0 2023-04-19T23:22:36AEST	68	0 2023-04-19T23:23:04AEST	69	0 2023-04-19T23:28:52AEST	71	10 2023-04-19T23:29:19AEST	73	7 2023-04-19T23:29:34AEST	74	0 2023-04-19T23:29:49AEST	76	6 2023-04-19T23:30:35AEST	77	0 2023-04-19T23:31:23AEST	80	0 2023-04-19T23:32:58AEST	81	0 2023-04-19T23:33:18AEST	83	6 2023-04-19T23:34:10AEST	84	0 2023-04-19T23:45:06AEST	86	0 2023-04-19T23:45:13AEST	87	0" | tr ' ' '\n'`
 	assert_result
 
 	echoerr ""
@@ -259,6 +271,7 @@ test_count() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 	
 	echo -n "$func_name: " > /dev/stderr
 
@@ -338,21 +351,21 @@ test_count() {
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 "2023: 55
-2024: 1"
+2999: 1"
 	assert_result
 
 	test_cmd=( $bin_datetimescan count --per "m" --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 "2023-04: 55
-2024-04: 1"
+2999-04: 1"
 	assert_result
 
 	test_cmd=( $bin_datetimescan count --per "d" --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
 "2023-04-19: 55
-2024-04-19: 1"
+2999-04-19: 1"
 	assert_result
 
 	test_cmd=( $bin_datetimescan count --per "all" --input "$path_testfile_worklog_samples" )
@@ -370,6 +383,22 @@ test_count() {
 
 	test_cmd=( $bin_datetimescan count --per "m" --input "$path_testfile_worklog_samples" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2022-06: 6
+2022-07: 15
+2022-09: 9
+2022-11: 13
+2022-12: 19
+2023-01: 5
+2023-02: 15
+2023-03: 12
+2023-04: 64
+2023-05: 188"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan count --per "m" --input "$path_testfile_worklog_samples" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
 	expected_str=\
 "2022-06: 6
 2022-07: 15
@@ -492,6 +521,7 @@ test_deltas() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -510,16 +540,26 @@ test_deltas() {
 17"
 	assert_result
 
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan deltas --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
+	expected_str=\
+"41
+21
+34
+17"
+	assert_result
+
 	test_cmd=( $bin_datetimescan deltas --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-`echo "36 170 31622508 0 5 71 27 30 23 88 82 14 72 0 189 193 17 71 85 23 25 27 38 95 8 14 41 49 23 39 97 48 7 26 21 31 28 5 26 2466 10 15 34 28 348 27 15 15 46 48 95 20 52 656 7" | tr ' ' '\n'`
+`echo "36 170 30799612908 0 5 71 27 30 23 88 82 14 72 0 189 193 17 71 85 23 25 27 38 95 8 14 41 49 23 39 97 48 7 26 21 31 28 5 26 2466 10 15 34 28 348 27 15 15 46 48 95 20 52 656 7" | tr ' ' '\n'`
 	assert_result
 
 	test_cmd=( $bin_datetimescan deltas --allow_negative --input "$path_testfile_isodatetimes_2" )
 	result_str=$( ${test_cmd[@]} )
 	expected_str=\
-`echo "36 170 31622508 -31622319 5 71 27 30 23 88 82 14 72 -62 189 193 17 71 85 23 25 27 38 95 8 14 41 49 23 39 97 48 7 26 21 31 28 5 26 2466 10 15 34 28 348 27 15 15 46 48 95 20 52 656 7" | tr ' ' '\n'`
+`echo "36 170 30799612908 -30799612719 5 71 27 30 23 88 82 14 72 -62 189 193 17 71 85 23 25 27 38 95 8 14 41 49 23 39 97 48 7 26 21 31 28 5 26 2466 10 15 34 28 348 27 15 15 46 48 95 20 52 656 7" | tr ' ' '\n'`
 	assert_result
 
 	test_cmd=( $bin_datetimescan deltas --no_unsorted --input "$path_testfile_isodatetimes" )
@@ -566,6 +606,7 @@ test_splits() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -577,6 +618,13 @@ test_splits() {
 
 	test_cmd=( $bin_datetimescan splits --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"113"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan splits --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
 	expected_str=\
 "113"
 	assert_result
@@ -763,6 +811,7 @@ test_sum() {
 	local result_str=""
 	local expected_str=""
 	local test_num=1
+	local path_output=""
 
 	echo -n "$func_name: " > /dev/stderr
 
@@ -798,6 +847,13 @@ test_sum() {
 
 	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" )
 	result_str=$( ${test_cmd[@]} )
+	expected_str=\
+"2023-05-05: 113"
+	assert_result
+
+	path_output=`mktemp`
+	test_cmd=( $bin_datetimescan sum --per "d" --input "$path_testfile_isodatetimes" --output "$path_output" )
+	result_str=$( ${test_cmd[@]} > /dev/null; cat "$path_output" )
 	expected_str=\
 "2023-05-05: 113"
 	assert_result

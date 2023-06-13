@@ -9,15 +9,15 @@
 //  2023-05-20T22:59:09AEST please rename s/run_subcommands/subcommands/ 
 //  2023-05-20T22:59:25AEST (named) subcommands? (or commands?)
 //  2023-05-27T20:08:17AEST 'failed to parse datetimes_strs', don't we want an error for which datetime(s) specifically failed?
+//  2023-06-12T22:19:14AEST just as we have made 'printer' a parameter to the actual subcommand functions, should we provide input stream as a parameter as well?
 //  }}}
-
 //  Ongoing: 2023-05-20T23:47:11AEST explain the size of the difference between the sum of 'splits' and 'sum' for textWithIsoDatetimes-2.txt -> 2256 for 'splits' and 2445 for 'sum'
 
 use crate::search_datetimes::search_datetimes;
 use crate::parse_datetime::{parse_datetimes, parse_datetime};
 use crate::delta_datetimes::{delta_datetimes, split_deltas};
 use crate::group_datetimes::group_datetimes;
-use crate::printer::Printer;
+use crate::printer::{Printer, get_printer_writer};
 
 use chrono::{DateTime, FixedOffset, Utc};
 use clap::ArgMatches;
@@ -30,25 +30,29 @@ use std::collections::HashMap;
 use log::{error, warn, info, debug, trace};
 
 pub fn run(matches: &ArgMatches) {
+    let mut writer = get_printer_writer(matches);
+    let mut printer = match writer.as_deref_mut() {
+        Some(w) => Printer::new(Some(w)),
+        None => Printer::default(),
+    };
     match matches.subcommand() {
-        ("locate", Some(matches)) => locate(matches),
-        ("parse", Some(matches)) => parse(matches),
-        ("convert", Some(matches)) => convert(matches),
-        ("filter", Some(matches)) => filter(matches),
-        ("count", Some(matches)) => count(matches),
-        ("deltas", Some(matches)) => deltas(matches),
-        ("splits", Some(matches)) => splits(matches),
-        ("sum", Some(matches)) => sum(matches),
-        ("groupsum", Some(matches)) => groupsum(matches),
-        ("wpm", Some(matches)) => wpm(matches),
+        ("locate", Some(matches)) => locate(matches, &mut printer),
+        ("parse", Some(matches)) => parse(matches, &mut printer),
+        ("convert", Some(matches)) => convert(matches, &mut printer),
+        ("filter", Some(matches)) => filter(matches, &mut printer),
+        ("count", Some(matches)) => count(matches, &mut printer),
+        ("deltas", Some(matches)) => deltas(matches, &mut printer),
+        ("splits", Some(matches)) => splits(matches, &mut printer),
+        ("sum", Some(matches)) => sum(matches, &mut printer),
+        ("groupsum", Some(matches)) => groupsum(matches, &mut printer),
+        ("wpm", Some(matches)) => wpm(matches, &mut printer),
         _ => panic!("No subcommand was used. Use --help for more information."),
     }
 }
 
-pub fn locate(matches: &ArgMatches)
+pub fn locate(matches: &ArgMatches, printer: &mut Printer)
 {
     let datetimes_and_locations = get_datetimes_and_locations(matches);
-    let mut printer = Printer::new(matches);
     if matches.is_present("no_locations") {
         printer.print_datetimes_no_locations(&datetimes_and_locations);
     } else {
@@ -57,61 +61,57 @@ pub fn locate(matches: &ArgMatches)
 }
 
 #[allow(unused_variables)]
-pub fn parse(matches: &ArgMatches)
+pub fn parse(matches: &ArgMatches, printer: &mut Printer)
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
-pub fn count(matches: &ArgMatches)
+pub fn count(matches: &ArgMatches, printer: &mut Printer)
 {
     let datetimes_grouped = get_datetimes_grouped(matches);
-    let mut printer = Printer::new(matches);
     printer.print_counts_datetimes_grouped(&datetimes_grouped);
 }
 
 #[allow(unused_variables)]
-pub fn convert(matches: &ArgMatches) 
+pub fn convert(matches: &ArgMatches, printer: &mut Printer) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
 #[allow(unused_variables)]
-pub fn filter(matches: &ArgMatches) 
+pub fn filter(matches: &ArgMatches, printer: &mut Printer) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
-pub fn deltas(matches: &ArgMatches)
+pub fn deltas(matches: &ArgMatches, printer: &mut Printer)
 {
     let deltas = get_deltas(matches);
-    let mut printer = Printer::new(matches);
     printer.print_deltas(&deltas);
 }
 
-pub fn splits(matches: &ArgMatches) 
+pub fn splits(matches: &ArgMatches, printer: &mut Printer) 
 {
     let unit = matches.value_of("unit").expect("expect `matches` argument 'unit'");
     let splits_per_interval = get_splits_per_interval(matches);
-    let mut printer = Printer::new(matches);
     printer.print_splits_per_interval(&splits_per_interval, unit);
 }
 
-pub fn sum(matches: &ArgMatches) 
+pub fn sum(matches: &ArgMatches, printer: &mut Printer) 
 {
     let unit = matches.value_of("unit").expect("expect `matches` argument 'unit'");
     let sum_splits_per_interval = get_sum_splits_per_interval(matches);
-    let mut printer = Printer::new(matches);
     printer.print_sum_splits_per_interval(&sum_splits_per_interval, unit);
 }
 
 #[allow(unused_variables)]
-pub fn groupsum(matches: &ArgMatches) 
+pub fn groupsum(matches: &ArgMatches, printer: &mut Printer) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
 
 #[allow(unused_variables)]
-pub fn wpm(matches: &ArgMatches) 
+pub fn wpm(matches: &ArgMatches, printer: &mut Printer) 
 {
     unimplemented!("UNIMPLEMENTED");
 }
