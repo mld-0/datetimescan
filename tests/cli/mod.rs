@@ -3,3 +3,4 @@ mod locate;
 mod count;
 mod deltas;
 mod splits;
+mod sum;
