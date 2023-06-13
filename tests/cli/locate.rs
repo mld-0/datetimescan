@@ -54,7 +54,7 @@ r"2023-05-05T19:34:42+1000	1	0
 r"2023-04-19T22:07:40AEST	1	10
 2023-04-19T22:08:16AEST	2	0
 2023-04-19T22:11:06AEST	4	10
-2024-04-19T22:12:54AEST	6	0
+2999-04-19T22:12:54AEST	6	0
 2023-04-19T22:14:15AEST	10	0
 2023-04-19T22:14:20AEST	12	6
 2023-04-19T22:15:31AEST	13	0
@@ -116,7 +116,10 @@ r"2023-04-19T22:07:40AEST	1	10
         let matches = parser.get_matches_from(args);
         let mut buffer = Vec::<u8>::new();
         let mut printer = Printer::new(Some(&mut buffer));
-        subcommands::locate(&matches, &mut printer);
+        match matches.subcommand() {
+            ("locate", Some(matches)) => subcommands::locate(&matches, &mut printer),
+            _ => panic!("wrong subcommand"),
+        }
         let result = String::from_utf8(buffer).expect("Failed to convert Printer buffer to String");
         assert_eq!(result, expected);
     }
