@@ -1,6 +1,6 @@
 
 #[cfg(test)]
-mod test_date_range { 
+mod test_date_range_ctor { 
     use chrono::NaiveDate;
     use datetimescan::date_range::{DateRange, parse_partial_date_str};
 
@@ -60,6 +60,97 @@ mod test_date_range {
     fn test_date_range_new_from_str_range_invalid() {
         DateRange::new_from_str_range(vec!["2023-02-30", "2023-03-03"]);  // Invalid date
     }
+}
+
+#[cfg(test)]
+mod test_date_range_get_dates { 
+    use chrono::NaiveDate;
+    use datetimescan::date_range::DateRange;
+
+    #[test]
+    fn test_days_range() {
+        let inputs = vec![("2020-01-01", "2022-01-01"), 
+                          ("2020-01-01", "2020-01-02"), 
+                          ("2021-01-01", "2021-12-31"), 
+                          ("2021-01-01", "2021-01-01"),];
+        let checks_len = vec![ 732, 2, 365, 1, ];
+        assert_eq!(inputs.len(), checks_len.len());
+        for ((start, end), check_len) in inputs.iter().zip(checks_len.iter()) {
+            let date_range = DateRange::new(start, end);
+            let result = date_range.get_dates("d");
+            assert_eq!(result.len(), *check_len);
+            assert_eq!(result[0].format("%F").to_string(), *start);
+            assert_eq!(result[result.len()-1].format("%F").to_string(), *end);
+        }
+        let inputs = vec![("2020-01-01", "2020-01-05"),];
+        let checks_strs = vec![vec!["2020-01-01", "2020-01-02", "2020-01-03", "2020-01-04", "2020-01-05"],];
+        assert_eq!(inputs.len(), checks_strs.len());
+        for ((start, end), check_strs) in inputs.iter().zip(checks_strs.iter()) {
+            let check_dates: Vec<NaiveDate> = check_strs.iter().map(|x| NaiveDate::parse_from_str(x, "%Y-%m-%d").unwrap()).collect();
+            let date_range = DateRange::new(start, end);
+            let result = date_range.get_dates("d");
+            assert_eq!(result, check_dates);
+        }
+    }
+
+    #[test]
+    fn test_months_range() {
+        let inputs = vec![("2020-01-01", "2020-12-31"), 
+                          ("2020-01-01", "2020-01-01"), 
+                          ("2020-03", "2020-09"), 
+                          ("2020-03", "2020-09-30"),
+                          ("2020-03-01", "2020-05-15"),];
+        let checks_len = vec![ 12, 1, 7, 7, 3, ];
+        assert_eq!(inputs.len(), checks_len.len());
+        for ((start, end), check_len) in inputs.iter().zip(checks_len.iter()) {
+            let date_range = DateRange::new(start, end);
+            let result = date_range.get_dates("m");
+            assert_eq!(result.len(), *check_len);
+            assert_eq!(result[0].format("%Y-%m").to_string(), start[0..7]);
+            assert_eq!(result[result.len()-1].format("%Y-%m").to_string(), end[0..7]);
+        }
+        let inputs = vec![("2020-01-01", "2020-05-01"),];
+        let checks_strs = vec![vec!["2020-01-01", "2020-02-01", "2020-03-01", "2020-04-01", "2020-05-01"],];
+        assert_eq!(inputs.len(), checks_strs.len());
+        for ((start, end), check_strs) in inputs.iter().zip(checks_strs.iter()) {
+            let check_dates: Vec<NaiveDate> = check_strs.iter().map(|x| NaiveDate::parse_from_str(x, "%Y-%m-%d").unwrap()).collect();
+            let date_range = DateRange::new(start, end);
+            let result = date_range.get_dates("m");
+            assert_eq!(result, check_dates);
+        }
+    }
+
+    #[test]
+    fn test_years_range() {
+        let inputs = vec![("2020-01-01", "2020-12-31"), 
+                          ("2020-01-01", "2020-01-01"), 
+                          ("2020-01-01", "2023-04-05"), 
+                          ("2020", "2022-01-01"), 
+                          ("1982", "2043"),
+                          ("2019-08", "2023-04"),];
+        let checks_len = vec![ 1, 1, 4, 3, 62, 5, ];
+        assert_eq!(inputs.len(), checks_len.len());
+        for ((start, end), check_len) in inputs.iter().zip(checks_len.iter()) {
+            let date_range = DateRange::new(start, end);
+            let result = date_range.get_dates("y");
+            assert_eq!(result.len(), *check_len);
+            assert_eq!(result[0].format("%Y").to_string(), start[0..4]);
+            assert_eq!(result[result.len()-1].format("%Y").to_string(), end[0..4]);
+        }
+        let inputs = vec![("2020-01-01", "2023-01-01"),];
+        let checks_strs = vec![vec!["2020-01-01", "2021-01-01", "2022-01-01", "2023-01-01"],];
+        assert_eq!(inputs.len(), checks_strs.len());
+        for ((start, end), check_strs) in inputs.iter().zip(checks_strs.iter()) {
+            let check_dates: Vec<NaiveDate> = check_strs.iter().map(|x| NaiveDate::parse_from_str(x, "%Y-%m-%d").unwrap()).collect();
+            let date_range = DateRange::new(start, end);
+            let result = date_range.get_dates("y");
+            assert_eq!(result, check_dates);
+        }
+    }
+}
+
+#[cfg(test)]
+mod test_date_range_get_missing {
 
 }
 

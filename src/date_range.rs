@@ -1,7 +1,15 @@
+//  {{{3
+//  vim: set tabstop=4 modeline modelines=10:
+//  vim: set foldlevel=2 foldcolumn=2 foldmethod=marker:
+//  {{{2
+//  Notes:
+//  {{{
+//  2023-07-18T20:16:44AEST should use an enum instead of y/m/d as a string?
+//  }}}
 
 //  Translation of 'tasklogReaderUtil/date_range' into Rust
 
-use chrono::NaiveDate;
+use chrono::{NaiveDate, Duration, Datelike};
 
 /// Attempts to parse a string into a `NaiveDate` based on its length.
 ///
@@ -71,24 +79,49 @@ impl DateRange
         DateRange { start: first.clone(), end: last.clone(), }
     }
 
-    pub fn get_dates(&self, _range_type: &str) -> Vec<NaiveDate> 
+    pub fn get_dates(&self, range_type: &str) -> Vec<NaiveDate> 
     {
-        unimplemented!();
+        match range_type {
+            "y" | "Y" => self.get_years(),
+            "m" | "M" => self.get_months(),
+            "d" | "D" => self.get_days(),
+            _ => panic!("Invalid range_type=({:?}) for `DateRange` (must be y/m/d)", range_type),
+        }
     }
 
-    fn _get_days(&self) -> Vec<NaiveDate> 
+    fn get_days(&self) -> Vec<NaiveDate> 
     {
-        unimplemented!();
+        let mut result = Vec::new();
+        let mut date = self.start;
+        while date <= self.end {
+            result.push(date);
+            date += Duration::days(1);
+        }
+        result
     }
 
-    fn _get_months(&self) -> Vec<NaiveDate> 
+    fn get_months(&self) -> Vec<NaiveDate> 
     {
-        unimplemented!();
+        let mut result = Vec::new();
+        let mut date = self.start;
+        while date <= self.end {
+            result.push(NaiveDate::from_ymd_opt(date.year(), date.month(), 1).unwrap());
+            if date.month() == 12 {
+                date = NaiveDate::from_ymd_opt(date.year() + 1, 1, 1).unwrap();
+            } else {
+                date = NaiveDate::from_ymd_opt(date.year(), date.month() + 1, 1).unwrap();
+            }
+        }
+        result
     }
 
-    fn _get_years(&self) -> Vec<NaiveDate> 
+    fn get_years(&self) -> Vec<NaiveDate> 
     {
-        unimplemented!();
+        let mut result = Vec::new();
+        for y in self.start.year()..=self.end.year() {
+            result.push(NaiveDate::from_ymd_opt(y, 1, 1).unwrap());
+        }
+        result
     }
 
     pub fn is_date_in_range(&self, _date_str: &str) -> bool
@@ -96,7 +129,7 @@ impl DateRange
         unimplemented!();
     }
 
-    pub fn get_missing_dates(&self, _dates: Vec<&str>, _range_type: &str) -> Vec<String>
+    pub fn get_missing_dates(_dates: Vec<&str>, _range_type: &str) -> Vec<String>
     {
         unimplemented!();
     } 
