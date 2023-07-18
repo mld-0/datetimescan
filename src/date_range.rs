@@ -79,6 +79,18 @@ impl DateRange
         DateRange { start: first.clone(), end: last.clone(), }
     }
 
+    /// Get a vec of all yearly/monthly/daily `NaiveDate`s between start and end dates (inclusive)
+    ///
+    /// For a monthly range, all days=1, and for a yearly range, all months=1 and days=1
+    /// 
+    /// # Arguments
+    /// * `range_type` - A string specify yearly/monthly/daily (must be y/m/d)
+    ///
+    /// # Panics
+    /// Will panic if `range_type` is not (y/m/d)
+    ///
+    /// # Returns
+    /// `Vec<NaiveDate>` a vector of datetime objects
     pub fn get_dates(&self, range_type: &str) -> Vec<NaiveDate> 
     {
         match range_type {
