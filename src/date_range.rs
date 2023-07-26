@@ -70,7 +70,7 @@ impl DateRange
         DateRange { start: s.unwrap(), end: e.unwrap(), }
     }
 
-    pub fn new_from_str_range(dates: Vec<&str>) -> DateRange
+    pub fn new_from_str_range(dates: &[&str]) -> DateRange
     {
         let mut parsed_dates = dates.iter().map(|x| { parse_partial_date_str(x).expect("Invalid date given for `DateRange::new_from_str_range`") }).collect::<Vec<_>>();
         parsed_dates.sort();
@@ -136,6 +136,7 @@ impl DateRange
         result
     }
 
+    /// Does a given date (as string) fall between the start/end (inclusive) of the DateRange 
     pub fn is_date_in_range(&self, date_str: &str) -> bool
     {
         let date = parse_partial_date_str(date_str).expect("Invalid date_str for `DateRange::is_date_in_range`");
@@ -146,9 +147,29 @@ impl DateRange
         }
     }
 
-    pub fn get_missing_dates(_dates: Vec<&str>, _range_type: &str) -> Vec<String>
+    /// Get missing dates from a list of date strings based on the specified date type.
+    pub fn get_missing_dates(search_dates_strs: &[&str], range_type: &str) -> Vec<String>
     {
-        unimplemented!();
+        let date_range = DateRange::new_from_str_range(search_dates_strs);
+        let search_dates = search_dates_strs
+            .iter()
+            .map(|x| parse_partial_date_str(x)
+            .expect("Invalid date_str in search_dates_strs for `DateRange::get_missing_dates`"))
+            .collect::<Vec<_>>();
+        let range_dates = date_range.get_dates(range_type);
+        let date_format = match range_type {
+            "y" | "Y" => "%Y",
+            "m" | "M" => "%Y-%m",
+            "d" | "D" => "%Y-%m-%d",
+            _ => panic!("Invalid range_type=({:?}) for `DateRange` (must be y/m/d)", range_type),
+        };
+        let mut missing_dates = vec![];
+        for x in range_dates {
+            if !search_dates.contains(&x) {
+                missing_dates.push(x.format(date_format).to_string());
+            }
+        }
+        missing_dates
     } 
 
 }

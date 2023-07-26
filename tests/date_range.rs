@@ -46,11 +46,11 @@ mod test_date_range_ctor {
 
     #[test]
     fn test_date_range_new_from_str_range() {
-        let dr = DateRange::new_from_str_range(vec!["2023", "2023-03-03"]);
+        let dr = DateRange::new_from_str_range(&vec!["2023", "2023-03-03"]);
         assert_eq!(dr.start, NaiveDate::from_ymd_opt(2023, 1, 1).unwrap());
         assert_eq!(dr.end, NaiveDate::from_ymd_opt(2023, 3, 3).unwrap());
 
-        let dr = DateRange::new_from_str_range(vec!["2023-02", "2023-03", "2023"]);
+        let dr = DateRange::new_from_str_range(&vec!["2023-02", "2023-03", "2023"]);
         assert_eq!(dr.start, NaiveDate::from_ymd_opt(2023, 1, 1).unwrap());
         assert_eq!(dr.end, NaiveDate::from_ymd_opt(2023, 3, 1).unwrap());
     }
@@ -58,7 +58,7 @@ mod test_date_range_ctor {
     #[test]
     #[should_panic]
     fn test_date_range_new_from_str_range_invalid() {
-        DateRange::new_from_str_range(vec!["2023-02-30", "2023-03-03"]);  // Invalid date
+        DateRange::new_from_str_range(&vec!["2023-02-30", "2023-03-03"]);  // Invalid date
     }
 }
 
@@ -177,6 +177,55 @@ mod test_date_range_is_date_in_range {
 
 #[cfg(test)]
 mod test_date_range_get_missing {
+    use datetimescan::date_range::DateRange;
+
+    #[test]
+    fn test_get_missing_dates_days() {
+        let inputs = vec![vec!["2020-01-01", "2020-01-02", "2020-01-05", "2020-02-01"], 
+                  vec!["2020-01-01", "2020-01-02"],
+                  vec!["2020-01-01"],];
+        let checks = vec![
+                vec!["2020-01-03", "2020-01-04", "2020-01-06"].iter().map(|&s| s.to_string()).chain(
+                            (7..=31).map(|i| format!("2020-01-{:02}", i))
+                        ).collect(),
+                vec![],
+                vec![],];
+        assert_eq!(inputs.len(), checks.len());
+        for (dates, check) in inputs.iter().zip(checks.iter()) {
+            let missing = DateRange::get_missing_dates(dates, "d");
+            assert_eq!(missing, *check);
+        }
+    }
+
+    #[test]
+    fn test_get_missing_dates_months() {
+        let inputs = vec![vec!["2020-01", "2020-03", "2020-04-01", "2020-05"], 
+                        vec!["2020-01", "2020-02"],
+                        vec!["2020-01"],];
+        let checks = vec![vec!["2020-02"], 
+                        vec![],
+                        vec![],];
+        assert_eq!(inputs.len(), checks.len());
+        for (dates, check) in inputs.iter().zip(checks.iter()) {
+            let missing = DateRange::get_missing_dates(dates, "m");
+            assert_eq!(missing, *check);
+        }
+    }
+
+    #[test]
+    fn test_get_missing_dates_years() {
+        let inputs = vec![vec!["2011", "2012", "2013", "2015", "2017",],
+                        vec!["2022", "2022"],
+                        vec!["2021"],];
+        let checks = vec![vec!["2014", "2016",],
+                        vec![],
+                        vec![],];
+        assert_eq!(inputs.len(), checks.len());
+        for (dates, check) in inputs.iter().zip(checks.iter()) {
+            let missing = DateRange::get_missing_dates(dates, "y");
+            assert_eq!(missing, *check);
+        }
+    }
 
 }
 
