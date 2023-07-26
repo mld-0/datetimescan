@@ -136,9 +136,14 @@ impl DateRange
         result
     }
 
-    pub fn is_date_in_range(&self, _date_str: &str) -> bool
+    pub fn is_date_in_range(&self, date_str: &str) -> bool
     {
-        unimplemented!();
+        let date = parse_partial_date_str(date_str).expect("Invalid date_str for `DateRange::is_date_in_range`");
+        if date >= self.start && date <= self.end {
+            true
+        } else {
+            false
+        }
     }
 
     pub fn get_missing_dates(_dates: Vec<&str>, _range_type: &str) -> Vec<String>

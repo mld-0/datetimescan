@@ -150,6 +150,32 @@ mod test_date_range_get_dates {
 }
 
 #[cfg(test)]
+mod test_date_range_is_date_in_range {
+    use datetimescan::date_range::DateRange;
+
+    #[test]
+    fn test_is_date_in_range() {
+        let cases = vec![("2020-01-01", "2021-01-01", "2020-01-01", true), 
+          ("2020-01-01", "2021-01-01", "2020-02-01", true),
+          ("2020-01-01", "2021-01-01", "2020-12-31", true),
+          ("2020-01-01", "2021-01-01", "2021-01-01", true),
+          ("2020-01-01", "2021-01-01", "2019-12-31", false),
+          ("2020-01-01", "2021-01-01", "2021-01-02", false),
+          ("2020-01", "2020-03", "2020-02", true), 
+          ("2020-01", "2020-02", "2020-01", true),
+          ("2020-01", "2020-02", "2020-02", true),
+          ("2020-01", "2020-02", "2020-03", false),
+          ("2020", "2022", "2021", true),
+          ("2020", "2020", "2020", true),];
+        for (start, end, mid, check) in cases.iter() {
+            let date_range = DateRange::new(start, end);
+            let result = date_range.is_date_in_range(mid);
+            assert_eq!(result, *check);
+        }
+    }
+}
+
+#[cfg(test)]
 mod test_date_range_get_missing {
 
 }
