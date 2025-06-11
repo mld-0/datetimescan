@@ -2,7 +2,7 @@
 #[cfg(test)]
 mod test_cli_deltas {
 
-    use datetimescan::get_parser;
+    use datetimescan::create_arg_parser;
     use datetimescan::subcommands;
     use datetimescan::printer::Printer;
     use crate::cli;
@@ -202,7 +202,7 @@ r"36
 
 
     fn run_count(args: &Vec<&str>, expected: &str) {
-        let parser = get_parser::get_parser();
+        let parser = create_arg_parser::create_arg_parser();
         let matches = parser.get_matches_from(args);
         let mut buffer = Vec::<u8>::new();
         let mut printer = Printer::new(Some(&mut buffer));

@@ -10,7 +10,7 @@
 #[cfg(test)]
 mod test_cli_locate {
 
-    use datetimescan::get_parser;
+    use datetimescan::create_arg_parser;
     use datetimescan::subcommands;
     use datetimescan::printer::Printer;
     use crate::cli;
@@ -112,7 +112,7 @@ r"2023-04-19T22:07:40AEST	1	10
     }
 
     fn run_locate(args: &Vec<&str>, expected: &str) {
-        let parser = get_parser::get_parser();
+        let parser = create_arg_parser::create_arg_parser();
         let matches = parser.get_matches_from(args);
         let mut buffer = Vec::<u8>::new();
         let mut printer = Printer::new(Some(&mut buffer));
@@ -137,7 +137,7 @@ r"2023-04-19T22:07:40AEST	1	10
         //    ;
         //let path_output = "/tmp/datetimescan_locate_test_empty.txt".to_owned();
         //let args: Vec<String> = vec![ "datetimescan".to_owned(), "locate".to_owned(), "--input".to_owned(), path, "--output".to_owned(), path_output, ];
-        //let parser = get_parser::get_parser();
+        //let parser = create_arg_parser::create_arg_parser();
         //let matches = parser.get_matches_from(&args);
     //let mut buffer = Vec::new();
     //{
