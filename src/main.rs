@@ -4,7 +4,7 @@
 //  {{{2
 
 use datetimescan::subcommands;
-use datetimescan::get_parser;
+use datetimescan::create_arg_parser;
 
 #[allow(unused_imports)]
 use log::{error, warn, info, debug, trace};
@@ -21,7 +21,7 @@ use log::{error, warn, info, debug, trace};
 fn main() 
 {
     env_logger::init();
-    let parser = get_parser::get_parser();
+    let parser = create_arg_parser::create_arg_parser();
     let matches = parser.get_matches();
     log::trace!("main(), matches=({:?})", matches);
     subcommands::run(&matches);

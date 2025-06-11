@@ -21,7 +21,7 @@ use std::fmt::Debug;
 /// * `reader` - A type implementing `BufRead` from which the function will read lines.
 ///
 /// # Returns
-/// A vector of tuples containing the found datetime strings, their line numbers, and positions.
+/// A vector of tuples containing the found datetime strings, the line number (1-indexed), and position on that line.
 pub fn search_datetimes<R: BufRead + Debug>(reader: R) -> Vec<(String, usize, usize)> 
 {
     log::trace!("search_datetimes(), reader=({:?})", reader);

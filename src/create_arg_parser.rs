@@ -1,6 +1,6 @@
 use clap::{App, Arg, SubCommand};
 
-pub fn get_parser() -> clap::App<'static, 'static>
+pub fn create_arg_parser() -> clap::App<'static, 'static>
 {
     //  Common arguments:
     let input_arg = Arg::with_name("input")
